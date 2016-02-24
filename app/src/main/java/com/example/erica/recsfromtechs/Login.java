@@ -26,6 +26,10 @@ public class Login extends AppCompatActivity {
         setSupportActionBar(toolbar);
         passwords  = getSharedPreferences("MyPref", MODE_PRIVATE);
         editPasswords = passwords.edit();
+        EditText usernameText = (EditText) findViewById(R.id.username);
+        EditText passwordText = (EditText) findViewById(R.id.password);
+        usernameText.setText("bob");
+        passwordText.setText("password");
     }
 
     /**
