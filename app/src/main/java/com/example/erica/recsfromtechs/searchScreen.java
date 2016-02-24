@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.TextView;
 
 import com.android.volley.Request;
@@ -17,7 +18,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.util.Arrays;
+import java.util.ArrayList;
 
 public class searchScreen extends AppCompatActivity {
 
@@ -40,7 +41,10 @@ public class searchScreen extends AppCompatActivity {
 
     public void searchForMovie(View view) {
         System.out.println("You just searched for movie");
-        String url ="http://api.rottentomatoes.com/api/public/v1.0/movies.json?q=kill+bill&page_limit=10&page=1&apikey=yedukp76ffytfuy24zsqk7f5";
+        EditText temp   = (EditText)findViewById(R.id.editText);
+        String strTemp = temp.getText().toString();
+        strTemp.replace(" ", "+");
+        String url ="http://api.rottentomatoes.com/api/public/v1.0/movies.json?q=" + strTemp + "&page_limit=10&page=1&apikey=yedukp76ffytfuy24zsqk7f5";
         StringRequest stringRequest = new StringRequest(Request.Method.GET, url, new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
@@ -55,12 +59,12 @@ public class searchScreen extends AppCompatActivity {
                     JSONArray movies = jsonResponse.getJSONArray("movies");
 
                     // add each movie's title to an array
-                    String[] movieTitles = new String[movies.length()];
+                    ArrayList<String> movieTitles = new ArrayList<>();
                     for (int i = 0; i < movies.length(); i++) {
                         JSONObject movie = movies.getJSONObject(i);
-                        movieTitles[i] = movie.getString("title");
+                        movies.put((String) movie.getString("title"));
                     }
-                    view.setText(Arrays.toString(movieTitles));
+                    //changeView(movies);
                 } catch (JSONException e) {
                     System.out.println("error parsing JSON " + e.toString());
                 }
