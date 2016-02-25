@@ -50,7 +50,7 @@ public class searchScreen extends AppCompatActivity {
         System.out.println("You just searched for movie");
         EditText temp   = (EditText)findViewById(R.id.editText);
         String strTemp = temp.getText().toString().trim();
-        strTemp.replace(" ", "+");
+        strTemp = strTemp.replace(" ", "+");
         String url ="http://api.rottentomatoes.com/api/public/v1.0/movies.json?q=" + strTemp + "&page_limit=10&page=1&apikey=yedukp76ffytfuy24zsqk7f5";
         StringRequest stringRequest = new StringRequest(Request.Method.GET, url, new Response.Listener<String>() {
                     @Override
@@ -64,7 +64,6 @@ public class searchScreen extends AppCompatActivity {
                             JSONArray movies = jsonResponse.getJSONArray("movies");
 
                             // add each movie's title to an array
-                            String[] movieTitles = new String[movies.length()];
                             for (int i = 0; i < movies.length(); i++) {
                                 ArrayList<String> thisMovieArray = new ArrayList<>();
                                 JSONObject movie = movies.getJSONObject(i);
@@ -127,7 +126,7 @@ public class searchScreen extends AppCompatActivity {
                 @Override
                 public void onItemClick(AdapterView<?> parent, View view,
                                         int position, long id) {
-                    Toast.makeText(searchScreen.this, "You Clicked at " + movieNames[+position], Toast.LENGTH_SHORT).show();
+                    Toast.makeText(searchScreen.this, "You Clicked " + movieNames[+position], Toast.LENGTH_SHORT).show();
 
                 }
             });
