@@ -36,10 +36,13 @@ public class searchScreen extends AppCompatActivity {
         setSupportActionBar(toolbar);
         queue = Volley.newRequestQueue(this);
         queue2 = Volley.newRequestQueue(this);
-
-
     }
 
+    /**
+     * Pulls all movie info from the API based on movie searched and displays the movies
+     *
+     * @param view The current layout with all the Android widgets
+     */
     public void searchForMovie(View view) {
 
         final ArrayList<ArrayList> movieInfo = new ArrayList<>();
@@ -96,14 +99,11 @@ public class searchScreen extends AppCompatActivity {
     }
 
 
-
-
-    // Instantiate the RequestQueue.
-
-
-    // Request a string response from the provided URL.
-
-
+    /**
+     * Helps to populate the list view of the movies
+     *
+     * @param movieInfo the info of the movies to be displayed
+     */
     private void populateListView(ArrayList<ArrayList> movieInfo) {
 
         ListView list;
