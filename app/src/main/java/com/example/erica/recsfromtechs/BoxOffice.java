@@ -1,5 +1,6 @@
 package com.example.erica.recsfromtechs;
 
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -129,6 +130,15 @@ public class BoxOffice extends AppCompatActivity{
 
             }
         });
+    }
+
+    /**
+     * Allows the user to go back to the dashboard
+     * @param view The current layout with all the Android widgets
+     */
+    public void backToDashboard(View view) {
+        Intent intent = new Intent(this, dashboard.class);
+        startActivity(intent);
     }
 
 

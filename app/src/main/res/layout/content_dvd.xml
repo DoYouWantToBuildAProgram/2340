@@ -10,16 +10,29 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context="com.example.erica.recsfromtechs.DVD"
-    tools:showIn="@layout/activity_dvd">
+    tools:showIn="@layout/activity_dvd"
+    android:background="#3d4141">
 
-
+    <Button
+        android:layout_width="150dp"
+        android:id="@+id/back"
+        android:layout_height="wrap_content"
+        android:text = "@string/back"
+        android:textColor="#FFFFFF"
+        android:textStyle = "bold"
+        android:onClick = "backToDashboard"
+        android:background="#B9090B"
+        android:layout_alignParentTop="true"
+        android:layout_alignEnd="@+id/list3" />
 
     <ListView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/list3"
         android:layout_alignParentBottom="true"
-        android:layout_alignParentStart="true"/>
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/back"
+        android:background="#c2c2c2" />
 
 
 
