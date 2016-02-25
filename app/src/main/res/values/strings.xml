@@ -21,6 +21,7 @@
     <string name="email">Enter Your Email</string>
     <string name="title_activity_profile">Profile</string>
     <string name="title_activity_boxoffice">Box Office Movies</string>
+    <string name="title_dvd">DVD Releases</string>
     <string name="name">Name</string>
     <string name="searchScreen">Search Screen</string>
 
