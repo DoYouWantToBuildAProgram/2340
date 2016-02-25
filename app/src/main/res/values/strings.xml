@@ -11,7 +11,7 @@
     <string name="title_activity_register">Register</string>
     <string name="cancel">Cancel</string>
     <string name="loginUnsuccessful">Login was Unsuccessful</string>
-    <string name="title_activity_dashboard">dashboard</string>
+    <string name="title_activity_dashboard">Dashboard</string>
     <string name="dashboard">Dashboard</string>
     <string name="logout">Logout</string>
     <string name="createuser">Create a Username</string>
