@@ -1,23 +1,19 @@
 package com.example.erica.recsfromtechs;
 
 import android.graphics.Bitmap;
-import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.EditText;
-import android.widget.ImageView;
 import android.widget.ListView;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
-import com.android.volley.toolbox.ImageRequest;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 
@@ -25,10 +21,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.io.InputStream;
-import java.net.URL;
 import java.util.ArrayList;
-import java.util.Arrays;
 
 public class searchScreen extends AppCompatActivity {
 
@@ -43,16 +36,22 @@ public class searchScreen extends AppCompatActivity {
         setSupportActionBar(toolbar);
         queue = Volley.newRequestQueue(this);
         queue2 = Volley.newRequestQueue(this);
-
-
     }
 
+    /**
+     * Pulls all movie info from the API based on movie searched and displays the movies
+     *
+     * @param view The current layout with all the Android widgets
+     */
     public void searchForMovie(View view) {
 
         final ArrayList<ArrayList> movieInfo = new ArrayList<>();
 
         System.out.println("You just searched for movie");
-        String url ="http://api.rottentomatoes.com/api/public/v1.0/movies.json?q=kill+bill&page_limit=10&page=1&apikey=yedukp76ffytfuy24zsqk7f5";
+        EditText temp   = (EditText)findViewById(R.id.editText);
+        String strTemp = temp.getText().toString().trim();
+        strTemp.replace(" ", "+");
+        String url ="http://api.rottentomatoes.com/api/public/v1.0/movies.json?q=" + strTemp + "&page_limit=10&page=1&apikey=yedukp76ffytfuy24zsqk7f5";
         StringRequest stringRequest = new StringRequest(Request.Method.GET, url, new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
@@ -100,14 +99,11 @@ public class searchScreen extends AppCompatActivity {
     }
 
 
-
-
-    // Instantiate the RequestQueue.
-
-
-    // Request a string response from the provided URL.
-
-
+    /**
+     * Helps to populate the list view of the movies
+     *
+     * @param movieInfo the info of the movies to be displayed
+     */
     private void populateListView(ArrayList<ArrayList> movieInfo) {
 
         ListView list;

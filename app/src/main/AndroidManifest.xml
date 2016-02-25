@@ -33,7 +33,15 @@
         <activity
             android:name=".Profile"
             android:label="@string/title_activity_profile"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".BoxOffice"
+            android:label="@string/title_activity_boxoffice"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".DVD"
+            android:label="@string/title_dvd"
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".searchScreen"
             android:label="@string/searchScreen"

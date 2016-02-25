@@ -9,42 +9,31 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:context="com.example.erica.recsfromtechs.searchScreen"
-    tools:showIn="@layout/activity_search_screen"
+    tools:context="com.example.erica.recsfromtechs.DVD"
+    tools:showIn="@layout/activity_dvd"
     android:background="#3d4141">
 
-
     <Button
-        android:layout_width="wrap_content"
+        android:layout_width="150dp"
+        android:id="@+id/back"
         android:layout_height="wrap_content"
-        android:text="Search for movie"
-        android:id="@+id/button"
-        android:onClick="searchForMovie"
-        android:layout_alignParentTop="true"
-        android:background="#B9090B"
+        android:text = "@string/back"
         android:textColor="#FFFFFF"
-        android:layout_alignEnd="@+id/list" />
-
-
+        android:textStyle = "bold"
+        android:onClick = "backToDashboard"
+        android:background="#B9090B"
+        android:layout_alignParentTop="true"
+        android:layout_alignEnd="@+id/list3" />
 
     <ListView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/list"
+        android:id="@+id/list3"
         android:layout_alignParentBottom="true"
         android:layout_alignParentStart="true"
-        android:layout_below="@+id/button"
+        android:layout_below="@+id/back"
         android:background="#c2c2c2" />
 
-    <EditText
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textColorHint="#FFFFFF"
-        android:textColor="#FFFFFF"
-        android:id="@+id/editText"
-        android:layout_alignBottom="@+id/button"
-        android:layout_alignParentStart="true"
-        android:layout_toStartOf="@+id/button" />
 
 
 </RelativeLayout>
