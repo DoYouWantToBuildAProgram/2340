@@ -40,6 +40,11 @@ public class BoxOffice extends AppCompatActivity{
         showBoxOfficeMovies(findViewById(R.id.list2));
     }
 
+    /**
+     * Pulls the box office movie info from the API
+     *
+     * @param view The current layout with all the Android widgets
+     */
     public void showBoxOfficeMovies(View view) {
 
         final ArrayList<ArrayList> movieInfo = new ArrayList<>();
@@ -91,6 +96,12 @@ public class BoxOffice extends AppCompatActivity{
 
         queue.add(stringRequest);
     }
+
+    /**
+     * Helps to populate the view of the list of movies
+     *
+     * @param movieInfo The info to be displayed
+     */
     private void populateListView(ArrayList<ArrayList> movieInfo) {
 
         ListView list;

@@ -40,6 +40,11 @@ public class DVD extends AppCompatActivity {
         showDVDReleases(findViewById(R.id.list3));
     }
 
+    /**
+     * Pulls the DVD release info from the API
+     *
+     * @param view The current layout with all the Android widgets
+     */
     public void showDVDReleases(View view) {
 
         final ArrayList<ArrayList> movieInfo = new ArrayList<>();
@@ -91,6 +96,12 @@ public class DVD extends AppCompatActivity {
 
         queue.add(stringRequest);
     }
+
+    /**
+     * Helps to populate the view of the movies
+     *
+     * @param movieInfo the info to be displayed to users
+     */
     private void populateListView(ArrayList<ArrayList> movieInfo) {
 
         ListView list;
