@@ -29,4 +29,13 @@
     <string name="title_activity_search__screen">search_Screen</string>
     <string name="title_activity_search_screen">searchScreen</string>
     <string name="title_activity_movie">MovieActivity</string>
+
+    <string-array name="majors">
+        <item>Select your Major</item>
+        <item>Computer Science</item>
+        <item>Mechanical Engineering</item>
+        <item>Other</item>
+        <item>LOL</item>
+        <item>JK LOL</item>
+    </string-array>
 </resources>

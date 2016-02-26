@@ -14,9 +14,9 @@ public class CustomList extends ArrayAdapter<String>{
 
     private final Activity context;
     private final String[] web;
-    private final Bitmap[] imageId;
+    private final String[] imageId;
     public CustomList(Activity context,
-                      String[] web, Bitmap[] imageId) {
+                      String[] web, String[] imageId) {
         super(context, R.layout.list_single, web);
         this.context = context;
         this.web = web;
@@ -29,10 +29,12 @@ public class CustomList extends ArrayAdapter<String>{
         View rowView= inflater.inflate(R.layout.list_single, null, true);
         TextView txtTitle = (TextView) rowView.findViewById(R.id.txt);
 
+
         ImageView imageView = (ImageView) rowView.findViewById(R.id.img);
         txtTitle.setText(web[position]);
 
-        imageView.setImageBitmap(imageId[position]);
+        new webImageGetter(imageView).execute(imageId[position]);
+
         return rowView;
     }
 }
