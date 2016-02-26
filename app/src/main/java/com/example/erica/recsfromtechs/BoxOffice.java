@@ -1,7 +1,6 @@
 package com.example.erica.recsfromtechs;
 
 import android.content.Intent;
-import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -47,8 +46,6 @@ public class BoxOffice extends AppCompatActivity{
      * @param view The current layout with all the Android widgets
      */
     public void showBoxOfficeMovies(View view) {
-
-        final ArrayList<ArrayList> movieInfo = new ArrayList<>();
 
         String url ="http://api.rottentomatoes.com/api/public/v1.0/lists/movies/box_office.json?limit=10&country=us&apikey=yedukp76ffytfuy24zsqk7f5";
         StringRequest stringRequest = new StringRequest(Request.Method.GET, url, new Response.Listener<String>() {
@@ -107,26 +104,25 @@ public class BoxOffice extends AppCompatActivity{
 
         ListView list;
         final String[] movieNames = new String[movieInfo.size()] ;
-        final Bitmap[] images = new Bitmap[movieInfo.size()];
+        final String[] images = new String[movieInfo.size()];
 
         int i = 0;
         for (ArrayList<String> e : movieInfo) {
             movieNames[i] = e.get(0);
-            webImageGetter getter = new webImageGetter(e.get(3));
-            images[i] =  getter.getBitmap();
+            images[i] = e.get(3);
             i++;
         }
 
-        CustomList adapter = new
-                CustomList(BoxOffice.this, movieNames, images);
-        list= (ListView) findViewById(R.id.list2);
+        CustomList adapter = new CustomList(this, movieNames, images);
+
+        list = (ListView) findViewById(R.id.list2);
         list.setAdapter(adapter);
         list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 
             @Override
             public void onItemClick(AdapterView<?> parent, View view,
                                     int position, long id) {
-                Toast.makeText(BoxOffice.this, "You Clicked " + movieNames[+position], Toast.LENGTH_SHORT).show();
+                Toast.makeText(BoxOffice.this, "You Clicked at " + movieNames[+position], Toast.LENGTH_SHORT).show();
 
             }
         });
