@@ -28,4 +28,5 @@
 
     <string name="title_activity_search__screen">search_Screen</string>
     <string name="title_activity_search_screen">searchScreen</string>
+    <string name="title_activity_movie">MovieActivity</string>
 </resources>
