@@ -24,6 +24,15 @@
     <string name="title_dvd">DVD Releases</string>
     <string name="name">Name</string>
     <string name="searchScreen">Search Screen</string>
+
+    <string-array name="majors">
+        <item>Select your Major</item>
+        <item>Computer Science</item>
+        <item>Mechanical Engineering</item>
+        <item>Other</item>
+        <item>LOL</item>
+        <item>JK LOL</item>
+    </string-array>
     <string name="back">Back to Dashboard</string>
 
     <string name="title_activity_search__screen">search_Screen</string>
