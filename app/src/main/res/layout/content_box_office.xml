@@ -35,6 +35,4 @@
         android:layout_below="@+id/back"
         android:background="#c2c2c2" />
 
-
-
 </RelativeLayout>
