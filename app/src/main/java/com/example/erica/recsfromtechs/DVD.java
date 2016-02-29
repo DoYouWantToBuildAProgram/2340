@@ -107,13 +107,12 @@ public class DVD extends AppCompatActivity {
 
         ListView list;
         final String[] movieNames = new String[movieInfo.size()] ;
-        final Bitmap[] images = new Bitmap[movieInfo.size()];
+        final String[] images = new String[movieInfo.size()];
 
         int i = 0;
         for (ArrayList<String> e : movieInfo) {
             movieNames[i] = e.get(0);
-            webImageGetter getter = new webImageGetter(e.get(3));
-            images[i] =  getter.getBitmap();
+            images[i] =  e.get(3);
             i++;
         }
 
