@@ -125,8 +125,13 @@ public class DVD extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view,
                                     int position, long id) {
-                Toast.makeText(DVD.this, "You Clicked at " + movieNames[+position], Toast.LENGTH_SHORT).show();
+                Bundle bundle = new Bundle();
+                bundle.putString("title", movieNames[position]);
+                bundle.putString("image", images[position]);
+                Intent intent = new Intent(DVD.this, MovieActivity.class);
+                intent.putExtras(bundle);
 
+                startActivity(intent);
             }
         });
     }
