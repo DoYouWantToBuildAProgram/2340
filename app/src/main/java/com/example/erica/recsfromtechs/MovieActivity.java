@@ -29,6 +29,9 @@ public class MovieActivity extends AppCompatActivity {
     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
+
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_movie);
         String title = "";
@@ -98,8 +101,20 @@ public class MovieActivity extends AppCompatActivity {
                 Toast.makeText(getApplicationContext(), rating, Toast.LENGTH_LONG).show();
             }
         });
+        /*
+
+        movieInfo = getSharedPreferences("Movie Ratings User", MODE_PRIVATE);
+        editMovieInfo = movieInfo.edit();
+        Intent someIntent = getIntent();
+        String movie = someIntent.getStringExtra("movie");
+        String uRating = movieInfo.getString(movie + "rating", null);
+        TextView uRatingTxt = (TextView)findViewById(R.id.userRating);
+        uRatingTxt.setText(uRating);
+        /*
 
 
+
+        */
 
 
 
