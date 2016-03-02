@@ -1,6 +1,7 @@
 package com.example.erica.recsfromtechs;
 
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -47,7 +48,9 @@ public class DVD extends AppCompatActivity {
      */
     public void showDVDReleases(View view) {
 
-        String url ="http://api.rottentomatoes.com/api/public/v1.0/lists/dvds/new_releases.json?page_limit=10&page=1&country=us&apikey=yedukp76ffytfuy24zsqk7f5";
+        final ArrayList<ArrayList> movieInfo = new ArrayList<>();
+
+        String url ="http://api.rottentomatoes.com/api/public/v1.0/lists/dvds/new_releases.json?page_limit=16&page=1&country=us&apikey=yedukp76ffytfuy24zsqk7f5";
         StringRequest stringRequest = new StringRequest(Request.Method.GET, url, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
@@ -109,13 +112,13 @@ public class DVD extends AppCompatActivity {
         int i = 0;
         for (ArrayList<String> e : movieInfo) {
             movieNames[i] = e.get(0);
-            images[i] = e.get(3);
+            images[i] =  e.get(3);
             i++;
         }
 
-        CustomList adapter = new CustomList(this, movieNames, images);
-
-        list = (ListView) findViewById(R.id.list3);
+        CustomList adapter = new
+                CustomList(DVD.this, movieNames, images);
+        list= (ListView) findViewById(R.id.list3);
         list.setAdapter(adapter);
         list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 

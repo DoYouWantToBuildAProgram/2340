@@ -1,6 +1,7 @@
 package com.example.erica.recsfromtechs;
 
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -47,7 +48,9 @@ public class BoxOffice extends AppCompatActivity{
      */
     public void showBoxOfficeMovies(View view) {
 
-        String url ="http://api.rottentomatoes.com/api/public/v1.0/lists/movies/box_office.json?limit=10&country=us&apikey=yedukp76ffytfuy24zsqk7f5";
+        final ArrayList<ArrayList> movieInfo = new ArrayList<>();
+
+        String url ="http://api.rottentomatoes.com/api/public/v1.0/lists/movies/box_office.json?limit=16&country=us&apikey=yedukp76ffytfuy24zsqk7f5";
         StringRequest stringRequest = new StringRequest(Request.Method.GET, url, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
@@ -109,13 +112,13 @@ public class BoxOffice extends AppCompatActivity{
         int i = 0;
         for (ArrayList<String> e : movieInfo) {
             movieNames[i] = e.get(0);
-            images[i] = e.get(3);
+            images[i] =  e.get(3);
             i++;
         }
 
-        CustomList adapter = new CustomList(this, movieNames, images);
-
-        list = (ListView) findViewById(R.id.list2);
+        CustomList adapter = new
+                CustomList(BoxOffice.this, movieNames, images);
+        list= (ListView) findViewById(R.id.list2);
         list.setAdapter(adapter);
         list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 
