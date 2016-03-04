@@ -25,7 +25,6 @@
     <Space
         android:layout_width="match_parent"
         android:layout_height="50dp" />
-
     <EditText android:id="@+id/name"
         android:layout_width="209dp"
         android:layout_height="wrap_content"
@@ -33,7 +32,6 @@
         android:textColorHint="#FFFFFF"
         android:textColor="#FFFFFF"
         android:layout_gravity="center_horizontal" />
-
     <EditText android:id="@+id/username"
         android:layout_width="209dp"
         android:layout_height="wrap_content"
@@ -41,17 +39,14 @@
         android:textColorHint="#FFFFFF"
         android:textColor="#FFFFFF"
         android:layout_gravity="center_horizontal" />
-
     <EditText android:id="@+id/password"
         android:layout_width="209dp"
         android:layout_height="wrap_content"
         android:textColorHint="#FFFFFF"
-        android:textColor="#FFFFFF"
         android:inputType="textPassword"
         android:ems="10"
         android:hint="@string/createpass"
         android:layout_gravity="center_horizontal" />
-
     <Spinner
         android:layout_width="209dp"
         android:layout_height="wrap_content"
@@ -65,15 +60,18 @@
         android:layout_height="1dp"
         android:layout_gravity="center_horizontal"
         android:background="#000000"/>
-
-
+    <EditText android:id="@+id/major"
+        android:layout_width="209dp"
+        android:layout_height="wrap_content"
+        android:hint="@string/major"
+        android:layout_gravity="center_horizontal"
+        android:textColorHint="#FFFFFF"/>
     <EditText android:id="@+id/email"
         android:layout_width="209dp"
         android:layout_height="wrap_content"
         android:hint="@string/email"
         android:layout_gravity="center_horizontal"
         android:textColorHint="#FFFFFF"
-        android:textColor="#FFFFFF"
         />
 
     <Space

@@ -58,6 +58,7 @@ public class dashboard extends AppCompatActivity {
     public void editProfile(View view) {
         Intent intent = new Intent(this, Profile.class);
         Intent oldIntent = getIntent();
+        String user = oldIntent.getStringExtra("user");
         String userName = oldIntent.getStringExtra("userName");
         String userEmail = oldIntent.getStringExtra("userEmail");
         String userMajor = oldIntent.getStringExtra("userMajor");
@@ -65,6 +66,7 @@ public class dashboard extends AppCompatActivity {
         bundle.putString("userName",userName);
         bundle.putString("userEmail", userEmail);
         bundle.putString("userMajor", userMajor);
+        bundle.putString("user", user);
         intent.putExtras(bundle);
         startActivity(intent);
     }
