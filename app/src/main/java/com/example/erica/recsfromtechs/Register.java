@@ -56,25 +56,25 @@ public class Register extends AppCompatActivity  implements AdapterView.OnItemSe
         EditText passwordText = (EditText) findViewById(R.id.password);
         EditText emailText = (EditText) findViewById(R.id.email);
         EditText nameText = (EditText) findViewById(R.id.name);
-        EditText majorText = (EditText) findViewById(R.id.major);
-        User currentUser = new User(nameText.getText().toString(),emailText.getText().toString(),majorText.getText().toString());
+//        EditText majorText = (EditText) findViewById(R.id.major);
+        User currentUser = new User(nameText.getText().toString(),emailText.getText().toString(),"Computer Science");
 
         editPasswords.putString(usernameText.getText().toString(), passwordText.getText().toString());
         editPasswords.commit();
         editUserInfo.putString(usernameText.getText().toString()+"name", nameText.getText().toString());
-        editUserInfo.commit();
-        editUserInfo.putString(usernameText.getText().toString()+"email", emailText.getText().toString());
-        editUserInfo.commit();
-        editUserInfo.putString(usernameText.getText().toString()+"major",majorText.getText().toString());
-        editUserInfo.commit();
-        Intent intent = new Intent(this,Login.class);
-        Bundle bundle = new Bundle();
-        bundle.putString("userName",currentUser.getName());
-        bundle.putString("userEmail", currentUser.getEmail());
-        bundle.putString("userMajor", currentUser.getMajor());
-        intent.putExtras(bundle);
-        startActivity(intent);
-    }
+            editUserInfo.commit();
+    editUserInfo.putString(usernameText.getText().toString()+"email", emailText.getText().toString());
+    editUserInfo.commit();
+    //        editUserInfo.putString(usernameText.getText().toString()+"major",majorText.getText().toString());
+//        editUserInfo.commit();
+    Intent intent = new Intent(this,Login.class);
+    Bundle bundle = new Bundle();
+    bundle.putString("userName",currentUser.getName());
+    bundle.putString("userEmail", currentUser.getEmail());
+//        bundle.putString("userMajor", currentUser.getMajor());
+    intent.putExtras(bundle);
+    startActivity(intent);
+}
 
     /**
      * Allows the user to cancel their registration and takes them back to the welcome screen

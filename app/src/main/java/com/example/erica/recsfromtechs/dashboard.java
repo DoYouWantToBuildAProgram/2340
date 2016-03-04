@@ -25,7 +25,7 @@ public class dashboard extends AppCompatActivity {
             //works like a map, "user" is our key
             //Log.v("welcome", "saved instance state null");
             Intent oldIntent = getIntent();
-            String user = oldIntent.getStringExtra("user");
+            String user = oldIntent.getStringExtra("userName");
             usernameText = "" + user;
         } else {
             //Log.v("welcome", "saved instance state not null");
@@ -76,7 +76,10 @@ public class dashboard extends AppCompatActivity {
      * @param view The current layout with all the Android widgets
      */
     public void movieSearch(View view) {
+        Intent oldIntent = getIntent();
+        String user = oldIntent.getStringExtra("userName");
         Intent intent = new Intent(this,searchScreen.class);
+        intent.putExtra("userName",user);
         startActivity(intent);
 
     }

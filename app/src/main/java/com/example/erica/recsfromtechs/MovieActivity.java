@@ -60,8 +60,8 @@ public class MovieActivity extends AppCompatActivity {
             Intent intentRating = getIntent();
             rating = intentRating.getStringExtra("rating");
             rating = "" + rating;
-
-            simpleRatingBar.setRating(movieInfo.getFloat(title+"rating",0));
+            String user = intentRating.getStringExtra("userName");
+            simpleRatingBar.setRating(movieInfo.getFloat(user+"name"+title+"rating",0));
 
             //movieImage[0] = oldIntent.getStringExtra("image");
             //movieImage[0] = "" + movieImage;
@@ -109,9 +109,11 @@ public class MovieActivity extends AppCompatActivity {
 //        });
     }
         public void rateMovie(View view) {
+            Intent oldIntent = getIntent();
+            String user = oldIntent.getStringExtra("userName");
             String rating = "Rating: " + simpleRatingBar.getRating();
             Toast.makeText(getApplicationContext(), rating, Toast.LENGTH_LONG).show();
-            editMovieInfo.putFloat(title + "rating", simpleRatingBar.getRating());
+            editMovieInfo.putFloat(user+"name"+title + "rating", simpleRatingBar.getRating());
             editMovieInfo.commit();
 
     }

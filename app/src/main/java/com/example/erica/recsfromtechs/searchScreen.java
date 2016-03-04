@@ -40,6 +40,8 @@ public class searchScreen extends AppCompatActivity {
     RequestQueue queue2;
     SharedPreferences movieInfo;
     SharedPreferences.Editor editMovieInfo;
+    SharedPreferences userInfo;
+    SharedPreferences.Editor editUserInfo;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,8 +51,10 @@ public class searchScreen extends AppCompatActivity {
         setSupportActionBar(toolbar);
         queue = Volley.newRequestQueue(this);
         queue2 = Volley.newRequestQueue(this);
-        movieInfo = getSharedPreferences("Movie",MODE_PRIVATE);
+        movieInfo = getSharedPreferences("Movie", MODE_PRIVATE);
         editMovieInfo = movieInfo.edit();
+        userInfo = getSharedPreferences("AnotherPref", MODE_PRIVATE);
+        editUserInfo = userInfo.edit();
 
 
     }
@@ -124,7 +128,7 @@ public class searchScreen extends AppCompatActivity {
     // Request a string response from the provided URL.
 
 
-    private void populateListView(ArrayList<ArrayList> movieInfo) {
+    private void populateListView(final ArrayList<ArrayList> movieInfo) {
 
         ListView list;
         final String[] movieNames = new String[movieInfo.size()] ;
@@ -152,12 +156,19 @@ public class searchScreen extends AppCompatActivity {
                 @Override
                 public void onItemClick(AdapterView<?> parent, View view,
                                         int position, long id) {
-                    editMovieInfo.putFloat(movieNames[position]+"rating",0);
+                    Intent oldIntent = getIntent();
+                    String user = oldIntent.getStringExtra("userName");
+                    //editMovieInfo.putFloat(userInfo.getString(user+"name",null)+movieNames[position]+"rating",0);
+                    if (!(movieInfo.contains(user+"name"+movieNames[position]+"rating"))) {
+                        editMovieInfo.putFloat(user+"name"+movieNames[position]+"rating",0);
+                        editMovieInfo.commit();
+                    }
                     Bundle bundle = new Bundle();
                     bundle.putString("title", movieNames[position]);
                     bundle.putString("year", movieYears[position]);
                     bundle.putString("rating", ratings[position]);
                     bundle.putString("image", images[position]);
+                    bundle.putString("userName",user);
                     Intent intent = new Intent(searchScreen.this, MovieActivity.class);
                     intent.putExtras(bundle);
 
