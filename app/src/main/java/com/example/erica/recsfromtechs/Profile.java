@@ -47,10 +47,12 @@ public class Profile extends AppCompatActivity {
      * @param view The current layout with all the Android widgets
      */
     public void editName(View view) {
+        Intent oldIntent = getIntent();
+        String user = oldIntent.getStringExtra("user");
         TextView nameText = (TextView)findViewById(R.id.name);
         EditText changedName = (EditText)findViewById(R.id.newName);
         nameText.setText(changedName.getText().toString());
-        editUserInfo.putString("name", changedName.getText().toString());
+        editUserInfo.putString(user + "name", changedName.getText().toString());
         editUserInfo.commit();
     }
 
@@ -59,10 +61,12 @@ public class Profile extends AppCompatActivity {
      * @param view The current layout with all the Android widgets
      */
     public void editEmail(View view) {
+        Intent oldIntent = getIntent();
+        String user = oldIntent.getStringExtra("user");
         TextView emailText = (TextView)findViewById(R.id.email);
         EditText changedEmail = (EditText)findViewById(R.id.newEmail);
         emailText.setText(changedEmail.getText().toString());
-        editUserInfo.putString("email", changedEmail.getText().toString());
+        editUserInfo.putString(user+"email", changedEmail.getText().toString());
         editUserInfo.commit();
     }
 
@@ -71,10 +75,12 @@ public class Profile extends AppCompatActivity {
      * @param view The current layout with all the Android widgets
      */
     public void editMajor(View view) {
+        Intent oldIntent = getIntent();
+        String user = oldIntent.getStringExtra("user");
         TextView majorText = (TextView) findViewById(R.id.major);
         EditText changedMajor = (EditText)findViewById(R.id.newMajor);
         majorText.setText(changedMajor.getText().toString());
-        editUserInfo.putString("major", changedMajor.getText().toString());
+        editUserInfo.putString(user+"major", changedMajor.getText().toString());
         editUserInfo.commit();
     }
 

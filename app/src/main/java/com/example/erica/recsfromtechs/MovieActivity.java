@@ -2,6 +2,7 @@ package com.example.erica.recsfromtechs;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.media.Rating;
 import android.os.Bundle;
 import android.app.Activity;
 import android.support.v7.app.AppCompatActivity;
@@ -17,7 +18,11 @@ import android.widget.RatingBar;
 public class MovieActivity extends AppCompatActivity {
     SharedPreferences movieInfo;
     SharedPreferences.Editor editMovieInfo;
+    String title = "";
+    String year = "";
 
+    String rating = "";
+    RatingBar simpleRatingBar;
     /*
     public void editRating(View view) {
         TextView rateText = (TextView)findViewById(R.id.rating);
@@ -31,16 +36,15 @@ public class MovieActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
 
 
-
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_movie);
-        String title = "";
-        String year = "";
+        simpleRatingBar = (RatingBar) findViewById(R.id.ratingBar);
+        movieInfo = getSharedPreferences("Movie",MODE_PRIVATE);
+        editMovieInfo = movieInfo.edit();
 
-        String rating = "";
         //String[] movieImage = new String[1];
         ListView list;
-        if(savedInstanceState == null) {
+        if (savedInstanceState == null) {
             //the user name has been passed to the dashboard as an "extra"
             //works like a map, "user" is our key
             //Log.v("welcome", "saved instance state null");
@@ -57,7 +61,7 @@ public class MovieActivity extends AppCompatActivity {
             rating = intentRating.getStringExtra("rating");
             rating = "" + rating;
 
-
+            simpleRatingBar.setRating(movieInfo.getFloat(title+"rating",0));
 
             //movieImage[0] = oldIntent.getStringExtra("image");
             //movieImage[0] = "" + movieImage;
@@ -77,30 +81,40 @@ public class MovieActivity extends AppCompatActivity {
         */
 
 
-        TextView titleTextView =new TextView(this);
-        titleTextView =(TextView)findViewById(R.id.title);
+        TextView titleTextView = new TextView(this);
+        titleTextView = (TextView) findViewById(R.id.title);
         titleTextView.setText(title);
-        titleTextView =(TextView)findViewById(R.id.year);
+        titleTextView = (TextView) findViewById(R.id.year);
         titleTextView.setText(year);
-        titleTextView =(TextView)findViewById(R.id.rating);
+        titleTextView = (TextView) findViewById(R.id.rating);
         titleTextView.setText(rating);
-
 
 
         //String movie = oldIntent.getStringExtra("user");
 
-        final RatingBar simpleRatingBar = (RatingBar) findViewById(R.id.ratingBar);
-        Button submit = (Button) findViewById(R.id.submit);
-        // perform click event on button
-        submit.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                // get values and then displayed in a toast
-                //String totalStars = "Total Stars:: " + simpleRatingBar.getNumStars();
-                String rating = "Rating: " + simpleRatingBar.getRating();
-                Toast.makeText(getApplicationContext(), rating, Toast.LENGTH_LONG).show();
-            }
-        });
+
+//        Button submit = (Button) findViewById(R.id.submit);
+//        // perform click event on button
+//        submit.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                // get values and then displayed in a toast
+//                //String totalStars = "Total Stars:: " + simpleRatingBar.getNumStars();
+//                String rating = "Rating: " + simpleRatingBar.getRating();
+//                Toast.makeText(getApplicationContext(), rating, Toast.LENGTH_LONG).show();
+//                editMovieInfo.putFloat(title+"rating",simpleRatingBar.getRating());
+//                editMovieInfo.commit();
+//
+//            }
+//        });
+    }
+        public void rateMovie(View view) {
+            String rating = "Rating: " + simpleRatingBar.getRating();
+            Toast.makeText(getApplicationContext(), rating, Toast.LENGTH_LONG).show();
+            editMovieInfo.putFloat(title + "rating", simpleRatingBar.getRating());
+            editMovieInfo.commit();
+
+    }
         /*
 
         movieInfo = getSharedPreferences("Movie Ratings User", MODE_PRIVATE);
@@ -124,8 +138,6 @@ public class MovieActivity extends AppCompatActivity {
 
 
 
-
-    }
     public void backToDashboard(View view) {
         Intent intent = new Intent(this, dashboard.class);
         startActivity(intent);

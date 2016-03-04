@@ -1,6 +1,7 @@
 package com.example.erica.recsfromtechs;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.drawable.Drawable;
 import android.os.AsyncTask;
@@ -37,6 +38,8 @@ public class searchScreen extends AppCompatActivity {
 
     RequestQueue queue;
     RequestQueue queue2;
+    SharedPreferences movieInfo;
+    SharedPreferences.Editor editMovieInfo;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,6 +49,8 @@ public class searchScreen extends AppCompatActivity {
         setSupportActionBar(toolbar);
         queue = Volley.newRequestQueue(this);
         queue2 = Volley.newRequestQueue(this);
+        movieInfo = getSharedPreferences("Movie",MODE_PRIVATE);
+        editMovieInfo = movieInfo.edit();
 
 
     }
@@ -147,6 +152,7 @@ public class searchScreen extends AppCompatActivity {
                 @Override
                 public void onItemClick(AdapterView<?> parent, View view,
                                         int position, long id) {
+                    editMovieInfo.putFloat(movieNames[position]+"rating",0);
                     Bundle bundle = new Bundle();
                     bundle.putString("title", movieNames[position]);
                     bundle.putString("year", movieYears[position]);
