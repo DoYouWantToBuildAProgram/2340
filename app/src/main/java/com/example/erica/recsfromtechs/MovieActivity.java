@@ -9,11 +9,14 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 public class MovieActivity extends AppCompatActivity {
+    public myApplication appState;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_movie);
+        appState = ((myApplication) this.getApplicationContext());
         String title = "";
         //String[] movieImage = new String[1];
         ListView list;
@@ -42,6 +45,13 @@ public class MovieActivity extends AppCompatActivity {
         TextView titleTextView =new TextView(this);
         titleTextView =(TextView)findViewById(R.id.title);
         titleTextView.setText(title);
+        TextView ratingView =new TextView(this);
+        ratingView =(TextView)findViewById(R.id.rating);
+
+        Movie myMovie = appState.getMovie(title);
+        Integer rating = myMovie.getRating();
+        ratingView.setText(rating.toString());
+        myMovie.setRating(1);
 
 
 
