@@ -60,7 +60,7 @@ public class searchScreen extends AppCompatActivity {
         System.out.println("You just searched for movie");
         EditText temp   = (EditText)findViewById(R.id.editText);
         String strTemp = temp.getText().toString().trim();
-        strTemp.replace(" ", "+");
+        strTemp = strTemp.replace(" ", "+");
         String url ="http://api.rottentomatoes.com/api/public/v1.0/movies.json?q=" + strTemp + "&page_limit=10&page=1&apikey=yedukp76ffytfuy24zsqk7f5";
         StringRequest stringRequest = new StringRequest(Request.Method.GET, url, new Response.Listener<String>() {
                     @Override
