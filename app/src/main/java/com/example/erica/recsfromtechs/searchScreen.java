@@ -56,7 +56,7 @@ public class searchScreen extends AppCompatActivity {
     public void searchForMovie(View view) {
 
         final ArrayList<ArrayList> movieInfo = new ArrayList<>();
-
+        //hi
         System.out.println("You just searched for movie");
         EditText temp   = (EditText)findViewById(R.id.editText);
         String strTemp = temp.getText().toString().trim();
