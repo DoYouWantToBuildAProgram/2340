@@ -54,7 +54,10 @@ public class searchScreen extends AppCompatActivity {
 
 
     }
-
+    public void backToDashboard(View view) {
+        Intent intent = new Intent(this, dashboard.class);
+        startActivity(intent);
+    }
     public void searchForMovie(View view) {
 
 
@@ -84,8 +87,6 @@ public class searchScreen extends AppCompatActivity {
                                 JSONObject movie = movies.getJSONObject(i);
                                 thisMovieArray.add(movie.getString("title"));
                                 thisMovieArray.add(movie.getString("year"));
-
-
 
                                 JSONObject rating = movie.getJSONObject("ratings");
                                 thisMovieArray.add(rating.getString("critics_score"));
@@ -127,18 +128,23 @@ public class searchScreen extends AppCompatActivity {
 
         ListView list;
         final String[] movieNames = new String[movieInfo.size()] ;
+        final String[] movieYears = new String[movieInfo.size()] ;
+        final String[] ratings = new String[movieInfo.size()] ;
         final String[] images = new String[movieInfo.size()];
 
         int i = 0;
         for (ArrayList<String> e : movieInfo) {
             movieNames[i] = e.get(0);
+            movieYears[i] = e.get(1);
+            ratings[i] = e.get(2);
             images[i] = e.get(3);
 
             i++;
         }
 
+
             CustomList adapter = new
-                    CustomList(searchScreen.this, movieNames, images);
+                    CustomList(searchScreen.this, movieNames, movieYears, ratings, images);
             list= (ListView) findViewById(R.id.list);
             list.setAdapter(adapter);
             list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -148,6 +154,8 @@ public class searchScreen extends AppCompatActivity {
                                         int position, long id) {
                     Bundle bundle = new Bundle();
                     bundle.putString("title", movieNames[position]);
+                    bundle.putString("year", movieYears[position]);
+                    bundle.putString("rating", ratings[position]);
                     bundle.putString("image", images[position]);
                     appState.addMovie(new Movie(movieNames[position]));
 

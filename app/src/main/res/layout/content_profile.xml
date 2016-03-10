@@ -48,6 +48,7 @@
         android:layout_height="wrap_content"
         android:hint="Enter your new name"
         android:textColorHint="#FFFFFF"
+        android:textColor = "#FFFFFF"
         />
     <Button
         android:layout_width="wrap_content"
@@ -59,7 +60,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:hint="Enter your new email"
-        android:textColorHint = "#FFFFFF"/>
+        android:textColorHint = "#FFFFFF"
+        android:textColor = "#FFFFFF"/>
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -69,7 +71,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:hint="Enter your new major"
-        android:textColorHint = "#FFFFFF"/>
+        android:textColorHint = "#FFFFFF"
+        android:textColor = "#FFFFFF"/>
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
