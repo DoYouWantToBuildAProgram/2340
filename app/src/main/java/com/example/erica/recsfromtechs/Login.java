@@ -17,19 +17,21 @@ public class Login extends AppCompatActivity {
 
     SharedPreferences passwords;
     SharedPreferences.Editor editPasswords;
+    public myApplication appState;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        appState = ((myApplication) this.getApplicationContext());
         setSupportActionBar(toolbar);
         passwords  = getSharedPreferences("MyPref", MODE_PRIVATE);
         editPasswords = passwords.edit();
-        EditText usernameText = (EditText) findViewById(R.id.username);
-        EditText passwordText = (EditText) findViewById(R.id.password);
-        usernameText.setText("bob");
-        passwordText.setText("password");
+       // EditText usernameText = (EditText) findViewById(R.id.username);
+        //EditText passwordText = (EditText) findViewById(R.id.password);
+       // usernameText.setText("bob");
+        //passwordText.setText("password");
     }
 
     /**
@@ -62,10 +64,12 @@ public class Login extends AppCompatActivity {
             String userName = oldIntent.getStringExtra("userName");
             String userEmail = oldIntent.getStringExtra("userEmail");
             String userMajor = oldIntent.getStringExtra("userMajor");
+            appState.setCurrentUser(new User(userName, userEmail, userMajor));
             Bundle bundle = new Bundle();
             bundle.putString("userName",userName);
             bundle.putString("userEmail", userEmail);
             bundle.putString("userMajor", userMajor);
+
             bundle.putString("user", usernameText.getText().toString());
             intent.putExtras(bundle);
             Log.v("welcome", "input" + usernameText.getText());

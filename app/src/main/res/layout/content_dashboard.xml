@@ -70,6 +70,20 @@
     <Space
         android:layout_width="match_parent"
         android:layout_height="20dp" />
+    <Button
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:text="Get Recommendation"
+        android:onClick="recommendation"
+        android:background="#B9090B"
+        android:textColor="#FFFFFF"
+        android:textStyle = "bold"
+        android:layout_gravity="center_horizontal" />
+
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="20dp" />
+
 
     <Button
         android:layout_width="200dp"

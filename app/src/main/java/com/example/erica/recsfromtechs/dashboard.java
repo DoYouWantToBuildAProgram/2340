@@ -90,6 +90,11 @@ public class dashboard extends AppCompatActivity {
         startActivity(intent);
     }
 
+    public void recommendation(View view) {
+        Intent intent = new Intent(this, Recommendations.class);
+        startActivity(intent);
+    }
+
     /**
      * Redirects the user to the page that displays DVD releases
      * @param view The current layout with all the Android widgets

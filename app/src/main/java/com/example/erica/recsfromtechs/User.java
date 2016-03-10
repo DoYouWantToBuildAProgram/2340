@@ -38,4 +38,6 @@ public class User {
     public void setMajor(String newMajor) {
         major = newMajor;
     }
+
+    public String toString(){ return name +", "+ email+", "+major;}
 }

@@ -9,6 +9,7 @@
     <string name="username">Username</string>
     <string name="password">Password</string>
     <string name="title_activity_register">Register</string>
+    <string name="title_activity_recommendations">Recomendations</string>
     <string name="cancel">Cancel</string>
     <string name="loginUnsuccessful">Login was Unsuccessful</string>
     <string name="title_activity_dashboard">dashboard</string>
@@ -33,9 +34,9 @@
     <string-array name="majors">
         <item>Select your Major</item>
         <item>Computer Science</item>
-        <item>Mechanical Engineering</item>
+        <item>Engineering</item>
+        <item>Business</item>
+        <item>Science</item>
         <item>Other</item>
-        <item>LOL</item>
-        <item>JK LOL</item>
     </string-array>
 </resources>

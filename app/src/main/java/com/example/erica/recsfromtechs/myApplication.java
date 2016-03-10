@@ -9,7 +9,19 @@ import java.util.ArrayList;
  */
 public class myApplication extends Application
 {
+
+    //this is our singleton thing
+    //it holds an array of movies and a user currentUser
+    //currentUser isn't necessary but it makes our lives a lot easier
+
+
+    //get access to this class in other classes using
+    // appState = ((myApplication) this.getApplicationContext());
     public ArrayList<Movie> movies = new ArrayList<Movie>();
+    private User currentUser;
+
+    public void setCurrentUser(User user){ currentUser = user;}
+    public User getCurrentUser(){ return currentUser;}
 
     public ArrayList<Movie> getMovies() {
         return movies;

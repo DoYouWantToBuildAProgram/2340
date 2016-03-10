@@ -67,7 +67,7 @@ public class searchScreen extends AppCompatActivity {
         System.out.println("You just searched for movie");
         EditText temp   = (EditText)findViewById(R.id.editText);
         String strTemp = temp.getText().toString().trim();
-        strTemp.replace(" ", "+");
+        strTemp = strTemp.replace(" ", "+");
         String url ="http://api.rottentomatoes.com/api/public/v1.0/movies.json?q=" + strTemp + "&page_limit=10&page=1&apikey=yedukp76ffytfuy24zsqk7f5";
         StringRequest stringRequest = new StringRequest(Request.Method.GET, url, new Response.Listener<String>() {
                     @Override
@@ -157,7 +157,8 @@ public class searchScreen extends AppCompatActivity {
                     bundle.putString("year", movieYears[position]);
                     bundle.putString("rating", ratings[position]);
                     bundle.putString("image", images[position]);
-                    appState.addMovie(new Movie(movieNames[position]));
+
+                    appState.addMovie(new Movie(movieNames[position], movieYears[position], ratings[position]));
 
                     Intent intent = new Intent(searchScreen.this, MovieActivity.class);
                     intent.putExtras(bundle);

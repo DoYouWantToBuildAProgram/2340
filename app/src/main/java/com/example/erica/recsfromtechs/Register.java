@@ -24,6 +24,7 @@ public class Register extends AppCompatActivity  implements AdapterView.OnItemSe
     SharedPreferences.Editor editUserInfo;
 
     Spinner spinner;
+    String item;
 
 
     @Override
@@ -56,8 +57,8 @@ public class Register extends AppCompatActivity  implements AdapterView.OnItemSe
         EditText passwordText = (EditText) findViewById(R.id.password);
         EditText emailText = (EditText) findViewById(R.id.email);
         EditText nameText = (EditText) findViewById(R.id.name);
-        EditText majorText = (EditText) findViewById(R.id.major);
-        User currentUser = new User(nameText.getText().toString(),emailText.getText().toString(),majorText.getText().toString());
+       // EditText majorText = (EditText) findViewById(R.id.major);
+        User currentUser = new User(nameText.getText().toString(),emailText.getText().toString(),item);
 
         editPasswords.putString(usernameText.getText().toString(), passwordText.getText().toString());
         editPasswords.commit();
@@ -65,7 +66,7 @@ public class Register extends AppCompatActivity  implements AdapterView.OnItemSe
         editUserInfo.commit();
         editUserInfo.putString(usernameText.getText().toString()+"email", emailText.getText().toString());
         editUserInfo.commit();
-        editUserInfo.putString(usernameText.getText().toString()+"major",majorText.getText().toString());
+        editUserInfo.putString(usernameText.getText().toString()+"major",item);
         editUserInfo.commit();
         Intent intent = new Intent(this,Login.class);
         Bundle bundle = new Bundle();
@@ -87,8 +88,8 @@ public class Register extends AppCompatActivity  implements AdapterView.OnItemSe
 
     @Override
     public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-        TextView myText = (TextView) view;
-        Toast.makeText(this,"You Selected: " + myText.getText(), Toast.LENGTH_SHORT).show();
+         item = adapterView.getItemAtPosition(i).toString();
+        //Toast.makeText(this,"You Selected: " + myText.getText(), Toast.LENGTH_SHORT).show();
     }
 
     @Override

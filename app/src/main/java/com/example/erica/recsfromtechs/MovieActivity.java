@@ -1,9 +1,11 @@
 package com.example.erica.recsfromtechs;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.app.Activity;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -17,16 +19,10 @@ public class MovieActivity extends AppCompatActivity {
     public myApplication appState;
     SharedPreferences movieInfo;
     SharedPreferences.Editor editMovieInfo;
+    Float rating;
+    Float prevRating;
 
-    /*
-    public void editRating(View view) {
-        TextView rateText = (TextView)findViewById(R.id.rating);
-        EditText changedRating = (EditText)findViewById(R.id.newRating);
-        nameText.setText(changedName.getText().toString());
-        editUserInfo.putString("name", changedName.getText().toString());
-        editUserInfo.commit();
-    }
-    */
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
@@ -36,93 +32,100 @@ public class MovieActivity extends AppCompatActivity {
         setContentView(R.layout.activity_movie);
         appState = ((myApplication) this.getApplicationContext());
         String title = "";
-        String year = "";
 
-        String rating = "";
-        //String[] movieImage = new String[1];
         ListView list;
         if(savedInstanceState == null) {
-            //the user name has been passed to the dashboard as an "extra"
-            //works like a map, "user" is our key
-            //Log.v("welcome", "saved instance state null");
+;
             Intent oldIntent = getIntent();
             title = oldIntent.getStringExtra("title");
             title = "" + title;
 
-            Intent intentYear = getIntent();
-            year = intentYear.getStringExtra("year");
-            year = "" + year;
 
 
-            Intent intentRating = getIntent();
-            rating = intentRating.getStringExtra("rating");
-            rating = "" + rating;
-
-
-
-            //movieImage[0] = oldIntent.getStringExtra("image");
-            //movieImage[0] = "" + movieImage;
         } else {
             //Log.v("welcome", "saved instance state not null");
             title = (String) savedInstanceState.getSerializable("title");
-            year = (String) savedInstanceState.getSerializable("year");
-            rating = (String) savedInstanceState.getSerializable("rating");
 
-            //movieImage[0] = (String) savedInstanceState.getSerializable("image");
+
         }
-        /*
-        CustomList adapter = new
-                CustomList(MovieActivity.this, title, movieImage);
-        list= (ListView) findViewById(R.id.list);
-        list.setAdapter(adapter);
-        */
+
 
 
         TextView titleTextView =new TextView(this);
         titleTextView =(TextView)findViewById(R.id.title);
         titleTextView.setText(title);
+
+
+
+        //here im getting a movie object from our singleton appState
+        //setting the year and rating TextViews to what was stored in the movie object
+        final Movie myMovie = appState.getMovie(title);
+        rating =  myMovie.getRating();
+        TextView yearView =new TextView(this);
+        yearView =(TextView)findViewById(R.id.year);
+        yearView.setText(myMovie.getYear());
+
+
+
         TextView ratingView =new TextView(this);
         ratingView =(TextView)findViewById(R.id.rating);
+        ratingView.setText(new Float(myMovie.getRating()).toString());
 
-        Movie myMovie = appState.getMovie(title);
-        Integer rating = myMovie.getRating();
-        ratingView.setText(rating.toString());
-        myMovie.setRating(1);
-        titleTextView =(TextView)findViewById(R.id.year);
-        titleTextView.setText(year);
-        titleTextView =(TextView)findViewById(R.id.rating);
-        titleTextView.setText(rating);
+        //majorRatingBar is our star bar, currently it shows what the average rating is for the users major
+        //which is being calculated below
+        //Major ratings are stored in a HashMap in Movie Objects
+        //the string of the major is the key, the values are floats of the ratings
+
+        final RatingBar majorRatingBar = (RatingBar) findViewById(R.id.ratingBar2);
+        float avg =0;
+        int counter = 0;
+        if( myMovie.getMajorRatings(appState.getCurrentUser().getMajor()) != null) {
+
+
+            for (Float value : myMovie.getMajorRatings(appState.getCurrentUser().getMajor())) {
+                avg += value;
+
+                counter++;
+
+            }
+        }
+
+        avg = avg/counter;
+
+        majorRatingBar.setRating(avg);
 
 
 
-        //String movie = oldIntent.getStringExtra("user");
 
-        final RatingBar simpleRatingBar = (RatingBar) findViewById(R.id.ratingBar);
         Button submit = (Button) findViewById(R.id.submit);
         // perform click event on button
         submit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // get values and then displayed in a toast
-                //String totalStars = "Total Stars:: " + simpleRatingBar.getNumStars();
-                String rating = "Rating: " + simpleRatingBar.getRating();
-                Toast.makeText(getApplicationContext(), rating, Toast.LENGTH_LONG).show();
+
+                //prevRating is the rating the user already gave, only works if they havent left the page
+                //if they already rated it that rating is removed and replaced with a new rating
+                //new rating is added to the movie objects hashmap
+
+                if(prevRating != null){
+                    myMovie.getMajorRatings(appState.getCurrentUser().getMajor()).remove(prevRating);
+                }
+                 rating = majorRatingBar.getRating();
+                Log.v("user", appState.getCurrentUser().toString());
+                myMovie.addMajorRating(appState.getCurrentUser().getMajor(), rating);
+
+                Log.v("rating", rating.toString());
+                prevRating = rating;
+
+
+
             }
         });
-        /*
-
-        movieInfo = getSharedPreferences("Movie Ratings User", MODE_PRIVATE);
-        editMovieInfo = movieInfo.edit();
-        Intent someIntent = getIntent();
-        String movie = someIntent.getStringExtra("movie");
-        String uRating = movieInfo.getString(movie + "rating", null);
-        TextView uRatingTxt = (TextView)findViewById(R.id.userRating);
-        uRatingTxt.setText(uRating);
-        /*
 
 
 
-        */
+
+
 
 
 
