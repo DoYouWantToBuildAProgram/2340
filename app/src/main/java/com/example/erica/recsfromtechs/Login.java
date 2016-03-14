@@ -49,9 +49,9 @@ public class Login extends AppCompatActivity {
     public void loginSuccessful(View view) {
         EditText usernameText = (EditText) findViewById(R.id.username);
         EditText passwordText = (EditText) findViewById(R.id.password);
-        System.out.println(usernameText.getText().toString());
-        System.out.println(passwordText.getText().toString());
-        System.out.println("SEARCH FOR THIS " + dbHandler.authenticateUser(usernameText.getText().toString(), passwordText.getText().toString()));
+        //System.out.println(usernameText.getText().toString());
+        //System.out.println(passwordText.getText().toString());
+        //System.out.println("SEARCH FOR THIS " + dbHandler.authenticateUser(usernameText.getText().toString(), passwordText.getText().toString()));
         if (dbHandler.authenticateUser(usernameText.toString(), passwordText.toString())) {
             Intent intent = new Intent(this,dashboard.class);
             //this sends the user name to the dashboard
