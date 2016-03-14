@@ -2,6 +2,7 @@ package com.example.erica.recsfromtechs;
 
 
 import android.app.Activity;
+import android.content.Context;
 import android.graphics.Bitmap;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -20,6 +21,7 @@ public class CustomList extends ArrayAdapter<String>{
     public CustomList(Activity context,
                       String[] name, String[] year, String[] rating, String[] imageId) {
         super(context, R.layout.list_single, name);
+
         this.year = year;
         this.context = context;
         this.name = name;
@@ -32,13 +34,24 @@ public class CustomList extends ArrayAdapter<String>{
         LayoutInflater inflater = context.getLayoutInflater();
         View rowView= inflater.inflate(R.layout.list_single, null, true);
         TextView txtTitle = (TextView) rowView.findViewById(R.id.txt);
+        TextView txtRating = (TextView) rowView.findViewById(R.id.txt2);
 
 
-
+        //Set the view
         ImageView imageView = (ImageView) rowView.findViewById(R.id.img);
         txtTitle.setText(name[position]);
 
-        System.out.println("passing in +++" + imageId[position]);
+        //Format the rating string
+        String ratingString;
+        if (rating[position].equals ("-1")) {
+            ratingString = "This movie has no rating";
+        } else {
+            ratingString = "Critics Rating: " +  rating[position];
+        }
+
+
+        txtRating.setText(ratingString);
+
         new webImageGetter(imageView).execute(imageId[position]);
 
         return rowView;
