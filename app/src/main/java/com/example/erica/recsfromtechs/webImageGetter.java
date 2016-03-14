@@ -27,6 +27,7 @@ public class webImageGetter extends AsyncTask<String, Void, Bitmap> {
     }
 
     protected Bitmap doInBackground(String... urls) {
+        System.out.println("getting image: " + urls[0]);
         urldisplay = urls[0];
         Bitmap mIcon11 = null;
         try {
