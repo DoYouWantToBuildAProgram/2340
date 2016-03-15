@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context="com.example.erica.recsfromtechs.Profile"
+    tools:showIn="@layout/activity_movie"
+    android:background="#231f20"
+
+    android:orientation="vertical">
+
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Movie Title"
+            android:id="@+id/title"
+            android:padding="10dp"
+            android:textSize="40sp"
+            android:maxLines="3"
+            android:textColor="#B9090B"
+            android:textStyle="bold"
+            android:layout_gravity="center_horizontal"
+            android:layout_column="14"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true" />
+
+
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Movie Year"
+            android:id="@+id/year"
+            android:padding="10dp"
+            android:textSize="25sp"
+
+            android:textColor="#B9090B"
+            android:textStyle="bold"
+            android:layout_column="14"
+            android:layout_marginTop="86dp"
+            android:layout_below="@+id/title"
+            android:layout_alignParentStart="true" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Movie Rating"
+            android:id="@+id/rating"
+            android:padding="10dp"
+            android:textSize="25sp"
+
+            android:textColor="#B9090B"
+            android:textStyle="bold"
+            android:layout_gravity="right"
+            android:layout_column="31"
+            android:layout_alignBottom="@+id/year"
+            android:layout_alignParentEnd="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="Year Released"
+        android:textColor="#e6b812"
+        android:id="@+id/textView"
+        android:layout_above="@+id/rating"
+        android:layout_alignParentStart="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="Critics Rating"
+        android:textColor="#e6b812"
+        android:id="@+id/textView2"
+        android:layout_alignTop="@+id/textView"
+        android:layout_alignParentEnd="true" />
+
+    <RatingBar
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/ratingBar"
+        android:background="#484848"
+        android:clickable="true"
+        android:longClickable="true"
+        android:numStars="5"
+        android:layout_marginBottom="34dp"
+        android:layout_above="@+id/submit"
+        android:layout_centerHorizontal="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:textColor="#e6b812"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="Your Rating:"
+        android:id="@+id/textView3"
+        android:layout_centerVertical="true"
+        android:layout_toEndOf="@+id/textView" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="#B9090B"
+        android:textColor="#FFFFFF"
+        android:text = "@string/back"
+        android:onClick = "backToDashboard"
+        android:id="@+id/backToDashboard"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentStart="true" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="GO"
+        android:id="@+id/submit"
+        android:layout_above="@+id/backToDashboard"
+        android:layout_alignEnd="@+id/textView3"
+        android:layout_marginBottom="26dp" />
+
+
+</RelativeLayout>

@@ -65,11 +65,11 @@ public class Register extends AppCompatActivity  implements AdapterView.OnItemSe
 
         /*editPasswords.putString(usernameText.getText().toString(), passwordText.getText().toString());
         editPasswords.commit();
-        editUserInfo.putString("name", nameText.getText().toString());
+        editUserInfo.putString(usernameText.getText().toString()+"name", nameText.getText().toString());
         editUserInfo.commit();
-        editUserInfo.putString("email", emailText.getText().toString());
+        editUserInfo.putString(usernameText.getText().toString()+"email", emailText.getText().toString());
         editUserInfo.commit();
-        editUserInfo.putString("major",majorText.getText().toString());
+        editUserInfo.putString(usernameText.getText().toString()+"major",majorText.getText().toString());
         editUserInfo.commit();
         Intent intent = new Intent(this,Login.class);
         Bundle bundle = new Bundle();

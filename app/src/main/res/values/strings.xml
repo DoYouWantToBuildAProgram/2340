@@ -11,7 +11,7 @@
     <string name="title_activity_register">Register</string>
     <string name="cancel">Cancel</string>
     <string name="loginUnsuccessful">Login was Unsuccessful</string>
-    <string name="title_activity_dashboard">Dashboard</string>
+    <string name="title_activity_dashboard">dashboard</string>
     <string name="dashboard">Dashboard</string>
     <string name="logout">Logout</string>
     <string name="createuser">Create a Username</string>
@@ -24,6 +24,11 @@
     <string name="title_dvd">DVD Releases</string>
     <string name="name">Name</string>
     <string name="searchScreen">Search Screen</string>
+    <string name="back">Back to Dashboard</string>
+
+    <string name="title_activity_search__screen">search_Screen</string>
+    <string name="title_activity_search_screen">searchScreen</string>
+    <string name="title_activity_movie">MovieActivity</string>
 
     <string-array name="majors">
         <item>Select your Major</item>
@@ -33,8 +38,4 @@
         <item>LOL</item>
         <item>JK LOL</item>
     </string-array>
-    <string name="back">Back to Dashboard</string>
-
-    <string name="title_activity_search__screen">search_Screen</string>
-    <string name="title_activity_search_screen">searchScreen</string>
 </resources>

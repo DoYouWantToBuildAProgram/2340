@@ -25,17 +25,18 @@ public class Profile extends AppCompatActivity {
         setSupportActionBar(toolbar);
         userInfo = getSharedPreferences("AnotherPref", MODE_PRIVATE);
         editUserInfo = userInfo.edit();
-        //Intent oldIntent = getIntent();
+        Intent oldIntent = getIntent();
+        String user = oldIntent.getStringExtra("user");
         //String userName = oldIntent.getStringExtra("userName");
         //String userEmail = oldIntent.getStringExtra("userEmail");
         //String userMajor = oldIntent.getStringExtra("userMajor");
-        String userName = userInfo.getString("name", null);
+        String userName = userInfo.getString(user+"name", null);
         TextView nameText = (TextView)findViewById(R.id.name);
         nameText.setText(userName);
-        String userEmail = userInfo.getString("email", null);
+        String userEmail = userInfo.getString(user+"email", null);
         TextView emailText = (TextView)findViewById(R.id.email);
         emailText.setText(userEmail);
-        String userMajor = userInfo.getString("major", null);
+        String userMajor = userInfo.getString(user+"major", null);
         TextView majorText = (TextView)findViewById(R.id.major);
         majorText.setText(userMajor);
 
