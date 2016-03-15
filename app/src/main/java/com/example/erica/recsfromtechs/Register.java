@@ -1,5 +1,6 @@
 package com.example.erica.recsfromtechs;
 
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -11,6 +12,7 @@ import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class Register extends AppCompatActivity  implements AdapterView.OnItemSelectedListener{
 
@@ -39,7 +41,7 @@ public class Register extends AppCompatActivity  implements AdapterView.OnItemSe
 
         spinner = (Spinner) findViewById(R.id.spinner);
         spinner.setBackgroundColor(getResources().getColor(android.R.color.transparent));
-        ArrayAdapter adapter = ArrayAdapter.createFromResource(this,R.array.majors,R.layout.spinner_item);
+        ArrayAdapter adapter = ArrayAdapter.createFromResource(this, R.array.majors, R.layout.spinner_item);
         spinner.setAdapter(adapter);
         spinner.setOnItemSelectedListener(this);
 
@@ -59,9 +61,17 @@ public class Register extends AppCompatActivity  implements AdapterView.OnItemSe
         Spinner mySpinner=(Spinner) findViewById(R.id.spinner);
         String text = mySpinner.getSelectedItem().toString();
         User currentUser = new User(nameText.getText().toString(),emailText.getText().toString(),text, usernameText.getText().toString(),passwordText.getText().toString(), 0);
-        dbHandler.addUser(currentUser);
-        Intent intent = new Intent(this,Login.class);
-        startActivity(intent);
+        boolean test = dbHandler.addUser(currentUser);
+        if (!test) {
+            int duration = Toast.LENGTH_SHORT;
+            Context context = getApplicationContext();
+            CharSequence newText = "This username is already taken.";
+            Toast toast = Toast.makeText(context,newText,duration);
+            toast.show();
+        } else {
+            Intent intent = new Intent(this, Login.class);
+            startActivity(intent);
+        }
 
         /*editPasswords.putString(usernameText.getText().toString(), passwordText.getText().toString());
         editPasswords.commit();

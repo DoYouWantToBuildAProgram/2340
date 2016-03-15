@@ -50,26 +50,31 @@ public class MyDBHandler extends SQLiteOpenHelper {
     }
 
     //Add a new row to the database (used when registering a user)
-    public void addUser(User user) {
+    public boolean addUser(User user) {
         //Gets a user object and puts all the data in its respective column
         ContentValues values = new ContentValues();
-        values.put(COLUMN_USERNAME, user.getUsername());
-        values.put(COLUMN_PASSWORD, user.getPassword());
-        values.put(COLUMN_NAME, user.getName());
-        values.put(COLUMN_EMAIL, user.getEmail());
-        values.put(COLUMN_MAJOR, user.getMajor());
-        values.put(COLUMN_ISBANNED, user.getIsBanned());
         SQLiteDatabase db = getWritableDatabase();
-        //inserts the new line to the table
-        db.insert(TABLE_USERS, null, values);
+        Cursor c = db.rawQuery("SELECT * FROM " + TABLE_USERS + " WHERE " + COLUMN_USERNAME + " = '" + user.getUsername() + "';", null);
+        c.moveToFirst();
+        if (c.isBeforeFirst()) {
+            values.put(COLUMN_USERNAME, user.getUsername());
+            values.put(COLUMN_PASSWORD, user.getPassword());
+            values.put(COLUMN_NAME, user.getName());
+            values.put(COLUMN_EMAIL, user.getEmail());
+            values.put(COLUMN_MAJOR, user.getMajor());
+            values.put(COLUMN_ISBANNED, user.getIsBanned());
+            //inserts the new line to the table
+            db.insert(TABLE_USERS, null, values);
+        } else {
+            return false;
+        }
         db.close();
+        return true;
     }
 
     public boolean authenticateUser(String username, String password) {
         SQLiteDatabase db = getReadableDatabase();
         //This call is what creates a smaller table, so right now this creates a smaller table with all the usernames that match what was inputted
-        //In theory, we can have multiple users with the same username, so thats a possible bug, this code will only check it with the
-        //password on the top of the table (not sure how thats chosen yet)
         Cursor c = db.rawQuery("SELECT * FROM " + TABLE_USERS + " WHERE " + COLUMN_USERNAME + " = '" + username + "';", null);
         c.moveToFirst();
         String realPassword = null;
