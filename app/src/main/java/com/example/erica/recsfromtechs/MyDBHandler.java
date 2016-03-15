@@ -21,6 +21,7 @@ public class MyDBHandler extends SQLiteOpenHelper {
     public static final String COLUMN_EMAIL = "email";
     public static final String COLUMN_MAJOR = "major";
     public static final String COLUMN_ISBANNED = "isBanned";
+    public static final String COLUMN_ISLOCKED = "isLocked";
 
 
     public MyDBHandler(Context context, String name, SQLiteDatabase.CursorFactory factory, int version) {
@@ -36,7 +37,8 @@ public class MyDBHandler extends SQLiteOpenHelper {
                 + COLUMN_NAME + " TEXT, "
                 + COLUMN_EMAIL + " TEXT, "
                 + COLUMN_MAJOR + " TEXT, "
-                + COLUMN_ISBANNED + " INTEGER"
+                + COLUMN_ISBANNED + " INTEGER "
+                + COLUMN_ISLOCKED + " INTEGER"
                 + ");";
 
         db.execSQL(query);
@@ -63,6 +65,7 @@ public class MyDBHandler extends SQLiteOpenHelper {
             values.put(COLUMN_EMAIL, user.getEmail());
             values.put(COLUMN_MAJOR, user.getMajor());
             values.put(COLUMN_ISBANNED, user.getIsBanned());
+            values.put(COLUMN_ISLOCKED, user.getIsLocked());
             //inserts the new line to the table
             db.insert(TABLE_USERS, null, values);
         } else {
