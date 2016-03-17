@@ -21,7 +21,10 @@ public class Profile extends AppCompatActivity implements AdapterView.OnItemSele
     SharedPreferences userInfo;
     SharedPreferences.Editor editUserInfo;
     public myApplication appState;
+    SharedPreferences currentUser;
+    SharedPreferences.Editor editCurrentUser;
     Spinner spinner;
+    MyDBHandler dbHandler;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,8 +32,11 @@ public class Profile extends AppCompatActivity implements AdapterView.OnItemSele
         setContentView(R.layout.activity_profile);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        userInfo = getSharedPreferences("AnotherPref", MODE_PRIVATE);
-        editUserInfo = userInfo.edit();
+//        userInfo = getSharedPreferences("AnotherPref", MODE_PRIVATE);
+//        editUserInfo = userInfo.edit();
+        currentUser = getSharedPreferences("CurrentUser", MODE_PRIVATE);
+        editCurrentUser = currentUser.edit();
+        dbHandler = new MyDBHandler(this, null, null, 1);
         appState = ((myApplication) this.getApplicationContext());
         Intent oldIntent = getIntent();
         String user = oldIntent.getStringExtra("user");
@@ -40,13 +46,13 @@ public class Profile extends AppCompatActivity implements AdapterView.OnItemSele
        // String userName = userInfo.getString(user+"name", null);
         User myUser = appState.getCurrentUser();
         TextView nameText = (TextView)findViewById(R.id.name);
-        nameText.setText(myUser.getName());
+        nameText.setText(dbHandler.getName(currentUser.getString("username",null)));
         //String userEmail = userInfo.getString(user+"email", null);
         TextView emailText = (TextView)findViewById(R.id.email);
-        emailText.setText(myUser.getEmail());
+        emailText.setText(dbHandler.getEmail(currentUser.getString("username",null)));
        // String userMajor = userInfo.getString(user+"major", null);
         TextView majorText = (TextView)findViewById(R.id.major);
-        majorText.setText(myUser.getMajor());
+        majorText.setText(dbHandler.getMajor(currentUser.getString("username",null)));
         spinner = (Spinner) findViewById(R.id.spinner);
         spinner.setBackgroundColor(getResources().getColor(android.R.color.transparent));
         ArrayAdapter adapter = ArrayAdapter.createFromResource(this,R.array.majors,R.layout.spinner_item);
@@ -64,10 +70,11 @@ public class Profile extends AppCompatActivity implements AdapterView.OnItemSele
         TextView nameText = (TextView)findViewById(R.id.name);
         EditText changedName = (EditText)findViewById(R.id.newName);
         nameText.setText(changedName.getText().toString());
-        editUserInfo.putString("name", changedName.getText().toString());
-        editUserInfo.commit();
-        User myUser = appState.getCurrentUser();
-        appState.setCurrentUser(new User(changedName.toString(), myUser.getEmail(), myUser.getMajor()));
+        dbHandler.setName(currentUser.getString("username",null), changedName.getText().toString());
+//        editUserInfo.putString("name", changedName.getText().toString());
+//        editUserInfo.commit();
+//        User myUser = appState.getCurrentUser();
+//        appState.setCurrentUser(new User(changedName.toString(), myUser.getEmail(), myUser.getMajor(),myUser.getUsername(),myUser.getPassword(), myUser.getIsBanned(), myUser.getIsLocked()));
     }
 
     /**
@@ -78,10 +85,11 @@ public class Profile extends AppCompatActivity implements AdapterView.OnItemSele
         TextView emailText = (TextView)findViewById(R.id.email);
         EditText changedEmail = (EditText)findViewById(R.id.newEmail);
         emailText.setText(changedEmail.getText().toString());
-        editUserInfo.putString("email", changedEmail.getText().toString());
-        editUserInfo.commit();
-        User myUser = appState.getCurrentUser();
-        appState.setCurrentUser(new User(myUser.getName(), changedEmail.toString(), myUser.getMajor()));
+        dbHandler.setEmail(currentUser.getString("username",null), changedEmail.getText().toString());
+//        editUserInfo.putString("email", changedEmail.getText().toString());
+//        editUserInfo.commit();
+//        User myUser = appState.getCurrentUser();
+//        appState.setCurrentUser(new User(myUser.getName(), changedEmail.toString(), myUser.getMajor(), myUser.getPassword(),myUser.getUsername(),myUser.getIsBanned(),myUser.getIsLocked()));
     }
 
     /**
@@ -96,13 +104,14 @@ public class Profile extends AppCompatActivity implements AdapterView.OnItemSele
         User myUser = appState.getCurrentUser();
         String changedMajor = adapterView.getItemAtPosition(i).toString();
         if(changedMajor.equals("Select your Major")) {
-            majorText.setText(myUser.getMajor());
+            majorText.setText(dbHandler.getMajor(currentUser.getString("username",null)));
         } else {
             majorText.setText(changedMajor);
-            editUserInfo.putString("major", changedMajor);
-            editUserInfo.commit();
-
-            appState.setCurrentUser(new User(myUser.getName(), myUser.getEmail(), changedMajor));
+            dbHandler.setMajor(currentUser.getString("username", null), changedMajor);
+//            editUserInfo.putString("major", changedMajor);
+//            editUserInfo.commit();
+//
+//            appState.setCurrentUser(new User(myUser.getName(), myUser.getEmail(), changedMajor));
         }
         //Toast.makeText(this,"You Selected: " + myText.getText(), Toast.LENGTH_SHORT).show();
     }
