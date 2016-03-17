@@ -30,18 +30,21 @@ public class MyDBHandler extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        //This creates all of the columns in our table followed by their data type with a boolean represented as an integer thats either 1 or 0
+        //This creates all of the columns in our table followed by their
+        // data type with a boolean represented as an integer thats either 1 or 0
         String query = "CREATE TABLE " + TABLE_USERS + " ("
                 + COLUMN_USERNAME + " TEXT PRIMARY KEY, "
                 + COLUMN_PASSWORD + " TEXT, "
                 + COLUMN_NAME + " TEXT, "
                 + COLUMN_EMAIL + " TEXT, "
                 + COLUMN_MAJOR + " TEXT, "
-                + COLUMN_ISBANNED + " INTEGER "
+                + COLUMN_ISBANNED + " INTEGER, "
                 + COLUMN_ISLOCKED + " INTEGER"
                 + ");";
 
         db.execSQL(query);
+
+
     }
 
     @Override
@@ -56,8 +59,12 @@ public class MyDBHandler extends SQLiteOpenHelper {
         //Gets a user object and puts all the data in its respective column
         ContentValues values = new ContentValues();
         SQLiteDatabase db = getWritableDatabase();
-        Cursor c = db.rawQuery("SELECT * FROM " + TABLE_USERS + " WHERE " + COLUMN_USERNAME + " = '" + user.getUsername() + "';", null);
+        Cursor c = db.rawQuery("SELECT * FROM " + TABLE_USERS
+                + " WHERE " + COLUMN_USERNAME + " = '" + user.getUsername() + "';", null);
         c.moveToFirst();
+        System.out.println(c.getColumnName(0));
+        System.out.println(c.getColumnName(0));
+
         if (c.isBeforeFirst()) {
             values.put(COLUMN_USERNAME, user.getUsername());
             values.put(COLUMN_PASSWORD, user.getPassword());
@@ -69,24 +76,35 @@ public class MyDBHandler extends SQLiteOpenHelper {
             //inserts the new line to the table
             db.insert(TABLE_USERS, null, values);
         } else {
+            c.close();
+            db.close();
             return false;
         }
+        c.close();
         db.close();
         return true;
     }
 
     public boolean authenticateUser(String username, String password) {
         SQLiteDatabase db = getReadableDatabase();
-        //This call is what creates a smaller table, so right now this creates a smaller table with all the usernames that match what was inputted
+        //This call is what creates a smaller table, so right now this
+        // creates a smaller table with all the usernames that match what was inputted
         Cursor c = db.rawQuery("SELECT * FROM " + TABLE_USERS + " WHERE " + COLUMN_USERNAME + " = '" + username + "';", null);
         c.moveToFirst();
-        String realPassword = null;
+        System.out.println("number of entries in authUser:" + c.getCount());
+
+        String realPassword;
         if (!c.isBeforeFirst()) {
+            System.out.println("checking password");
             realPassword = c.getString(c.getColumnIndex(COLUMN_PASSWORD));
         } else {
+            c.close();
+            db.close();
             return false;
         }
         c.close();
+
+
         db.close();
         if (realPassword.equals(password)) {
             return true;
@@ -95,6 +113,4 @@ public class MyDBHandler extends SQLiteOpenHelper {
         }
 
     }
-
-
 }

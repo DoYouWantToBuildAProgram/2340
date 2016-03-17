@@ -74,8 +74,8 @@
     <Button
         android:layout_width="200dp"
         android:layout_height="wrap_content"
-        android:text="Edit Profile"
-        android:onClick="editProfile"
+        android:text="Profile"
+        android:onClick="goToProfile"
         android:background="#B9090B"
         android:textColor="#FFFFFF"
         android:textStyle = "bold"

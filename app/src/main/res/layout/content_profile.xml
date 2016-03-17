@@ -1,86 +1,110 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    android:fitsSystemWindows="true"
     tools:context="com.example.erica.recsfromtechs.Profile"
-    tools:showIn="@layout/activity_profile"
-    android:background="#333333"
-    android:orientation="vertical">
+    android:weightSum="1">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Text1 for name"
-        android:id="@+id/name"
-        android:padding="10dp"
-        android:textSize="20sp"
-        android:textColor="#B9090B"
-        android:textStyle="bold"
-        android:background="#231f20"
-        />
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Text2 for email"
-        android:id="@+id/email"
-        android:padding="10dp"
-        android:textSize="20sp"
-        android:textColor="#B9090B"
-        android:textStyle="bold"
-        android:background="#231f20"
-        />
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Text 3 for major"
-        android:id="@+id/major"
-        android:padding="10dp"
-        android:textSize="20sp"
-        android:textColor="#B9090B"
-        android:textStyle="bold"
-        android:background="#231f20"
-        />
-    <EditText android:id="@+id/newName"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:hint="Enter your new name"
-        android:textColorHint="#FFFFFF"
-        android:textColor = "#FFFFFF"
-        />
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:weightSum="1">
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text="Username:  "
+                android:id="@+id/textView10" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text="Password:  "
+                android:id="@+id/t23" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text="Major:  "
+                android:id="@+id/textView" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text="E-mail:  "
+                android:id="@+id/textViewdqw" />
+
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text="Medium Text"
+                android:id="@+id/username" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text="Medium Text"
+                android:id="@+id/password" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text="Medium Text"
+                android:id="@+id/major" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text="Medium Text"
+                android:id="@+id/email" />
+
+        </LinearLayout>
+
+
+    </LinearLayout>
+
     <Button
-        android:layout_width="wrap_content"
+        android:layout_width="150dp"
         android:layout_height="wrap_content"
-        android:text="Edit Name"
-        android:onClick="editName"
-        />
-    <EditText android:id="@+id/newEmail"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:hint="Enter your new email"
-        android:textColorHint = "#FFFFFF"
-        android:textColor = "#FFFFFF"/>
+        android:text="Edit Profile"
+        android:id="@+id/editProfile"
+        android:onClick="goToEditProfile"
+        android:layout_gravity="center" />
     <Button
-        android:layout_width="wrap_content"
+        android:layout_width="150dp"
         android:layout_height="wrap_content"
-        android:text = "Edit Email"
-        android:onClick="editEmail"/>
-    <EditText android:id="@+id/newMajor"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:hint="Enter your new major"
-        android:textColorHint = "#FFFFFF"
-        android:textColor = "#FFFFFF"/>
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text = "Edit Major"
-        android:onClick = "editMajor"/>
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text = "@string/back"
-        android:onClick = "backToDashboard"/>
-</LinearLayout>
+        android:text="Admin Page"
+        android:id="@+id/goToAdminPagee"
+        android:onClick="gotToAdminPage"
+        android:layout_gravity="bottom" />
+
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="50dp" />
+
+</android.support.design.widget.CoordinatorLayout>

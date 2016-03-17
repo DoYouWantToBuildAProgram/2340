@@ -55,7 +55,7 @@ public class dashboard extends AppCompatActivity {
      * Allows the user to change their account information, such as name, email, and major
      * @param view The current layout with all the Android widgets
      */
-    public void editProfile(View view) {
+    public void goToProfile(View view) {
         Intent intent = new Intent(this, Profile.class);
         Intent oldIntent = getIntent();
         String user = oldIntent.getStringExtra("user");

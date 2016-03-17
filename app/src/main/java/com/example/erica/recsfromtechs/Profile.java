@@ -1,91 +1,68 @@
 package com.example.erica.recsfromtechs;
 
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
-import android.content.Intent;
-import android.widget.EditText;
+import android.widget.Button;
 import android.widget.TextView;
 
-import org.w3c.dom.Text;
+/**
+ * Created by Niklas on 3/14/2016.
+ */
+
+
 
 public class Profile extends AppCompatActivity {
     SharedPreferences userInfo;
     SharedPreferences.Editor editUserInfo;
+    MyDBHandler dbHandler;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
+
         userInfo = getSharedPreferences("AnotherPref", MODE_PRIVATE);
-        editUserInfo = userInfo.edit();
+        dbHandler = new MyDBHandler(this, null, null, 1);
         Intent oldIntent = getIntent();
         String user = oldIntent.getStringExtra("user");
-        //String userName = oldIntent.getStringExtra("userName");
-        //String userEmail = oldIntent.getStringExtra("userEmail");
-        //String userMajor = oldIntent.getStringExtra("userMajor");
-        String userName = userInfo.getString(user+"name", null);
-        TextView nameText = (TextView)findViewById(R.id.name);
-        nameText.setText(userName);
-        String userEmail = userInfo.getString(user+"email", null);
-        TextView emailText = (TextView)findViewById(R.id.email);
-        emailText.setText(userEmail);
-        String userMajor = userInfo.getString(user+"major", null);
-        TextView majorText = (TextView)findViewById(R.id.major);
-        majorText.setText(userMajor);
 
-    }
+        // make method if user is admin make button clickable'
+        Button adminButton = (Button) findViewById(R.id.goToAdminPagee);
 
-    /**
-     * Allows the user to change their name
-     * @param view The current layout with all the Android widgets
-     */
-    public void editName(View view) {
-        TextView nameText = (TextView)findViewById(R.id.name);
-        EditText changedName = (EditText)findViewById(R.id.newName);
-        nameText.setText(changedName.getText().toString());
-        editUserInfo.putString("name", changedName.getText().toString());
-        editUserInfo.commit();
-    }
+        if (true) { //true if user is admin THIS NEEDS TO BE FIXED
+            adminButton.setEnabled(true);
+        } else {
+            adminButton.setEnabled(false);
+        }
 
-    /**
-     * Allows the user to change their email
-     * @param view The current layout with all the Android widgets
-     */
-    public void editEmail(View view) {
-        TextView emailText = (TextView)findViewById(R.id.email);
-        EditText changedEmail = (EditText)findViewById(R.id.newEmail);
-        emailText.setText(changedEmail.getText().toString());
-        editUserInfo.putString("email", changedEmail.getText().toString());
-        editUserInfo.commit();
-    }
+        //placeholder
+        //get the user from the database here
+        User thisUser = new User("sad","happy","other","another","yes",1,1);
 
-    /**
-     * Allows the user to change their major
-     * @param view The current layout with all the Android widgets
-     */
-    public void editMajor(View view) {
+        TextView usernameText = (TextView) findViewById(R.id.username);
+        System.out.println(usernameText == null);
+        usernameText.setText(thisUser.getUsername());
+        TextView passwordText = (TextView) findViewById(R.id.password);
+        passwordText.setText(thisUser.getPassword());
         TextView majorText = (TextView) findViewById(R.id.major);
-        EditText changedMajor = (EditText)findViewById(R.id.newMajor);
-        majorText.setText(changedMajor.getText().toString());
-        editUserInfo.putString("major", changedMajor.getText().toString());
-        editUserInfo.commit();
+        majorText.setText(thisUser.getMajor());
+        TextView emailText = (TextView) findViewById(R.id.email);
+        emailText.setText(thisUser.getEmail());
+
     }
 
-    /**
-     * Allows the user to go back to the dashboard
-     * @param view The current layout with all the Android widgets
-     */
-    public void backToDashboard(View view) {
-        Intent intent = new Intent(this, dashboard.class);
+    public void goToEditProfile(View view) {
+        Intent intent = new Intent(this, EditProfile.class);
         startActivity(intent);
     }
 
-
+    public void gotToAdminPage(View view) {
+        Intent intent = new Intent(this, AdminPage.class);
+        startActivity(intent);
+    }
 }
