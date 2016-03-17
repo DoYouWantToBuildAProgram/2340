@@ -37,7 +37,7 @@ public class MyDBHandler extends SQLiteOpenHelper {
                 + COLUMN_NAME + " TEXT, "
                 + COLUMN_EMAIL + " TEXT, "
                 + COLUMN_MAJOR + " TEXT, "
-                + COLUMN_ISBANNED + " INTEGER "
+                + COLUMN_ISBANNED + " INTEGER, "
                 + COLUMN_ISLOCKED + " INTEGER"
                 + ");";
 
@@ -72,6 +72,7 @@ public class MyDBHandler extends SQLiteOpenHelper {
             return false;
         }
         db.close();
+        c.close();
         return true;
     }
 

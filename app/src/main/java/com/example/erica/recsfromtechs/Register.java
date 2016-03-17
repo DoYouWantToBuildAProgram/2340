@@ -57,7 +57,6 @@ public class Register extends AppCompatActivity  implements AdapterView.OnItemSe
         EditText passwordText = (EditText) findViewById(R.id.password);
         EditText emailText = (EditText) findViewById(R.id.email);
         EditText nameText = (EditText) findViewById(R.id.name);
-        //EditText majorText = (TextView) findViewById(R.id.major);
         Spinner mySpinner=(Spinner) findViewById(R.id.spinner);
         String text = mySpinner.getSelectedItem().toString();
         User currentUser = new User(nameText.getText().toString(),emailText.getText().toString(),text, usernameText.getText().toString(),passwordText.getText().toString(), 0, 0);
