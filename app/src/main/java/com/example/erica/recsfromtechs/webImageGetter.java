@@ -30,12 +30,11 @@ public class webImageGetter extends AsyncTask<String, Void, Bitmap> {
         urldisplay = urls[0];
         Bitmap mIcon11 = null;
         try {
-            System.out.println("Searching for:   " + urldisplay);
             InputStream in = new java.net.URL(urldisplay).openStream();
             mIcon11 = BitmapFactory.decodeStream(in);
 
         } catch (Exception e) {
-            System.out.println("Could not find +" + urldisplay);
+            System.out.println("Could not find the image at URL:" + urldisplay);
         }
         return mIcon11;
     }

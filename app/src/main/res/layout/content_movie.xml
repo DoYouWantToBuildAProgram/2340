@@ -20,7 +20,7 @@
             android:id="@+id/title"
             android:padding="10dp"
             android:textSize="40sp"
-
+            android:maxLines="3"
             android:textColor="#B9090B"
             android:textStyle="bold"
             android:layout_gravity="center_horizontal"

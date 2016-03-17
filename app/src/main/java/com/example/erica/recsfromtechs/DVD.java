@@ -22,6 +22,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 
 /**
  * Created by Courtney on 2/25/16.
@@ -119,7 +120,6 @@ public class DVD extends AppCompatActivity {
             movieYears[i] = e.get(1);
             i++;
         }
-
         CustomList adapter = new
                 CustomList(DVD.this, movieNames, movieYears, ratings, images);
         list= (ListView) findViewById(R.id.list3);

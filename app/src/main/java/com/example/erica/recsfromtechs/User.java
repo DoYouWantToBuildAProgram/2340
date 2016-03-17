@@ -1,6 +1,5 @@
 package com.example.erica.recsfromtechs;
 
-
 /**
  * Created by Erica on 2/23/2016.
  */
@@ -11,13 +10,17 @@ public class User {
     private String major;
     private String username;
     private String password;
+    private int isBanned;
+    private int isLocked;
 
-    public User(String name, String email, String major, String username, String password) {
+    public User(String name, String email, String major, String username, String password, int isBanned, int isLocked) {
         this.name = name;
         this.email = email;
         this.major = major;
         this.username = username;
         this.password = password;
+        this.isBanned = isBanned;
+        this.isLocked = isLocked;
     }
 
     public String getName() {
@@ -32,14 +35,6 @@ public class User {
         return major;
     }
 
-    public String getUsername() {
-        return username;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
     public void setName(String newName){
         name = newName;
     }
@@ -52,13 +47,15 @@ public class User {
         major = newMajor;
     }
 
-    public void setUsername(String newUsername) {
-        username = newUsername;
+    public void ban() {
+        isBanned = 1;
     }
+    public void unlock() {isLocked = 0;}
+    private void lock() {isLocked = 1;}
 
-    public void setPassword(String newPassword) {
-        password = newPassword;
-    }
+    public String getUsername() { return username;}
+    public String getPassword() { return password;}
+    public int getIsBanned() { return isBanned;}
+    public int getIsLocked() { return isLocked;}
 
-    public String toString(){ return name +", "+ email+", "+major;}
 }

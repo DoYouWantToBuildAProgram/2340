@@ -4,8 +4,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
@@ -24,7 +22,8 @@ public class Register extends AppCompatActivity  implements AdapterView.OnItemSe
     SharedPreferences.Editor editUserInfo;
 
     Spinner spinner;
-    String item;
+
+    MyDBHandler dbHandler;
 
 
     @Override
@@ -33,6 +32,7 @@ public class Register extends AppCompatActivity  implements AdapterView.OnItemSe
         setContentView(R.layout.activity_register);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        dbHandler = new MyDBHandler(this, null, null, 1);
 
         passwords  = getSharedPreferences("MyPref", MODE_PRIVATE);
         editPasswords = passwords.edit();
@@ -41,7 +41,7 @@ public class Register extends AppCompatActivity  implements AdapterView.OnItemSe
 
         spinner = (Spinner) findViewById(R.id.spinner);
         spinner.setBackgroundColor(getResources().getColor(android.R.color.transparent));
-        ArrayAdapter adapter = ArrayAdapter.createFromResource(this,R.array.majors,R.layout.spinner_item);
+        ArrayAdapter adapter = ArrayAdapter.createFromResource(this, R.array.majors, R.layout.spinner_item);
         spinner.setAdapter(adapter);
         spinner.setOnItemSelectedListener(this);
 
@@ -57,16 +57,29 @@ public class Register extends AppCompatActivity  implements AdapterView.OnItemSe
         EditText passwordText = (EditText) findViewById(R.id.password);
         EditText emailText = (EditText) findViewById(R.id.email);
         EditText nameText = (EditText) findViewById(R.id.name);
-       // EditText majorText = (EditText) findViewById(R.id.major);
-        User currentUser = new User(nameText.getText().toString(),emailText.getText().toString(),item);
+        //EditText majorText = (TextView) findViewById(R.id.major);
+        Spinner mySpinner=(Spinner) findViewById(R.id.spinner);
+        String text = mySpinner.getSelectedItem().toString();
+        User currentUser = new User(nameText.getText().toString(),emailText.getText().toString(),text, usernameText.getText().toString(),passwordText.getText().toString(), 0, 0);
+        boolean test = dbHandler.addUser(currentUser);
+        if (!test) {
+            int duration = Toast.LENGTH_SHORT;
+            Context context = getApplicationContext();
+            CharSequence newText = "This username is already taken.";
+            Toast toast = Toast.makeText(context,newText,duration);
+            toast.show();
+        } else {
+            Intent intent = new Intent(this, Login.class);
+            startActivity(intent);
+        }
 
-        editPasswords.putString(usernameText.getText().toString(), passwordText.getText().toString());
+        /*editPasswords.putString(usernameText.getText().toString(), passwordText.getText().toString());
         editPasswords.commit();
         editUserInfo.putString(usernameText.getText().toString()+"name", nameText.getText().toString());
         editUserInfo.commit();
         editUserInfo.putString(usernameText.getText().toString()+"email", emailText.getText().toString());
         editUserInfo.commit();
-        editUserInfo.putString(usernameText.getText().toString()+"major",item);
+        editUserInfo.putString(usernameText.getText().toString()+"major",majorText.getText().toString());
         editUserInfo.commit();
         Intent intent = new Intent(this,Login.class);
         Bundle bundle = new Bundle();
@@ -74,7 +87,7 @@ public class Register extends AppCompatActivity  implements AdapterView.OnItemSe
         bundle.putString("userEmail", currentUser.getEmail());
         bundle.putString("userMajor", currentUser.getMajor());
         intent.putExtras(bundle);
-        startActivity(intent);
+        startActivity(intent);*/
     }
 
     /**
@@ -88,7 +101,7 @@ public class Register extends AppCompatActivity  implements AdapterView.OnItemSe
 
     @Override
     public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-         item = adapterView.getItemAtPosition(i).toString();
+        TextView myText = (TextView) view;
         //Toast.makeText(this,"You Selected: " + myText.getText(), Toast.LENGTH_SHORT).show();
     }
 
