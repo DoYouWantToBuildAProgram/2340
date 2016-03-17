@@ -47,11 +47,16 @@ public class User {
         major = newMajor;
     }
 
-    public void ban() {
-        isBanned = 1;
+    public void setBan(int num) {
+        if (num == 1 | num == 0) {
+            isLocked = num;
+        }
     }
-    public void unlock() {isLocked = 0;}
-    private void lock() {isLocked = 1;}
+    public void setLock(int num) {
+        if (num == 1 | num == 0) {
+            isLocked = num;
+        }
+    }
 
     public String getUsername() { return username;}
     public String getPassword() { return password;}
