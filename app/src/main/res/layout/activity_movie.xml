@@ -11,11 +11,9 @@
     android:background="#231f20">
 
 
-    <include layout="@layout/content_movie"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentEnd="true"
-        android:layout_marginEnd="38dp" />
 
+
+    <include layout="@layout/content_movie" />
 
 
 

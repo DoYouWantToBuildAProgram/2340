@@ -60,12 +60,7 @@
         android:layout_height="1dp"
         android:layout_gravity="center_horizontal"
         android:background="#000000"/>
-    <EditText android:id="@+id/major"
-        android:layout_width="209dp"
-        android:layout_height="wrap_content"
-        android:hint="@string/major"
-        android:layout_gravity="center_horizontal"
-        android:textColorHint="#FFFFFF"/>
+
     <EditText android:id="@+id/email"
         android:layout_width="209dp"
         android:layout_height="wrap_content"

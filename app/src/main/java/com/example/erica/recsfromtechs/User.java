@@ -8,11 +8,19 @@ public class User {
     private String name;
     private String email;
     private String major;
+    private String username;
+    private String password;
+    private int isBanned;
+    private int isLocked;
 
-    public User(String name, String email, String major) {
+    public User(String name, String email, String major, String username, String password, int isBanned, int isLocked) {
         this.name = name;
         this.email = email;
         this.major = major;
+        this.username = username;
+        this.password = password;
+        this.isBanned = isBanned;
+        this.isLocked = isLocked;
     }
 
     public String getName() {
@@ -38,4 +46,21 @@ public class User {
     public void setMajor(String newMajor) {
         major = newMajor;
     }
+
+    public void setBan(int num) {
+        if (num == 1 | num == 0) {
+            isLocked = num;
+        }
+    }
+    public void setLock(int num) {
+        if (num == 1 | num == 0) {
+            isLocked = num;
+        }
+    }
+
+    public String getUsername() { return username;}
+    public String getPassword() { return password;}
+    public int getIsBanned() { return isBanned;}
+    public int getIsLocked() { return isLocked;}
+
 }

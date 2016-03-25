@@ -22,6 +22,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 
 /**
  * Created by Courtney on 2/25/16.
@@ -119,7 +120,6 @@ public class DVD extends AppCompatActivity {
             movieYears[i] = e.get(1);
             i++;
         }
-
         CustomList adapter = new
                 CustomList(DVD.this, movieNames, movieYears, ratings, images);
         list= (ListView) findViewById(R.id.list3);
@@ -129,8 +129,13 @@ public class DVD extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view,
                                     int position, long id) {
-                Toast.makeText(DVD.this, "You Clicked at " + movieNames[+position], Toast.LENGTH_SHORT).show();
+                Bundle bundle = new Bundle();
+                bundle.putString("title", movieNames[position]);
+                bundle.putString("image", images[position]);
+                Intent intent = new Intent(DVD.this, MovieActivity.class);
+                intent.putExtras(bundle);
 
+                startActivity(intent);
             }
         });
     }
