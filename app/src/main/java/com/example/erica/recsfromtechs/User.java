@@ -47,12 +47,20 @@ public class User {
         major = newMajor;
     }
 
+    public void setBan(int num) {
+        if (num == 1 | num == 0) {
+            isLocked = num;
+        }
+    }
+    public void setLock(int num) {
+        if (num == 1 | num == 0) {
+            isLocked = num;
+        }
+    }
+
     public String getUsername() { return username;}
-
     public String getPassword() { return password;}
-
     public int getIsBanned() { return isBanned;}
-
     public int getIsLocked() { return isLocked;}
 
 }

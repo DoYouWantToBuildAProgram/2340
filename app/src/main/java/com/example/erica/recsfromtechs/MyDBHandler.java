@@ -5,6 +5,7 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.database.sqlite.SQLiteStatement;
 
 /**
  * Created by Courtney on 3/14/16.
@@ -95,6 +96,77 @@ public class MyDBHandler extends SQLiteOpenHelper {
             return false;
         }
 
+    }
+
+    public String getName(String username) {
+        SQLiteDatabase db = getReadableDatabase();
+        Cursor c = db.rawQuery("SELECT * FROM " + TABLE_USERS + " WHERE " + COLUMN_USERNAME + " = '" + username + "';", null);
+        c.moveToFirst();
+        String name = c.getString(c.getColumnIndex(COLUMN_NAME));
+        c.close();
+        db.close();
+        return name;
+    }
+
+    public String getEmail(String username) {
+        SQLiteDatabase db = getReadableDatabase();
+        Cursor c = db.rawQuery("SELECT * FROM " + TABLE_USERS + " WHERE " + COLUMN_USERNAME + " = '" + username + "';", null);
+        c.moveToFirst();
+        String email = c.getString(c.getColumnIndex(COLUMN_EMAIL));
+        c.close();
+        db.close();
+        return email;
+    }
+
+    public String getMajor(String username) {
+        SQLiteDatabase db = getReadableDatabase();
+        Cursor c = db.rawQuery("SELECT * FROM " + TABLE_USERS + " WHERE " + COLUMN_USERNAME + " = '" + username + "';", null);
+        c.moveToFirst();
+        String major = c.getString(c.getColumnIndex(COLUMN_MAJOR));
+        c.close();
+        db.close();
+        return major;
+    }
+
+    public void setName(String username, String newName) {
+        SQLiteDatabase db = getWritableDatabase();
+        ContentValues values = new ContentValues();
+        values.put(COLUMN_NAME, newName);
+        db.update(TABLE_USERS, values, COLUMN_USERNAME + "= '" + username + "';",null);
+//        db.beginTransaction();
+//        String updateName = "UPDATE " + TABLE_USERS + " SET " + COLUMN_NAME + "= '" + newName + "' WHERE " + COLUMN_USERNAME + "='" + username + "';";
+//        SQLiteStatement statement = db.compileStatement(updateName);
+//        statement.executeUpdateDelete();
+//        db.endTransaction();
+        db.close();
+    }
+
+    public void setEmail(String username, String newEmail) {
+        SQLiteDatabase db = getWritableDatabase();
+        ContentValues values = new ContentValues();
+        values.put(COLUMN_EMAIL, newEmail);
+        db.update(TABLE_USERS, values, COLUMN_USERNAME + "= '" + username + "';", null);
+        db.close();
+//        db.beginTransaction();
+//        String updateEmail = "UPDATE " + TABLE_USERS + " SET " + COLUMN_EMAIL + "= '" + newEmail + "' WHERE " + COLUMN_USERNAME + "='" + username + "';";
+//        SQLiteStatement statement = db.compileStatement(updateEmail);
+//        statement.executeUpdateDelete();
+//        db.endTransaction();
+//        db.close();
+    }
+
+    public void setMajor(String username, String newMajor) {
+        SQLiteDatabase db = getWritableDatabase();
+        ContentValues values = new ContentValues();
+        values.put(COLUMN_MAJOR, newMajor);
+        db.update(TABLE_USERS, values, COLUMN_USERNAME + "= '" + username + "';",null);
+
+//        db.beginTransaction();
+//        String updateMajor = "UPDATE " + TABLE_USERS + " SET " + COLUMN_MAJOR + "= '" + newMajor + "' WHERE " + COLUMN_USERNAME + "='" + username + "';";
+//        SQLiteStatement statement = db.compileStatement(updateMajor);
+//        statement.executeUpdateDelete();
+//        db.endTransaction();
+        db.close();
     }
 
 

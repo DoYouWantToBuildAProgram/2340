@@ -38,14 +38,19 @@ public class searchScreen extends AppCompatActivity {
     RequestQueue queue;
     RequestQueue queue2;
 
+    public myApplication appState;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_search_screen);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        appState = ((myApplication) this.getApplicationContext());
         queue = Volley.newRequestQueue(this);
         queue2 = Volley.newRequestQueue(this);
+
 
 
     }
@@ -54,6 +59,8 @@ public class searchScreen extends AppCompatActivity {
         startActivity(intent);
     }
     public void searchForMovie(View view) {
+
+
 
         final ArrayList<ArrayList> movieInfo = new ArrayList<>();
 
@@ -80,8 +87,6 @@ public class searchScreen extends AppCompatActivity {
                                 JSONObject movie = movies.getJSONObject(i);
                                 thisMovieArray.add(movie.getString("title"));
                                 thisMovieArray.add(movie.getString("year"));
-
-                                // thisMovieArray.add(movie.getString("userRating"));
 
                                 JSONObject rating = movie.getJSONObject("ratings");
                                 thisMovieArray.add(rating.getString("critics_score"));
@@ -152,6 +157,9 @@ public class searchScreen extends AppCompatActivity {
                     bundle.putString("year", movieYears[position]);
                     bundle.putString("rating", ratings[position]);
                     bundle.putString("image", images[position]);
+
+                    appState.addMovie(new Movie(movieNames[position], movieYears[position], ratings[position]));
+
                     Intent intent = new Intent(searchScreen.this, MovieActivity.class);
                     intent.putExtras(bundle);
 
