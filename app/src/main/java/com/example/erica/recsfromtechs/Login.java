@@ -14,6 +14,8 @@ public class Login extends AppCompatActivity {
 
     SharedPreferences passwords;
     SharedPreferences.Editor editPasswords;
+    SharedPreferences currentUser;
+    SharedPreferences.Editor editCurrentUser;
 
     MyDBHandler dbHandler;
 
@@ -25,6 +27,8 @@ public class Login extends AppCompatActivity {
         setSupportActionBar(toolbar);
         passwords  = getSharedPreferences("MyPref", MODE_PRIVATE);
         editPasswords = passwords.edit();
+        currentUser = getSharedPreferences("CurrentUser", MODE_PRIVATE);
+        editCurrentUser = currentUser.edit();
         EditText usernameText = (EditText) findViewById(R.id.username);
         EditText passwordText = (EditText) findViewById(R.id.password);
         dbHandler = new MyDBHandler(this, null, null, 1);
@@ -48,6 +52,8 @@ public class Login extends AppCompatActivity {
         EditText usernameText = (EditText) findViewById(R.id.username);
         EditText passwordText = (EditText) findViewById(R.id.password);
         if (dbHandler.authenticateUser(usernameText.getText().toString(), passwordText.getText().toString())) {
+            editCurrentUser.putString("username", usernameText.getText().toString());
+            editCurrentUser.commit();
             Intent intent = new Intent(this,dashboard.class);
             //this sends the user name to the dashboard
             //called "extra", it is essentially a map
@@ -70,7 +76,7 @@ public class Login extends AppCompatActivity {
         } else {
             int duration = Toast.LENGTH_SHORT;
             Context context = getApplicationContext();
-            CharSequence text = "Username or Password Incorrect";
+            CharSequence text = "Username/Password Incorrect or Account is Locked";
             Toast toast = Toast.makeText(context,text,duration);
             toast.show();
         }
