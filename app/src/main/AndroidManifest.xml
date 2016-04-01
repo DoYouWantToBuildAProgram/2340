@@ -44,6 +44,10 @@
             android:label="@string/title_activity_profile"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
+            android:name=".EditProfile"
+            android:label="@string/title_activity_edit_profile"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
             android:name=".BoxOffice"
             android:label="@string/title_activity_boxoffice"
             android:theme="@style/AppTheme.NoActionBar" />
@@ -57,7 +61,11 @@
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".MovieActivity"
-            android:label="@string/title_activity_movie"></activity>
+            android:label="@string/title_activity_movie" />
+        <activity
+            android:name=".AdminPage"
+            android:label="@string/title_activity_admin_page"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 
 </manifest>
