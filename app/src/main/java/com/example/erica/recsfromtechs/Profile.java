@@ -18,6 +18,8 @@ import android.widget.TextView;
 public class Profile extends AppCompatActivity {
     SharedPreferences userInfo;
     SharedPreferences.Editor editUserInfo;
+    SharedPreferences currentUser;
+    SharedPreferences.Editor editCurrentUser;
     MyDBHandler dbHandler;
 
 
@@ -26,15 +28,18 @@ public class Profile extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile);
 
+        currentUser = getSharedPreferences("CurrentUser", MODE_PRIVATE);
+        editCurrentUser = currentUser.edit();
+
         userInfo = getSharedPreferences("AnotherPref", MODE_PRIVATE);
         dbHandler = new MyDBHandler(this, null, null, 1);
         Intent oldIntent = getIntent();
         String user = oldIntent.getStringExtra("user");
 
         // make method if user is admin make button clickable'
-        Button adminButton = (Button) findViewById(R.id.goToAdminPagee);
+        Button adminButton = (Button) findViewById(R.id.goToAdminPage);
 
-        if (true) { //true if user is admin THIS NEEDS TO BE FIXED
+        if (dbHandler.getIsAdmin(currentUser.getString("username",null)) == 1) { //true if user is admin THIS NEEDS TO BE FIXED
             adminButton.setEnabled(true);
         } else {
             adminButton.setEnabled(false);
@@ -42,17 +47,17 @@ public class Profile extends AppCompatActivity {
 
         //placeholder
         //get the user from the database here
-        User thisUser = new User("sad","happy","other","another","yes",1,1);
 
+        TextView nameText = (TextView) findViewById(R.id.name);
+        nameText.setText(dbHandler.getName(currentUser.getString("username",null)));
         TextView usernameText = (TextView) findViewById(R.id.username);
-        System.out.println(usernameText == null);
-        usernameText.setText(thisUser.getUsername());
+        usernameText.setText(currentUser.getString("username",null));
         TextView passwordText = (TextView) findViewById(R.id.password);
-        passwordText.setText(thisUser.getPassword());
+        passwordText.setText(dbHandler.getPassword(currentUser.getString("username",null)));
         TextView majorText = (TextView) findViewById(R.id.major);
-        majorText.setText(thisUser.getMajor());
+        majorText.setText(dbHandler.getMajor(currentUser.getString("username",null)));
         TextView emailText = (TextView) findViewById(R.id.email);
-        emailText.setText(thisUser.getEmail());
+        emailText.setText(dbHandler.getEmail(currentUser.getString("username",null)));
 
     }
 

@@ -19,7 +19,7 @@
             android:text="Movie Title"
             android:id="@+id/title"
             android:padding="10dp"
-            android:textSize="40sp"
+            android:textSize="30sp"
             android:maxLines="3"
             android:textColor="#B9090B"
             android:textStyle="bold"
@@ -37,7 +37,7 @@
             android:text="Movie Year"
             android:id="@+id/year"
             android:padding="10dp"
-            android:textSize="25sp"
+            android:textSize="15sp"
 
             android:textColor="#B9090B"
             android:textStyle="bold"
@@ -52,7 +52,7 @@
             android:text="Movie Rating"
             android:id="@+id/rating"
             android:padding="10dp"
-            android:textSize="25sp"
+            android:textSize="15sp"
 
             android:textColor="#B9090B"
             android:textStyle="bold"

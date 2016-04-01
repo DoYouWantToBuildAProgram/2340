@@ -22,7 +22,8 @@ public class AdminPage extends AppCompatActivity {
 
     LinkedList<User> allUsers = new LinkedList<>();
 
-    User currentUser;
+    String currentUser;
+    MyDBHandler dbHandler;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,6 +31,7 @@ public class AdminPage extends AppCompatActivity {
         setContentView(R.layout.activity_admin_page);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        dbHandler = new MyDBHandler(this, null, null, 1);
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -47,7 +49,7 @@ public class AdminPage extends AppCompatActivity {
         //put them in allUsers Linkedlist
 
         //test
-        allUsers.add(new User ("sad","happy","other","another","yes",1,1));
+        allUsers = dbHandler.listOfUsers();
 
 
         final String[] names = new String[allUsers.size()];
@@ -55,8 +57,9 @@ public class AdminPage extends AppCompatActivity {
 
         int index = 0;
         for (User i : allUsers) {
-            names[index]=allUsers.get(index).getName();
+            names[index]=allUsers.get(index).getUsername();
             isBlocked[index] = allUsers.get(index).getIsLocked();
+            index++;
         }
 
         UserList adapter = new
@@ -70,10 +73,23 @@ public class AdminPage extends AppCompatActivity {
                                     int position, long id) {
                 Toast.makeText(AdminPage.this, "You Clicked at " + names[position], Toast.LENGTH_SHORT).show();
 
-                currentUser = allUsers.get(0); //get the user from the database;
+                currentUser = names[position];
 
                 TextView selctedUserText = (TextView) findViewById(R.id.currentUser);
-                selctedUserText.setText("Current User: " + currentUser.getName());
+                selctedUserText.setText("Current User: " + currentUser);
+                TextView isLocked = (TextView) findViewById(R.id.isLocked);
+                if(dbHandler.getIsLocked(currentUser) == 0) {
+                    isLocked.setText("Is Locked: NO");
+                } else {
+                    isLocked.setText("Is Locked: YES");
+                }
+                TextView isBlocked = (TextView) findViewById(R.id.isblocked);
+                if(dbHandler.getIsBlocked(currentUser) == 0) {
+                    isBlocked.setText("Is Blocked: NO");
+                } else {
+                    isBlocked.setText("Is Blocked: YES");
+                }
+
 
 
             }
@@ -83,19 +99,40 @@ public class AdminPage extends AppCompatActivity {
     }
     //Needs to implemented with database
     public void lock(View view) {
-        System.out.println("lock");
+        dbHandler.setLocked(currentUser,1);
+        TextView isLocked = (TextView) findViewById(R.id.isLocked);
+        updateTable();
 
     }
     public void unlock(View view) {
-        System.out.println("unlock");
+        dbHandler.setLocked(currentUser,0);
+        updateTable();
 
     }
     public void block(View view) {
-        System.out.println("block");
+        dbHandler.setBlocked(currentUser, 1);
+        updateTable();
     }
     public void back(View view) {
-        Intent intent = new Intent(this, Profile.class);
+        Intent intent = new Intent(this, dashboard.class);
         startActivity(intent);
+    }
+
+    public void updateTable() {
+        TextView isLocked = (TextView) findViewById(R.id.isLocked);
+        if(dbHandler.getIsLocked(currentUser) == 0) {
+            isLocked.setText("Is Locked: NO");
+        } else {
+            isLocked.setText("Is Locked: YES");
+        }
+        TextView isBlocked = (TextView) findViewById(R.id.isblocked);
+        if(dbHandler.getIsBlocked(currentUser) == 0) {
+            isBlocked.setText("Is Blocked: NO");
+        } else {
+            isBlocked.setText("Is Blocked: YES");
+        }
+
+
     }
 
 }

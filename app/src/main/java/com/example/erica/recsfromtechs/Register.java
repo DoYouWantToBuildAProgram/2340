@@ -57,12 +57,20 @@ public class Register extends AppCompatActivity  implements AdapterView.OnItemSe
         EditText passwordText = (EditText) findViewById(R.id.password);
         EditText emailText = (EditText) findViewById(R.id.email);
         EditText nameText = (EditText) findViewById(R.id.name);
+        EditText adminPassText = (EditText) findViewById(R.id.adminPassword);
+        User currentUser;
         //EditText majorText = (TextView) findViewById(R.id.major);
         Spinner mySpinner=(Spinner) findViewById(R.id.spinner);
         String text = mySpinner.getSelectedItem().toString();
-        User currentUser = new User(nameText.getText().toString(),
-                emailText.getText().toString(),text,
-                usernameText.getText().toString(),passwordText.getText().toString(), 0, 0);
+        if (adminPassText.getText().toString().equals("CS2340")) {
+                    currentUser = new User(nameText.getText().toString(),
+                    emailText.getText().toString(),text,
+                    usernameText.getText().toString(),passwordText.getText().toString(), 0, 0,1);
+        } else{
+                    currentUser = new User(nameText.getText().toString(),
+                    emailText.getText().toString(), text,
+                    usernameText.getText().toString(), passwordText.getText().toString(), 0, 0,0);
+        }
         boolean test = dbHandler.addUser(currentUser);
         if (!test) {
             int duration = Toast.LENGTH_SHORT;

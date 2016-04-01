@@ -9,25 +9,24 @@ import java.util.List;
  */
 public class Movie {
     private String title;
-    private float rating;
+    private String rating;
     private String year;
     private HashMap<String, List<Float>> majorRatings;
 
     public Movie(String title) {
         this.title = title;
-        rating = 0f;
+        rating = "0";
         majorRatings = new HashMap<>();
     }
     public Movie(String title, String year, String rating) {
         this.title = title;
-        this.rating = Float.parseFloat(rating);
-        this.rating = this.rating/100 *5;
+        this.rating = rating;
         this.year = year;
         majorRatings = new HashMap<>();
     }
 
     public HashMap<String,List<Float>> getMajorRatings(){
-        return majorRatings;
+       return majorRatings;
     }
 
     public List<Float> getMajorRatings(String major){
@@ -49,11 +48,10 @@ public class Movie {
     public String getTitle() {
         return title;
     }
-
-    public void setRating(float newRating) {
+    public void setRating(String newRating) {
         rating = newRating;
     }
-    public float getRating() {
+    public String getRating() {
         return rating;
     }
 
