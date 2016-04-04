@@ -15,8 +15,7 @@ import android.widget.TextView;
 
 
 public class Profile extends AppCompatActivity {
-    SharedPreferences userInfo;
-    SharedPreferences.Editor editUserInfo;
+
     SharedPreferences currentUser;
     SharedPreferences.Editor editCurrentUser;
     MyDBHandler dbHandler;
@@ -30,10 +29,7 @@ public class Profile extends AppCompatActivity {
         currentUser = getSharedPreferences("CurrentUser", MODE_PRIVATE);
         editCurrentUser = currentUser.edit();
 
-        userInfo = getSharedPreferences("AnotherPref", MODE_PRIVATE);
         dbHandler = new MyDBHandler(this, null, null, 1);
-        Intent oldIntent = getIntent();
-        String user = oldIntent.getStringExtra("user");
 
         // make method if user is admin make button clickable'
         Button adminButton = (Button) findViewById(R.id.goToAdminPage);

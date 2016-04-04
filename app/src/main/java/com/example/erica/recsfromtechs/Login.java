@@ -55,22 +55,6 @@ public class Login extends AppCompatActivity {
             editCurrentUser.putString("username", usernameText.getText().toString());
             editCurrentUser.commit();
             Intent intent = new Intent(this,dashboard.class);
-            //this sends the user name to the dashboard
-            //called "extra", it is essentially a map
-            //"user" is our key
-            /* Not sure what any of this does, so I commented it out for now
-            Intent oldIntent = getIntent();
-            String userName = oldIntent.getStringExtra("userName");
-            String userEmail = oldIntent.getStringExtra("userEmail");
-            String userMajor = oldIntent.getStringExtra("userMajor");
-            Bundle bundle = new Bundle();
-            bundle.putString("userName",userName);
-            bundle.putString("userEmail", userEmail);
-            bundle.putString("userMajor", userMajor);
-            bundle.putString("user", usernameText.getText().toString());
-            intent.putExtras(bundle);
-            Log.v("welcome", "input" + usernameText.getText());
-            */
             startActivity(intent);
 
         } else {
