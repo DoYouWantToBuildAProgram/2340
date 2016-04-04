@@ -14,6 +14,7 @@
     <string name="loginUnsuccessful">Login was Unsuccessful</string>
     <string name="title_activity_dashboard">dashboard</string>
     <string name="dashboard">Dashboard</string>
+    <string name="title_activity_edit_profile">EditProfile</string>
     <string name="logout">Logout</string>
     <string name="createuser">Create a Username</string>
     <string name="createpass">Create a Password</string>
@@ -39,4 +40,5 @@
         <item>Science</item>
         <item>Other</item>
     </string-array>
+    <string name="title_activity_admin_page">AdminPage</string>
 </resources>

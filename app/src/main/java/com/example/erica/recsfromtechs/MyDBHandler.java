@@ -7,6 +7,8 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.database.sqlite.SQLiteStatement;
 
+import java.util.LinkedList;
+
 /**
  * Created by Courtney on 3/14/16.
  */
@@ -23,6 +25,7 @@ public class MyDBHandler extends SQLiteOpenHelper {
     public static final String COLUMN_MAJOR = "major";
     public static final String COLUMN_ISBANNED = "isBanned";
     public static final String COLUMN_ISLOCKED = "isLocked";
+    public static final String COLUMN_ISADMIN = "isAdmin";
 
 
     public MyDBHandler(Context context, String name, SQLiteDatabase.CursorFactory factory, int version) {
@@ -39,7 +42,8 @@ public class MyDBHandler extends SQLiteOpenHelper {
                 + COLUMN_EMAIL + " TEXT, "
                 + COLUMN_MAJOR + " TEXT, "
                 + COLUMN_ISBANNED + " INTEGER, "
-                + COLUMN_ISLOCKED + " INTEGER"
+                + COLUMN_ISLOCKED + " INTEGER,"
+                + COLUMN_ISADMIN + " INTEGER"
                 + ");";
 
         db.execSQL(query);
@@ -67,11 +71,13 @@ public class MyDBHandler extends SQLiteOpenHelper {
             values.put(COLUMN_MAJOR, user.getMajor());
             values.put(COLUMN_ISBANNED, user.getIsBanned());
             values.put(COLUMN_ISLOCKED, user.getIsLocked());
+            values.put(COLUMN_ISADMIN, user.getIsAdmin());
             //inserts the new line to the table
             db.insert(TABLE_USERS, null, values);
         } else {
             return false;
         }
+        c.close();
         db.close();
         return true;
     }
@@ -82,19 +88,48 @@ public class MyDBHandler extends SQLiteOpenHelper {
         Cursor c = db.rawQuery("SELECT * FROM " + TABLE_USERS + " WHERE " + COLUMN_USERNAME + " = '" + username + "';", null);
         c.moveToFirst();
         String realPassword = null;
+        int isBlocked;
+        int isLocked;
         if (!c.isBeforeFirst()) {
             realPassword = c.getString(c.getColumnIndex(COLUMN_PASSWORD));
+            isBlocked = c.getInt(c.getColumnIndex(COLUMN_ISBANNED));
+            isLocked = c.getInt(c.getColumnIndex(COLUMN_ISLOCKED));
         } else {
             return false;
         }
         c.close();
         db.close();
-        if (realPassword.equals(password)) {
+        if (realPassword.equals(password) && isBlocked != 1 && isLocked != 1){
             return true;
         } else {
             return false;
         }
 
+    }
+
+    public LinkedList<User> listOfUsers() {
+        SQLiteDatabase db = getReadableDatabase();
+        Cursor c = db.rawQuery("SELECT * FROM " + TABLE_USERS, null);
+        c.moveToFirst();
+        LinkedList<User> returnList = new LinkedList<>();
+        while(!c.isAfterLast()) {
+            String name = c.getString(c.getColumnIndex(COLUMN_NAME));
+            String email = c.getString(c.getColumnIndex(COLUMN_EMAIL));
+            String major = c.getString(c.getColumnIndex(COLUMN_MAJOR));
+            String username = c.getString(c.getColumnIndex(COLUMN_USERNAME));
+            String password = c.getString(c.getColumnIndex(COLUMN_PASSWORD));
+            int isBanned = c.getInt(c.getColumnIndex(COLUMN_ISBANNED));
+            int isLocked = c.getInt(c.getColumnIndex(COLUMN_ISLOCKED));
+            int isAdmin = c.getInt(c.getColumnIndex(COLUMN_ISADMIN));
+
+            System.out.println(name+email+major+username+password+isBanned+isLocked+isAdmin);
+
+            returnList.add(new User(name, email, major, username, password, isBanned, isLocked, isAdmin));
+            c.moveToNext();
+        }
+        c.close();
+        db.close();
+        return returnList;
     }
 
     public String getName(String username) {
@@ -127,16 +162,67 @@ public class MyDBHandler extends SQLiteOpenHelper {
         return major;
     }
 
+    public String getPassword(String username) {
+        SQLiteDatabase db = getReadableDatabase();
+        Cursor c = db.rawQuery("SELECT * FROM " + TABLE_USERS + " WHERE " + COLUMN_USERNAME + " = '" + username + "';", null);
+        c.moveToFirst();
+        String password = c.getString(c.getColumnIndex(COLUMN_PASSWORD));
+        c.close();
+        db.close();
+        return password;
+    }
+
+    public int getIsAdmin(String username) {
+        SQLiteDatabase db = getReadableDatabase();
+        Cursor c = db.rawQuery("SELECT * FROM " + TABLE_USERS + " WHERE " + COLUMN_USERNAME + " = '" + username + "';", null);
+        c.moveToFirst();
+        int isAdmin = c.getInt(c.getColumnIndex(COLUMN_ISADMIN));
+        c.close();
+        db.close();
+        return isAdmin;
+    }
+
+    public int getIsLocked(String username) {
+        SQLiteDatabase db = getReadableDatabase();
+        Cursor c = db.rawQuery("SELECT * FROM " + TABLE_USERS + " WHERE " + COLUMN_USERNAME + " = '" + username + "';", null);
+        c.moveToFirst();
+        int isLocked = c.getInt(c.getColumnIndex(COLUMN_ISLOCKED));
+        c.close();
+        db.close();
+        return isLocked;
+    }
+
+    public int getIsBlocked(String username) {
+        SQLiteDatabase db = getReadableDatabase();
+        Cursor c = db.rawQuery("SELECT * FROM " + TABLE_USERS + " WHERE " + COLUMN_USERNAME + " = '" + username + "';", null);
+        c.moveToFirst();
+        int isBlocked = c.getInt(c.getColumnIndex(COLUMN_ISBANNED));
+        c.close();
+        db.close();
+        return isBlocked;
+    }
+
     public void setName(String username, String newName) {
         SQLiteDatabase db = getWritableDatabase();
         ContentValues values = new ContentValues();
         values.put(COLUMN_NAME, newName);
+        db.update(TABLE_USERS, values, COLUMN_USERNAME + "= '" + username + "';", null);
+        db.close();
+    }
+
+    public void setPassword(String username, String newPassword) {
+        SQLiteDatabase db = getWritableDatabase();
+        ContentValues values = new ContentValues();
+        values.put(COLUMN_PASSWORD, newPassword);
         db.update(TABLE_USERS, values, COLUMN_USERNAME + "= '" + username + "';",null);
-//        db.beginTransaction();
-//        String updateName = "UPDATE " + TABLE_USERS + " SET " + COLUMN_NAME + "= '" + newName + "' WHERE " + COLUMN_USERNAME + "='" + username + "';";
-//        SQLiteStatement statement = db.compileStatement(updateName);
-//        statement.executeUpdateDelete();
-//        db.endTransaction();
+        db.close();
+    }
+
+    public void setUsername(String username, String newUsername) {
+        SQLiteDatabase db = getWritableDatabase();
+        ContentValues values = new ContentValues();
+        values.put(COLUMN_USERNAME, newUsername);
+        db.update(TABLE_USERS, values, COLUMN_USERNAME + "= '" + username + "';",null);
         db.close();
     }
 
@@ -146,12 +232,6 @@ public class MyDBHandler extends SQLiteOpenHelper {
         values.put(COLUMN_EMAIL, newEmail);
         db.update(TABLE_USERS, values, COLUMN_USERNAME + "= '" + username + "';", null);
         db.close();
-//        db.beginTransaction();
-//        String updateEmail = "UPDATE " + TABLE_USERS + " SET " + COLUMN_EMAIL + "= '" + newEmail + "' WHERE " + COLUMN_USERNAME + "='" + username + "';";
-//        SQLiteStatement statement = db.compileStatement(updateEmail);
-//        statement.executeUpdateDelete();
-//        db.endTransaction();
-//        db.close();
     }
 
     public void setMajor(String username, String newMajor) {
@@ -159,12 +239,22 @@ public class MyDBHandler extends SQLiteOpenHelper {
         ContentValues values = new ContentValues();
         values.put(COLUMN_MAJOR, newMajor);
         db.update(TABLE_USERS, values, COLUMN_USERNAME + "= '" + username + "';",null);
+        db.close();
+    }
 
-//        db.beginTransaction();
-//        String updateMajor = "UPDATE " + TABLE_USERS + " SET " + COLUMN_MAJOR + "= '" + newMajor + "' WHERE " + COLUMN_USERNAME + "='" + username + "';";
-//        SQLiteStatement statement = db.compileStatement(updateMajor);
-//        statement.executeUpdateDelete();
-//        db.endTransaction();
+    public void setLocked(String username, int num) {
+        SQLiteDatabase db = getWritableDatabase();
+        ContentValues values = new ContentValues();
+        values.put(COLUMN_ISLOCKED, num);
+        db.update(TABLE_USERS, values, COLUMN_USERNAME + "= '" + username + "';",null);
+        db.close();
+    }
+
+    public void setBlocked(String username, int num) {
+        SQLiteDatabase db = getWritableDatabase();
+        ContentValues values = new ContentValues();
+        values.put(COLUMN_ISBANNED, num);
+        db.update(TABLE_USERS, values, COLUMN_USERNAME + "= '" + username + "';",null);
         db.close();
     }
 

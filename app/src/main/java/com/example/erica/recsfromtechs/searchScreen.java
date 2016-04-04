@@ -1,6 +1,7 @@
 package com.example.erica.recsfromtechs;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.drawable.Drawable;
 import android.os.AsyncTask;
@@ -37,8 +38,12 @@ public class searchScreen extends AppCompatActivity {
 
     RequestQueue queue;
     RequestQueue queue2;
+    SharedPreferences currentMovie;
+    SharedPreferences.Editor editCurrentMovie;
 
     public myApplication appState;
+
+    MovieDB movieDbHandler;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,6 +55,9 @@ public class searchScreen extends AppCompatActivity {
         appState = ((myApplication) this.getApplicationContext());
         queue = Volley.newRequestQueue(this);
         queue2 = Volley.newRequestQueue(this);
+        movieDbHandler = new MovieDB(this, null, null, 1);
+        currentMovie = getSharedPreferences("CurrentMovie",MODE_PRIVATE);
+        editCurrentMovie = currentMovie.edit();
 
 
 
@@ -135,12 +143,16 @@ public class searchScreen extends AppCompatActivity {
         int i = 0;
         for (ArrayList<String> e : movieInfo) {
             movieNames[i] = e.get(0);
+            //System.out.println(e.get(0));
             movieYears[i] = e.get(1);
+            //System.out.println(e.get(1));
             ratings[i] = e.get(2);
+            //System.out.println(e.get(2));
             images[i] = e.get(3);
-
             i++;
         }
+
+
 
 
             CustomList adapter = new
@@ -152,16 +164,28 @@ public class searchScreen extends AppCompatActivity {
                 @Override
                 public void onItemClick(AdapterView<?> parent, View view,
                                         int position, long id) {
-                    Bundle bundle = new Bundle();
-                    bundle.putString("title", movieNames[position]);
-                    bundle.putString("year", movieYears[position]);
-                    bundle.putString("rating", ratings[position]);
-                    bundle.putString("image", images[position]);
+//                    Bundle bundle = new Bundle();
+//                    bundle.putString("title", movieNames[position]);
+//                    bundle.putString("year", movieYears[position]);
+//                    bundle.putString("rating", ratings[position]);
+//                    bundle.putString("image", images[position]);
+                    System.out.println(movieNames[position]);
+                    System.out.println(movieYears[position]);
+                    System.out.println(ratings[position]);
+                    editCurrentMovie.putString("title", movieNames[position]);
+                    editCurrentMovie.commit();
+                    editCurrentMovie.putString("year", movieYears[position]);
+                    editCurrentMovie.commit();
+                    editCurrentMovie.putString("rating", ratings[position]);
+                    movieDbHandler.addMovie(new Movie(movieNames[position], movieYears[position],ratings[position]));
 
+
+//                    Movie currentMovie = new Movie(movieNames[position],movieYears[position],ratings[position]);
+//                    movieDbHandler.addMovie(currentMovie);
                     appState.addMovie(new Movie(movieNames[position], movieYears[position], ratings[position]));
 
                     Intent intent = new Intent(searchScreen.this, MovieActivity.class);
-                    intent.putExtras(bundle);
+                    //intent.putExtras(bundle);
 
                     startActivity(intent);
                    // Toast.makeText(searchScreen.this, "You Clicked at " + movieNames[+position], Toast.LENGTH_SHORT).show();

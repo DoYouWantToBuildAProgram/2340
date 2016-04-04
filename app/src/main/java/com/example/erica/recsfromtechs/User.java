@@ -12,8 +12,10 @@ public class User {
     private String password;
     private int isBanned;
     private int isLocked;
+    private int isAdmin;
 
-    public User(String name, String email, String major, String username, String password, int isBanned, int isLocked) {
+
+    public User(String name, String email, String major, String username, String password, int isBanned, int isLocked,int isAdmin) {
         this.name = name;
         this.email = email;
         this.major = major;
@@ -21,6 +23,7 @@ public class User {
         this.password = password;
         this.isBanned = isBanned;
         this.isLocked = isLocked;
+        this.isAdmin = isAdmin;
     }
 
     public String getName() {
@@ -35,6 +38,17 @@ public class User {
         return major;
     }
 
+    public String getUsername() { return username;}
+
+    public String getPassword() { return password;}
+
+    public int getIsBanned() { return isBanned;}
+
+    public int getIsLocked() { return isLocked;}
+
+    public int getIsAdmin() {
+        return isAdmin;
+    }
     public void setName(String newName){
         name = newName;
     }
@@ -58,9 +72,8 @@ public class User {
         }
     }
 
-    public String getUsername() { return username;}
-    public String getPassword() { return password;}
-    public int getIsBanned() { return isBanned;}
-    public int getIsLocked() { return isLocked;}
+    public String toString() {
+        return username +" "+password+" "+email+" "+name;
+    }
 
 }
