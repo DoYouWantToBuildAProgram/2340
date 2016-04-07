@@ -5,7 +5,6 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
-import android.database.sqlite.SQLiteStatement;
 
 import java.util.LinkedList;
 
@@ -79,6 +78,7 @@ public class MyDBHandler extends SQLiteOpenHelper {
         }
         c.close();
         db.close();
+        c.close();
         return true;
     }
 
@@ -86,6 +86,8 @@ public class MyDBHandler extends SQLiteOpenHelper {
         SQLiteDatabase db = getReadableDatabase();
         //This call is what creates a smaller table, so right now this creates a smaller table with all the usernames that match what was inputted
         Cursor c = db.rawQuery("SELECT * FROM " + TABLE_USERS + " WHERE " + COLUMN_USERNAME + " = '" + username + "';", null);
+        Cursor d = db.rawQuery("SELECT * FROM " + TABLE_USERS + " WHERE " + COLUMN_USERNAME + " = '" + username + "';", null);
+        d.moveToFirst();
         c.moveToFirst();
         String realPassword = null;
         int isBlocked;
@@ -93,10 +95,11 @@ public class MyDBHandler extends SQLiteOpenHelper {
         if (!c.isBeforeFirst()) {
             realPassword = c.getString(c.getColumnIndex(COLUMN_PASSWORD));
             isBlocked = c.getInt(c.getColumnIndex(COLUMN_ISBANNED));
-            isLocked = c.getInt(c.getColumnIndex(COLUMN_ISLOCKED));
+            isLocked = d.getInt(c.getColumnIndex(COLUMN_ISLOCKED));
         } else {
             return false;
         }
+        d.close();
         c.close();
         db.close();
         if (realPassword.equals(password) && isBlocked != 1 && isLocked != 1){
