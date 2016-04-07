@@ -27,6 +27,7 @@ public class MovieActivity extends AppCompatActivity {
     SharedPreferences currentMovie;
     SharedPreferences.Editor editCurrentMovie;
     MovieDB movieDbHandler;
+    RecsDB recsDbHandler;
 
 
     @Override
@@ -41,6 +42,7 @@ public class MovieActivity extends AppCompatActivity {
         currentUser = getSharedPreferences("CurrentUser", MODE_PRIVATE);
         editCurrentUser = currentUser.edit();
         movieDbHandler = new MovieDB(this, null, null, 1);
+        recsDbHandler = new RecsDB(this, null, null, 1);
         currentMovie = getSharedPreferences("CurrentMovie",MODE_PRIVATE);
         editCurrentMovie = currentMovie.edit();
 
@@ -134,6 +136,7 @@ public class MovieActivity extends AppCompatActivity {
                  float newRating = majorRatingBar.getRating();
                 String title = currentMovie.getString("title",null);
                 String year = currentMovie.getString("year",null);
+                recsDbHandler.addRec(new Recs(dbHandler.getMajor("username"),newRating,title,year));
                 float currentRating = movieDbHandler.getUserRating(title,year);
                 int currentNum = movieDbHandler.getCurrentNum(title,year);
                 movieDbHandler.updateUserRating(title,year,currentRating, newRating);
