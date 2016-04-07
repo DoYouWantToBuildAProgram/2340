@@ -17,13 +17,15 @@
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Search for movie"
+        android:textStyle = "bold"
+        android:text="Go"
         android:id="@+id/button"
         android:onClick="searchForMovie"
         android:layout_alignParentTop="true"
         android:background="#B9090B"
         android:textColor="#FFFFFF"
-        android:layout_alignEnd="@+id/list" />
+        android:layout_alignEnd="@+id/list"
+        android:typeface="monospace" />
 
 
 
@@ -42,9 +44,10 @@
         android:textColorHint="#FFFFFF"
         android:textColor="#FFFFFF"
         android:id="@+id/editText"
-        android:layout_alignBottom="@+id/button"
-        android:layout_alignParentStart="true"
-        android:layout_toStartOf="@+id/button" />
+        android:hint="Search for a Movie"
+        android:typeface="normal"
+        android:layout_alignBottom="@+id/back"
+        android:layout_toEndOf="@+id/back" />
 
     <ImageView
         android:layout_width="wrap_content"
@@ -55,14 +58,15 @@
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Dashboard"
+        android:text="Back"
         android:id="@+id/back"
         android:textColor="#FFFFFF"
         android:textStyle = "bold"
         android:onClick = "backToDashboard"
         android:background="#B9090B"
 
-        android:layout_alignBottom="@+id/imageView2"
-        android:layout_alignEnd="@+id/button" />
+        android:layout_alignParentTop="true"
+        android:layout_toEndOf="@+id/imageView2"
+        android:typeface="monospace" />
 
 </RelativeLayout>

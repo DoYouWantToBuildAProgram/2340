@@ -1,12 +1,10 @@
 package com.example.erica.recsfromtechs;
 
-import android.database.sqlite.SQLiteDatabase;
-import android.database.sqlite.SQLiteOpenHelper;
+import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
-import android.content.ContentValues;
-
-import java.util.LinkedList;
+import android.database.sqlite.SQLiteDatabase;
+import android.database.sqlite.SQLiteOpenHelper;
 
 
 /**
@@ -31,7 +29,7 @@ public class MovieDB extends SQLiteOpenHelper{
     @Override
     public void onCreate(SQLiteDatabase db) {
         String query = "CREATE TABLE " + TABLE_MOVIES + " ("
-                + COLUMN_TITLE + " TEXT PRIMARY KEY, "
+                + COLUMN_TITLE + " TEXT, "
                 + COLUMN_URATING + " FLOAT, "
                 + COLUMN_NUMRATING + " INTEGER, "
                 + COLUMN_MRATING + " TEXT, "
