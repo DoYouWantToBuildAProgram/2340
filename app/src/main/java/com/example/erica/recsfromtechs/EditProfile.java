@@ -20,6 +20,7 @@ public class EditProfile extends AppCompatActivity {
     SharedPreferences.Editor editCurrentUser;
     MyDBHandler dbHandler;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -65,9 +66,12 @@ public class EditProfile extends AppCompatActivity {
     }
 
     public void editUsername(View view) {
+
+
         TextView usernameText = (TextView)findViewById(R.id.username);
         EditText changedUsername = (EditText)findViewById(R.id.newUsername);
         usernameText.setText(changedUsername.getText().toString());
+
         dbHandler.setUsername(currentUser.getString("username", null), changedUsername.getText().toString());
         editCurrentUser.putString("username", changedUsername.getText().toString());
         editCurrentUser.commit();
@@ -80,17 +84,23 @@ public class EditProfile extends AppCompatActivity {
         TextView passwordText = (TextView)findViewById(R.id.password);
         EditText changedPassword = (EditText)findViewById(R.id.newPassword);
         passwordText.setText(changedPassword.getText().toString());
-        dbHandler.setPassword(currentUser.getString("username",null),changedPassword.getText().toString());
+
+        dbHandler.setPassword(currentUser.getString("username", null), changedPassword.getText().toString());
     }
     /**
      * Allows the user to change their email
      * @param view The current layout with all the Android widgets
      */
-    public void editEmail(View view) {
+    public String editEmail() {
         TextView emailText = (TextView)findViewById(R.id.email);
         EditText changedEmail = (EditText)findViewById(R.id.newEmail);
+        String stringEmail = changedEmail.toString();
+        if (!stringEmail.contains("@")) {
+            return emailText.toString();
+        }
         emailText.setText(changedEmail.getText().toString());
         dbHandler.setEmail(currentUser.getString("username", null), changedEmail.getText().toString());
+        return stringEmail;
 //        editUserInfo.putString("email", changedEmail.getText().toString());
 //        editUserInfo.commit();
     }
@@ -116,6 +126,11 @@ public class EditProfile extends AppCompatActivity {
         Intent intent = new Intent(this, dashboard.class);
         startActivity(intent);
     }
+    /**
+     * TEST FILES ONLY
+     */
+
+
 
 
 }

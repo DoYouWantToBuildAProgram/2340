@@ -1,20 +1,26 @@
-package com.example.erica.recsfromtechs;
 
-import android.content.Intent;
-import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
-import android.view.View;
-import android.widget.TextView;
+        package com.example.erica.recsfromtechs;
+
+        import android.content.Intent;
+        import android.os.Bundle;
+        import android.support.v7.app.AppCompatActivity;
+        import android.support.v7.widget.Toolbar;
+        import android.view.View;
+        import android.widget.TextView;
 
 public class dashboard extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        System.out.println(1);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_dashboard);
+        System.out.println(2);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        System.out.println(toolbar);
+
         setSupportActionBar(toolbar);
+        System.out.println(4);
 
 
 
