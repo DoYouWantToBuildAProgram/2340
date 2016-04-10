@@ -42,7 +42,7 @@ public class Recommendations extends AppCompatActivity implements AdapterView.On
 
     public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
         item = adapterView.getItemAtPosition(i).toString();
-        LinkedList<Recs> majorRecs = new LinkedList<>();
+        LinkedList<Recs> majorRecs;
         HashMap<String,LinkedList<Double>> movies = new HashMap<>();
         String text = "";
 
@@ -67,17 +67,21 @@ public class Recommendations extends AppCompatActivity implements AdapterView.On
 //        }
         majorRecs = recsDbHandler.listOfRecs(item);
         for(Recs rec:majorRecs){
+            System.out.println(rec.getTitle() + " and " + rec.getMajor());
             if(movies.containsKey(rec.getTitle()+ " " + rec.getYear())) {
                 movies.get(rec.getTitle()+" " + rec.getYear()).add(rec.getRating());
             } else {
                 movies.put(rec.getTitle() + " " + rec.getYear(), new LinkedList<Double>());
+                movies.get(rec.getTitle() + " " + rec.getYear()).add(rec.getRating());
             }
         }
         for(String key: movies.keySet()) {
+            System.out.println(key);
             int counter = 0;
             double sum = 0;
             for(double rating:movies.get(key)) {
                 sum += rating;
+                counter++;
             }
             double average = sum / counter;
             if(average > 3.5) {
@@ -87,7 +91,7 @@ public class Recommendations extends AppCompatActivity implements AdapterView.On
         if(text == ""){
             text = "Sorry no recommendations could be given";
         }
-        TextView recView =new TextView(this);
+        TextView recView;
         recView =(TextView)findViewById(R.id.recommendationList);
         recView.setText(text);
 

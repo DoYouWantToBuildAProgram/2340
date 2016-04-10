@@ -75,7 +75,7 @@ public class MovieActivity extends AppCompatActivity {
 
         //here im getting a movie object from our singleton appState
         //setting the year and rating TextViews to what was stored in the movie object
-        final Movie myMovie = appState.getMovie(title);
+        //final Movie myMovie = appState.getMovie(title);
         //rating =  myMovie.getRating();
         //TextView yearView =new TextView(this);
         TextView yearView =(TextView)findViewById(R.id.year);
@@ -111,11 +111,8 @@ public class MovieActivity extends AppCompatActivity {
 //
 //        majorRatingBar.setRating(avg);
         float currentRating = movieDbHandler.getUserRating(title, year);
-        System.out.println("current rating =" + currentRating);
         int currentNum = movieDbHandler.getCurrentNum(title, year);
-        System.out.println("current num=" + currentNum);
         float average = currentRating / currentNum;
-        System.out.println("current average=" + average);
         majorRatingBar.setRating(average);
 
 
@@ -133,14 +130,14 @@ public class MovieActivity extends AppCompatActivity {
 //                if(prevRating != null){
 //                    myMovie.getMajorRatings(currentMajor).remove(prevRating);
 //                }
-                 float newRating = majorRatingBar.getRating();
+                float newRating = majorRatingBar.getRating();
                 String title = currentMovie.getString("title",null);
                 String year = currentMovie.getString("year",null);
-                recsDbHandler.addRec(new Recs(dbHandler.getMajor("username"),newRating,title,year));
+                recsDbHandler.addRec(new Recs(dbHandler.getMajor(currentUser.getString("username",null)),newRating,title,year));
                 float currentRating = movieDbHandler.getUserRating(title,year);
                 int currentNum = movieDbHandler.getCurrentNum(title,year);
                 movieDbHandler.updateUserRating(title,year,currentRating, newRating);
-                myMovie.addMajorRating(currentMajor, newRating);
+                //myMovie.addMajorRating(currentMajor, newRating);
                 movieDbHandler.incrementNumRating(title,year,currentNum);
 
                 //Log.v("rating", rating.toString());

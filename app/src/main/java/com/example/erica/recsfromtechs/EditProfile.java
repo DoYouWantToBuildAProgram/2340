@@ -1,5 +1,6 @@
 package com.example.erica.recsfromtechs;
 
+import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
@@ -10,6 +11,7 @@ import android.view.View;
 import android.content.Intent;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import org.w3c.dom.Text;
 
@@ -45,8 +47,9 @@ public class EditProfile extends AppCompatActivity {
         majorText.setText(userMajor);
         TextView usernameText = (TextView) findViewById(R.id.username);
         usernameText.setText(currentUser.getString("username",null));
+        String password = dbHandler.getPassword(currentUser.getString("username",null));
         TextView passwordText = (TextView) findViewById(R.id.password);
-        passwordText.setText(currentUser.getString("username",null));
+        passwordText.setText(password);
 
     }
 
@@ -67,10 +70,19 @@ public class EditProfile extends AppCompatActivity {
     public void editUsername(View view) {
         TextView usernameText = (TextView)findViewById(R.id.username);
         EditText changedUsername = (EditText)findViewById(R.id.newUsername);
-        usernameText.setText(changedUsername.getText().toString());
-        dbHandler.setUsername(currentUser.getString("username", null), changedUsername.getText().toString());
-        editCurrentUser.putString("username", changedUsername.getText().toString());
-        editCurrentUser.commit();
+        boolean x = dbHandler.authenticateUsername(changedUsername.getText().toString());
+        if (x == true) {
+            usernameText.setText(changedUsername.getText().toString());
+            dbHandler.setUsername(currentUser.getString("username", null), changedUsername.getText().toString());
+            editCurrentUser.putString("username", changedUsername.getText().toString());
+            editCurrentUser.commit();
+        } else {
+            int duration = Toast.LENGTH_SHORT;
+            Context context = getApplicationContext();
+            CharSequence newText = "This username is already taken.";
+            Toast toast = Toast.makeText(context,newText,duration);
+            toast.show();
+        }
 
 //        editUserInfo.putString("name", changedName.getText().toString());
 //        editUserInfo.commit();

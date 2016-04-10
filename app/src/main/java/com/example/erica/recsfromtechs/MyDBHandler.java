@@ -35,7 +35,7 @@ public class MyDBHandler extends SQLiteOpenHelper {
     public void onCreate(SQLiteDatabase db) {
         //This creates all of the columns in our table followed by their data type with a boolean represented as an integer thats either 1 or 0
         String query = "CREATE TABLE " + TABLE_USERS + " ("
-                + COLUMN_USERNAME + " TEXT PRIMARY KEY, "
+                + COLUMN_USERNAME + " TEXT, "
                 + COLUMN_PASSWORD + " TEXT, "
                 + COLUMN_NAME + " TEXT, "
                 + COLUMN_EMAIL + " TEXT, "
@@ -82,6 +82,11 @@ public class MyDBHandler extends SQLiteOpenHelper {
         return true;
     }
 
+    public void deleteUser(String username) {
+        SQLiteDatabase db = getWritableDatabase();
+        db.delete(TABLE_USERS, COLUMN_USERNAME + "= '" + username + "';", null);
+        db.close();
+    }
     public boolean authenticateUser(String username, String password) {
         SQLiteDatabase db = getReadableDatabase();
         //This call is what creates a smaller table, so right now this creates a smaller table with all the usernames that match what was inputted
@@ -213,6 +218,16 @@ public class MyDBHandler extends SQLiteOpenHelper {
         db.close();
     }
 
+    public boolean authenticateUsername(String username) {
+        SQLiteDatabase db = getReadableDatabase();
+        Cursor c = db.rawQuery("SELECT * FROM " + TABLE_USERS + " WHERE " + COLUMN_USERNAME + " = '" + username + "';", null);
+        c.moveToFirst();
+        if(c.isBeforeFirst()) {
+            return true;
+        } else {
+            return false;
+        }
+    }
     public void setPassword(String username, String newPassword) {
         SQLiteDatabase db = getWritableDatabase();
         ContentValues values = new ContentValues();

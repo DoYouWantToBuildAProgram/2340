@@ -169,9 +169,6 @@ public class searchScreen extends AppCompatActivity {
 //                    bundle.putString("year", movieYears[position]);
 //                    bundle.putString("rating", ratings[position]);
 //                    bundle.putString("image", images[position]);
-                    System.out.println(movieNames[position]);
-                    System.out.println(movieYears[position]);
-                    System.out.println(ratings[position]);
                     editCurrentMovie.putString("title", movieNames[position]);
                     editCurrentMovie.commit();
                     editCurrentMovie.putString("year", movieYears[position]);
@@ -182,7 +179,7 @@ public class searchScreen extends AppCompatActivity {
 
 //                    Movie currentMovie = new Movie(movieNames[position],movieYears[position],ratings[position]);
 //                    movieDbHandler.addMovie(currentMovie);
-                    appState.addMovie(new Movie(movieNames[position], movieYears[position], ratings[position]));
+                    //appState.addMovie(new Movie(movieNames[position], movieYears[position], ratings[position]));
 
                     Intent intent = new Intent(searchScreen.this, MovieActivity.class);
                     //intent.putExtras(bundle);

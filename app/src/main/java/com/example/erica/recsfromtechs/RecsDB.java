@@ -50,7 +50,7 @@ public class RecsDB extends SQLiteOpenHelper{
         Cursor c = db.rawQuery("SELECT * FROM " + TABLE_RECS+";",null);
         values.put(COLUMN_MAJOR, rec.getMajor());
         values.put(COLUMN_RATING, rec.getRating());
-        values.put(COLUMN_TITLE, rec.getMajor());
+        values.put(COLUMN_TITLE, rec.getTitle());
         values.put(COLUMN_YEAR, rec.getYear());
         db.insert(TABLE_RECS, null, values);
     }

@@ -120,5 +120,9 @@ public class Register extends AppCompatActivity  implements AdapterView.OnItemSe
 
     }
 
+    public MyDBHandler getDb(){
+        return this.dbHandler;
+    }
+
 
 }

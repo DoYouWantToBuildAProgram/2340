@@ -1,6 +1,7 @@
 package com.example.erica.recsfromtechs;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -30,6 +31,9 @@ import java.util.Arrays;
 public class DVD extends AppCompatActivity {
     RequestQueue queue;
     RequestQueue queue2;
+    SharedPreferences currentMovie;
+    SharedPreferences.Editor editCurrentMovie;
+    MovieDB movieDbHandler;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,6 +43,9 @@ public class DVD extends AppCompatActivity {
         setSupportActionBar(toolbar);
         queue = Volley.newRequestQueue(this);
         queue2 = Volley.newRequestQueue(this);
+        movieDbHandler = new MovieDB(this, null, null, 1);
+        currentMovie = getSharedPreferences("CurrentMovie", MODE_PRIVATE);
+        editCurrentMovie = currentMovie.edit();
         showDVDReleases(findViewById(R.id.list3));
     }
 
@@ -129,12 +136,13 @@ public class DVD extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view,
                                     int position, long id) {
-                Bundle bundle = new Bundle();
-                bundle.putString("title", movieNames[position]);
-                bundle.putString("image", images[position]);
+                editCurrentMovie.putString("title", movieNames[position]);
+                editCurrentMovie.commit();
+                editCurrentMovie.putString("year", movieYears[position]);
+                editCurrentMovie.commit();
+                editCurrentMovie.putString("rating", ratings[position]);
+                movieDbHandler.addMovie(new Movie(movieNames[position], movieYears[position],ratings[position]));
                 Intent intent = new Intent(DVD.this, MovieActivity.class);
-                intent.putExtras(bundle);
-
                 startActivity(intent);
             }
         });
