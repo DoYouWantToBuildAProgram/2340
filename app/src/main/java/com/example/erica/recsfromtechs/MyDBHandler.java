@@ -87,6 +87,18 @@ public class MyDBHandler extends SQLiteOpenHelper {
         db.delete(TABLE_USERS, COLUMN_USERNAME + "= '" + username + "';", null);
         db.close();
     }
+
+    public boolean containsUser(String username){
+        SQLiteDatabase db = getReadableDatabase();
+        Cursor c = db.rawQuery("SELECT * FROM " + TABLE_USERS + " WHERE " + COLUMN_USERNAME + " = '" + username + "';", null);
+        c.moveToFirst();
+        if(c.isBeforeFirst()){
+            return false;
+        } else {
+            return true;
+        }
+
+    }
     public boolean authenticateUser(String username, String password) {
         SQLiteDatabase db = getReadableDatabase();
         //This call is what creates a smaller table, so right now this creates a smaller table with all the usernames that match what was inputted

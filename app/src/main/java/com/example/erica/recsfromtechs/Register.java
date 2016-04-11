@@ -71,33 +71,33 @@ public class Register extends AppCompatActivity  implements AdapterView.OnItemSe
                     emailText.getText().toString(), text,
                     usernameText.getText().toString(), passwordText.getText().toString(), 0, 0,0);
         }
-        boolean test = dbHandler.addUser(currentUser);
-        if (!test) {
-            int duration = Toast.LENGTH_SHORT;
-            Context context = getApplicationContext();
-            CharSequence newText = "This username is already taken.";
-            Toast toast = Toast.makeText(context,newText,duration);
-            toast.show();
+        if (passwordText.getText().toString().length() >= 8 && (emailText.getText().toString().contains("@"))) {
+            boolean test = dbHandler.addUser(currentUser);
+            if (!test) {
+                int duration = Toast.LENGTH_SHORT;
+                Context context = getApplicationContext();
+                CharSequence newText = "This username is already taken.";
+                Toast toast = Toast.makeText(context, newText, duration);
+                toast.show();
+            } else {
+                Intent intent = new Intent(this, Login.class);
+                startActivity(intent);
+            }
         } else {
-            Intent intent = new Intent(this, Login.class);
-            startActivity(intent);
+            if (passwordText.getText().toString().length() < 8) {
+                int duration = Toast.LENGTH_SHORT;
+                Context context = getApplicationContext();
+                CharSequence newText = "Password must be at least 8 characters";
+                Toast toast = Toast.makeText(context, newText, duration);
+                toast.show();
+            }else if (!(emailText.getText().toString().contains("@"))){
+                int duration = Toast.LENGTH_SHORT;
+                Context context = getApplicationContext();
+                CharSequence newText = "Invalid Email";
+                Toast toast = Toast.makeText(context, newText, duration);
+                toast.show();
+            }
         }
-
-        /*editPasswords.putString(usernameText.getText().toString(), passwordText.getText().toString());
-        editPasswords.commit();
-        editUserInfo.putString(usernameText.getText().toString()+"name", nameText.getText().toString());
-        editUserInfo.commit();
-        editUserInfo.putString(usernameText.getText().toString()+"email", emailText.getText().toString());
-        editUserInfo.commit();
-        editUserInfo.putString(usernameText.getText().toString()+"major",majorText.getText().toString());
-        editUserInfo.commit();
-        Intent intent = new Intent(this,Login.class);
-        Bundle bundle = new Bundle();
-        bundle.putString("userName",currentUser.getName());
-        bundle.putString("userEmail", currentUser.getEmail());
-        bundle.putString("userMajor", currentUser.getMajor());
-        intent.putExtras(bundle);
-        startActivity(intent);*/
     }
 
     /**
