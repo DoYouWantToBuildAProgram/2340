@@ -4,7 +4,6 @@ import android.content.Intent;
         import android.os.Bundle;
         import android.support.v7.app.AppCompatActivity;
         import android.support.v7.widget.Toolbar;
-        import android.view.View;
 
 /**
  * This is the activity for the Dashboard
@@ -27,7 +26,6 @@ public class dashboard extends AppCompatActivity {
 
     /**
      * Logs the user out of the dashboard and brings them back to the welcome page
-     * @param view The current layout with all the Android widgets
      */
     public void logout() {
         Intent intent = new Intent(this,MainActivity.class);
