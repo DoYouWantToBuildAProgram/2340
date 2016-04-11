@@ -44,7 +44,7 @@
         android:textColorHint="#FFFFFF"
         android:textColor="#FFFFFF"
         android:id="@+id/editText"
-        android:hint="Search for a Movie"
+        android:hint="@string/movieSearch"
         android:typeface="normal"
         android:layout_alignBottom="@+id/back"
         android:layout_toEndOf="@+id/back" />

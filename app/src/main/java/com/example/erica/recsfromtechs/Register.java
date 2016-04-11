@@ -2,7 +2,6 @@ package com.example.erica.recsfromtechs;
 
 import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -11,7 +10,6 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.Spinner;
-import android.widget.TextView;
 import android.widget.Toast;
 
 public class Register extends AppCompatActivity  implements AdapterView.OnItemSelectedListener{
@@ -23,16 +21,12 @@ public class Register extends AppCompatActivity  implements AdapterView.OnItemSe
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        SharedPreferences passwords;
-        SharedPreferences.Editor editPasswords;
-        SharedPreferences userInfo;
-        SharedPreferences.Editor editUserInfo;
         Spinner spinner;
 
         setContentView(R.layout.activity_register);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        dbHandler = new MyDBHandler(this, null);
+        dbHandler = new MyDBHandler(this);
         spinner = (Spinner) findViewById(R.id.spinner);
         spinner.setBackgroundColor(getResources().getColor(android.R.color.transparent));
         ArrayAdapter adapter = ArrayAdapter.createFromResource(this, R.array.majors, R.layout.spinner_item);
@@ -104,7 +98,7 @@ public class Register extends AppCompatActivity  implements AdapterView.OnItemSe
 
     @Override
     public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-        TextView myText = (TextView) view;
+
     }
 
     @Override
@@ -112,6 +106,10 @@ public class Register extends AppCompatActivity  implements AdapterView.OnItemSe
 
     }
 
+    /**
+     * Gets the database for testing
+     * @return the database
+     */
     public MyDBHandler getDb(){
         return this.dbHandler;
     }

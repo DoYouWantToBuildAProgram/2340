@@ -11,7 +11,7 @@ import android.widget.TextView;
 
 /**
  * This is a helper class that creates a custom list
- * where every itme has an image on the left side
+ * where every time has an image on the left side
  * and a text to the left with a subtext under it
  *
  * This particular list is for movies
@@ -19,12 +19,12 @@ import android.widget.TextView;
  * The method uses an Async task to get the image with
  * the class webImageGetter
  */
-public class CustomList extends ArrayAdapter<String>{
+class CustomList extends ArrayAdapter<String>{
 
     private final Activity context;
     private final String[] name;
-    private final String[] year;
     private final String[] rating;
+    private final String[] year;
     private final String[] imageId;
     public CustomList(Activity context,
                       String[] name, String[] year, String[] rating, String[] imageId) {

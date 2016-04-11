@@ -12,20 +12,20 @@ import android.widget.TextView;
 /**
  * This is the activity class for the movie
  *
- * This page displayes information about the movie
+ * This page displays information about the movie
  * The user can also rate the movie on the page ranging from 0
  * to 5 stars going in increments of .5 stars
  * If the user returns to this page after leaving it
  * the rating will still be there
  */
 public class MovieActivity extends AppCompatActivity {
-    SharedPreferences currentUser;
-    SharedPreferences.Editor editCurrentUser;
-    MyDBHandler dbHandler;
-    SharedPreferences currentMovie;
-    SharedPreferences.Editor editCurrentMovie;
-    MovieDB movieDbHandler;
-    RecsDB recsDbHandler;
+    private SharedPreferences currentUser;
+    private SharedPreferences.Editor editCurrentUser;
+    private MyDBHandler dbHandler;
+    private SharedPreferences currentMovie;
+    private SharedPreferences.Editor editCurrentMovie;
+    private MovieDB movieDbHandler;
+    private RecsDB recsDbHandler;
 
 
     @Override
@@ -35,14 +35,15 @@ public class MovieActivity extends AppCompatActivity {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_movie);
-        dbHandler = new MyDBHandler(this, null);
+        dbHandler = new MyDBHandler(this);
         currentUser = getSharedPreferences("CurrentUser", MODE_PRIVATE);
         editCurrentUser = currentUser.edit();
-        movieDbHandler = new MovieDB(this, null);
-        recsDbHandler = new RecsDB(this, null, null, 1);
+        editCurrentUser.apply();
+        movieDbHandler = new MovieDB(this);
+        recsDbHandler = new RecsDB(this);
         currentMovie = getSharedPreferences("CurrentMovie",MODE_PRIVATE);
         editCurrentMovie = currentMovie.edit();
-
+        editCurrentMovie.apply();
         TextView titleTextView =(TextView)findViewById(R.id.title);
         String title = currentMovie.getString("title",null);
         String year = currentMovie.getString("year",null);
@@ -85,9 +86,10 @@ public class MovieActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                //prevRating is the rating the user already gave, only works if they havent left the page
+                //prevRating is the rating the user already gave, only works if
+                // they haven't left the page
                 //if they already rated it that rating is removed and replaced with a new rating
-                //new rating is added to the movie objects hashmap
+                //new rating is added to the movie objects hash map
 
                 float newRating = majorRatingBar.getRating();
                 String title = currentMovie.getString("title",null);
@@ -108,7 +110,7 @@ public class MovieActivity extends AppCompatActivity {
 
     /**
      * this method takes you back to the dashboard
-     * @param view
+     * @param view the current sc
      */
     public void backToDashboard(View view) {
         Intent intent = new Intent(this, dashboard.class);

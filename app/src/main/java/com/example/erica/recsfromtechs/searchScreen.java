@@ -28,9 +28,6 @@ public class searchScreen extends AppCompatActivity {
     private RequestQueue queue;
     //private RequestQueue queue2;
     private SharedPreferences.Editor editCurrentMovie;
-
-    private myApplication appState;
-
     private MovieDB movieDbHandler;
 
     @Override
@@ -43,11 +40,10 @@ public class searchScreen extends AppCompatActivity {
         setSupportActionBar(toolbar);
         queue = Volley.newRequestQueue(this);
         //queue2 = Volley.newRequestQueue(this);
-        movieDbHandler = new MovieDB(this, null);
+        movieDbHandler = new MovieDB(this);
         currentMovie = getSharedPreferences("CurrentMovie",MODE_PRIVATE);
         editCurrentMovie = currentMovie.edit();
-
-
+        editCurrentMovie.apply();
 
     }
 

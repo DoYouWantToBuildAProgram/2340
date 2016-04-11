@@ -10,11 +10,11 @@ import android.content.ContentValues;
 import java.util.LinkedList;
 
 /**
+ * Database that holds our recommendation objects
  * Created by Erica on 4/1/2016.
  */
-public class RecsDB extends SQLiteOpenHelper{
+class RecsDB extends SQLiteOpenHelper{
 
-    private static final int DATABASE_VERSION = 1;
     private static final String DATABASE_NAME = "recs.db";
     private static final String TABLE_RECS = "recs";
     private static final String COLUMN_TITLE = "title";
@@ -22,8 +22,8 @@ public class RecsDB extends SQLiteOpenHelper{
     private static final String COLUMN_MAJOR = "major";
     private static final String COLUMN_RATING = "rating";
 
-    public RecsDB(Context context, String name, SQLiteDatabase.CursorFactory factory, int version) {
-        super(context, DATABASE_NAME, factory, DATABASE_VERSION);
+    public RecsDB(Context context) {
+        super(context, DATABASE_NAME, null,1);
     }
 
 
@@ -44,10 +44,13 @@ public class RecsDB extends SQLiteOpenHelper{
         onCreate(db);
     }
 
+    /**
+     * Adds a recommendation to the database
+     * @param rec the recommendation to be added
+     */
     public void addRec(Recs rec){
         ContentValues values = new ContentValues();
         SQLiteDatabase db = getWritableDatabase();
-        Cursor c = db.rawQuery("SELECT * FROM " + TABLE_RECS+";",null);
         values.put(COLUMN_MAJOR, rec.getMajor());
         values.put(COLUMN_RATING, rec.getRating());
         values.put(COLUMN_TITLE, rec.getTitle());
@@ -55,6 +58,11 @@ public class RecsDB extends SQLiteOpenHelper{
         db.insert(TABLE_RECS, null, values);
     }
 
+    /**
+     * Gives a list of the recommendations
+     * @param major The major we're searching for
+     * @return the list of movies that we'd recommend for that major
+     */
     public LinkedList<Recs> listOfRecs(String major) {
         SQLiteDatabase db = getReadableDatabase();
         Cursor c = db.rawQuery("SELECT * FROM " + TABLE_RECS + " WHERE " + COLUMN_MAJOR + " = '" + major + "';",null);

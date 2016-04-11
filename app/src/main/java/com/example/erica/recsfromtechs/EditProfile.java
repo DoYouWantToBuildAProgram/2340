@@ -10,11 +10,13 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import org.w3c.dom.Text;
+
 
 /**
  * This is the Activity for the edit profile page
- *
+ * This is where the the user can change
+ * information about his profile like major, password,
+ * username etc.
  */
 public class EditProfile extends AppCompatActivity {
     private SharedPreferences currentUser;
@@ -27,7 +29,8 @@ public class EditProfile extends AppCompatActivity {
         setContentView(R.layout.activity_edit_profile);
         currentUser = getSharedPreferences("CurrentUser", MODE_PRIVATE);
         editCurrentUser = currentUser.edit();
-        dbHandler = new MyDBHandler(this, null);
+        editCurrentUser.apply();
+        dbHandler = new MyDBHandler(this);
         String userName = dbHandler.getName(currentUser.getString("username", null));
         TextView nameText = (TextView)findViewById(R.id.name);
         nameText.setText(userName);
@@ -68,7 +71,7 @@ public class EditProfile extends AppCompatActivity {
         TextView usernameText = (TextView)findViewById(R.id.username);
         EditText changedUsername = (EditText)findViewById(R.id.newUsername);
         boolean x = dbHandler.authenticateUsername(changedUsername.getText().toString());
-        if (x == true) {
+        if (x) {
             usernameText.setText(changedUsername.getText().toString());
             dbHandler.setUsername(currentUser.getString("username", null), changedUsername.getText().toString());
             editCurrentUser.putString("username", changedUsername.getText().toString());
@@ -84,8 +87,8 @@ public class EditProfile extends AppCompatActivity {
 
     /**
      * This method gets the new password from TextView and sets it to the
-     * password saved in the databse for this User
-     * @param view
+     * password saved in the database for this User
+     * @param view the current screen
      */
     public void editPassword(View view) {
         TextView passwordText = (TextView)findViewById(R.id.password);
@@ -175,7 +178,7 @@ public class EditProfile extends AppCompatActivity {
      */
     public void changeUsername(String username, String newUsername) {
         boolean x = dbHandler.authenticateUsername(newUsername);
-        if (x == true) {
+        if (x) {
             dbHandler.setUsername(username, newUsername);
         }
     }

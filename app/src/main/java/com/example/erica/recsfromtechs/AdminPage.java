@@ -17,7 +17,7 @@ import java.util.LinkedList;
  * The Activity for the admin page.
  * This is where you can block, unblock or lock a user
  * This class gets the user from the database and populates the
- * listview with it. The user can then click on a user and
+ * list view with it. The user can then click on a user and
  * select actions to preform.
  */
 public class AdminPage extends AppCompatActivity {
@@ -29,14 +29,14 @@ public class AdminPage extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        LinkedList<User> allUsers = new LinkedList<>();
+        LinkedList<User> allUsers;
 
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_admin_page);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        dbHandler = new MyDBHandler(this, null);
+        dbHandler = new MyDBHandler(this);
 
 
 
@@ -81,18 +81,15 @@ public class AdminPage extends AppCompatActivity {
 
     /**
      * This method locks the user that is currently selected
-     * @param view the current page
      */
     public void lock(View view) {
         dbHandler.setLocked(currentUser,1);
-        TextView isLocked = (TextView) findViewById(R.id.isLocked);
         updateTable();
 
     }
 
     /**
      * This method unlocks the user that is currently selected
-     * @param view the current page
      */
     public void unlock(View view) {
         dbHandler.setLocked(currentUser, 0);
@@ -102,7 +99,6 @@ public class AdminPage extends AppCompatActivity {
 
     /**
      * This method blocks the user that is currently selected
-     * @param view the current page
      */
     public void block(View view) {
         dbHandler.setBlocked(currentUser);
@@ -111,7 +107,6 @@ public class AdminPage extends AppCompatActivity {
 
     /**
      * This method goes back to
-     * @param view the current page
      */
     public void back(View view) {
         Intent intent = new Intent(this, dashboard.class);

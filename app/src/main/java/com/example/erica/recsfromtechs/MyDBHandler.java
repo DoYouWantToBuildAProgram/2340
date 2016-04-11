@@ -16,7 +16,7 @@ import java.util.LinkedList;
 public class MyDBHandler extends SQLiteOpenHelper {
 
     //Please use these names for the variables, don't hardcode them in case we need to change something
-    private static final int DATABASE_VERSION = 1;
+
     private static final String DATABASE_NAME = "users.db";
     private static final String TABLE_USERS = "users";
     private static final String COLUMN_USERNAME = "username";
@@ -31,10 +31,9 @@ public class MyDBHandler extends SQLiteOpenHelper {
     /**
      * constructor for the database
      * @param context The context we're using
-     * @param factory the factor we're using
      */
-    public MyDBHandler(Context context, SQLiteDatabase.CursorFactory factory) {
-        super(context, DATABASE_NAME, factory, DATABASE_VERSION);
+    public MyDBHandler(Context context) {
+        super(context, DATABASE_NAME, null, 1);
     }
 
     @Override
@@ -106,9 +105,9 @@ public class MyDBHandler extends SQLiteOpenHelper {
         c.moveToFirst();
         if(c.isBeforeFirst()){
             return false;
-        } else {
-            return true;
         }
+        c.close();
+        return true;
 
     }
     
@@ -298,9 +297,9 @@ public class MyDBHandler extends SQLiteOpenHelper {
         c.moveToFirst();
         if(c.isBeforeFirst()) {
             return true;
-        } else {
-            return false;
         }
+        c.close();
+        return false;
     }
     /**
      * changes the password of the user that uses a certain username
