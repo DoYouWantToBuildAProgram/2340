@@ -15,25 +15,27 @@ import java.util.LinkedList;
 public class AdminPage extends AppCompatActivity {
 
 
-    LinkedList<User> allUsers = new LinkedList<>();
 
-    String currentUser;
-    MyDBHandler dbHandler;
+    private String currentUser;
+    private MyDBHandler dbHandler;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        LinkedList<User> allUsers = new LinkedList<>();
+
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_admin_page);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        dbHandler = new MyDBHandler(this, null, null, 1);
+        dbHandler = new MyDBHandler(this, null);
 
 
 
 
 
         //get all the user from the database
-        //put them in allUsers Linkedlist
+        //put them in allUsers linked list
 
         //test
         allUsers = dbHandler.listOfUsers();
@@ -44,7 +46,7 @@ public class AdminPage extends AppCompatActivity {
 
         int index = 0;
         for (User i : allUsers) {
-            names[index]=allUsers.get(index).getUsername();
+            names[index] = allUsers.get(index).getUsername();
             isBlocked[index] = allUsers.get(index).getIsLocked();
             index++;
         }
@@ -62,8 +64,8 @@ public class AdminPage extends AppCompatActivity {
 
                 currentUser = names[position];
 
-                TextView selctedUserText = (TextView) findViewById(R.id.currentUser);
-                selctedUserText.setText("Current User: " + currentUser);
+                TextView selectedUserText = (TextView) findViewById(R.id.currentUser);
+                selectedUserText.setText("Current User: " + currentUser);
                 TextView isLocked = (TextView) findViewById(R.id.isLocked);
                 if(dbHandler.getIsLocked(currentUser) == 0) {
                     isLocked.setText("Is Locked: NO");
@@ -97,7 +99,7 @@ public class AdminPage extends AppCompatActivity {
 
     }
     public void block(View view) {
-        dbHandler.setBlocked(currentUser, 1);
+        dbHandler.setBlocked(currentUser);
         updateTable();
     }
     public void back(View view) {
@@ -105,7 +107,7 @@ public class AdminPage extends AppCompatActivity {
         startActivity(intent);
     }
 
-    public void updateTable() {
+    private void updateTable() {
         TextView isLocked = (TextView) findViewById(R.id.isLocked);
         if(dbHandler.getIsLocked(currentUser) == 0) {
             isLocked.setText("Is Locked: NO");

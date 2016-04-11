@@ -3,7 +3,6 @@
     <string name="login_button">Login</string>
     <string name="register_button">Register</string>
     <string name="title">Recs From Techs</string>
-    <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
     <string name="title_activity_login">Login</string>
     <string name="username">Username</string>
@@ -11,14 +10,12 @@
     <string name="title_activity_register">Register</string>
     <string name="title_activity_recommendations">Recomendations</string>
     <string name="cancel">Cancel</string>
-    <string name="loginUnsuccessful">Login was Unsuccessful</string>
     <string name="title_activity_dashboard">dashboard</string>
     <string name="dashboard">Dashboard</string>
     <string name="title_activity_edit_profile">EditProfile</string>
     <string name="logout">Logout</string>
     <string name="createuser">Create a Username</string>
     <string name="createpass">Create a Password</string>
-    <string name="confirmpass">Confirm Password</string>
     <string name="major">Enter Your Major</string>
     <string name="email">Enter Your Email</string>
     <string name="title_activity_profile">Profile</string>
@@ -27,9 +24,59 @@
     <string name="name">Name</string>
     <string name="searchScreen">Search Screen</string>
     <string name="back">Back to Dashboard</string>
+    <string name="majorChoice">Choose Your Major</string>
+    <string name="newName">Enter your new name</string>
+    <string name="editName">Edit Name</string>
+    <string name="newUsername">Enter your new username</string>
+    <string name="editUsername">Edit Username</string>
+    <string name="newPassword">Enter your new password</string>
+    <string name="editPassword">Edit Password</string>
+    <string name="editEmail">Edit Email</string>
+    <string name="newMajor">Enter your new major</string>
+    <string name="editMajor">Edit Major</string>
+    <string name="newEmail">Enter your new email</string>
+    <string name="movieTitle">Movie Title</string>
+    <string name="movieYear">Movie Year</string>
+    <string name="movieRating">Movie Rating</string>
+    <string name="yearReleased">Year Released</string>
+    <string name="criticRating">Critic Rating</string>
+    <string name="rateMovie">Rate Movie</string>
+    <string name="rate">Rate!</string>
+    <string name="emailProfileScreen">E-mail:  </string>
+    <string name="majorProfileScreen">Major:  </string>
+    <string name="passwordProfileScreen">Password:  </string>
+    <string name="nameProfileScreen">Name:  </string>
+    <string name="usernameProfileScreen">Username:  </string>
+    <string name="editProfile">Edit Profile</string>
+    <string name="adminPage">Admin Page</string>
+    <string name="currentUser">Current User: </string>
+    <string name="lock">Lock</string>
+    <string name="unlock">Unlock</string>
+    <string name="block">Block</string>
+    <string name="isBlocked">Is Blocked: </string>
+    <string name="isLocked">Is Locked: </string>
+    <string name="movieSearch">Search for Movies</string>
+    <string name="getRecommendation">Get Recommendations</string>
+    <string name="adminPass">If Admin Enter Password</string>
+    <string name="image">image</string>
 
-    <string name="title_activity_search__screen">search_Screen</string>
-    <string name="title_activity_search_screen">searchScreen</string>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     <string name="title_activity_movie">MovieActivity</string>
 
     <string-array name="majors">

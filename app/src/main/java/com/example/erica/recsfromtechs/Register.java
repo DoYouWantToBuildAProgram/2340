@@ -16,23 +16,23 @@ import android.widget.Toast;
 
 public class Register extends AppCompatActivity  implements AdapterView.OnItemSelectedListener{
 
-    SharedPreferences passwords;
-    SharedPreferences.Editor editPasswords;
-    SharedPreferences userInfo;
-    SharedPreferences.Editor editUserInfo;
-
-    Spinner spinner;
-
-    MyDBHandler dbHandler;
+    private MyDBHandler dbHandler;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        SharedPreferences passwords;
+        SharedPreferences.Editor editPasswords;
+        SharedPreferences userInfo;
+        SharedPreferences.Editor editUserInfo;
+        Spinner spinner;
+
         setContentView(R.layout.activity_register);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        dbHandler = new MyDBHandler(this, null, null, 1);
+        dbHandler = new MyDBHandler(this, null);
 
         passwords  = getSharedPreferences("MyPref", MODE_PRIVATE);
         editPasswords = passwords.edit();

@@ -1,23 +1,21 @@
 package com.example.erica.recsfromtechs;
 
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
-import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.content.Intent;
+import android.view.View;
 
 
 public class MainActivity extends AppCompatActivity {
-    SharedPreferences passwords;
-    SharedPreferences.Editor editPasswords;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        SharedPreferences passwords;
+        SharedPreferences.Editor editPasswords;
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         passwords  = getSharedPreferences("MyPref", MODE_PRIVATE);
@@ -62,7 +60,7 @@ public class MainActivity extends AppCompatActivity {
 
     /**
      * Takes the user to the registration page with all the Android widgets
-     * @param view
+     * @param view the view we're currently looking at
      */
     public void register(View view) {
         Intent intent = new Intent(this, Register.class);

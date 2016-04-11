@@ -1,14 +1,12 @@
 package com.example.erica.recsfromtechs;
 
 import android.content.Intent;
-import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
-import android.widget.Toast;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -24,11 +22,13 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 
 /**
+ * This method is the Box Office Releases page, which
+ * displays movies recently put out in theaters
  * Created by Courtney on 2/25/16.
  */
 public class BoxOffice extends AppCompatActivity{
-    RequestQueue queue;
-    RequestQueue queue2;
+    private RequestQueue queue;
+    //private RequestQueue queue2;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,7 +37,7 @@ public class BoxOffice extends AppCompatActivity{
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         queue = Volley.newRequestQueue(this);
-        queue2 = Volley.newRequestQueue(this);
+        //queue2 = Volley.newRequestQueue(this);
         showBoxOfficeMovies(findViewById(R.id.list2));
     }
 
@@ -46,15 +46,15 @@ public class BoxOffice extends AppCompatActivity{
      *
      * @param view The current layout with all the Android widgets
      */
-    public void showBoxOfficeMovies(View view) {
+    private void showBoxOfficeMovies(View view) {
 
-        final ArrayList<ArrayList> movieInfo = new ArrayList<>();
+        final ArrayList<ArrayList<String>> movieInfo = new ArrayList<>();
 
         String url ="http://api.rottentomatoes.com/api/public/v1.0/lists/movies/box_office.json?limit=16&country=us&apikey=yedukp76ffytfuy24zsqk7f5";
         StringRequest stringRequest = new StringRequest(Request.Method.GET, url, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
-                final ArrayList<ArrayList> boxOfficeInfo = new ArrayList<>();
+                final ArrayList<ArrayList<String>> boxOfficeInfo = new ArrayList<>();
                 //handle a valid response coming back.  Getting this string mainly for debug
                 //printing first 500 chars of the response.  Only want to do this for debug
                 try {
@@ -103,7 +103,7 @@ public class BoxOffice extends AppCompatActivity{
      *
      * @param movieInfo The info to be displayed
      */
-    private void populateListView(ArrayList<ArrayList> movieInfo) {
+    private void populateListView(ArrayList<ArrayList<String>> movieInfo) {
 
         ListView list;
         final String[] movieNames = new String[movieInfo.size()] ;

@@ -3,8 +3,6 @@ package com.example.erica.recsfromtechs;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -14,16 +12,18 @@ import android.widget.TextView;
 import java.util.List;
 
 /**
+ * This shows what movies are recommended for a user
  * Created by juliaredston on 3/9/16.
  */
 public class Recommendations extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
-    Spinner spinner;
-    String item;
-    public myApplication appState;
+    private myApplication appState;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_recommendation);
+
+        Spinner spinner;
 
         spinner = (Spinner) findViewById(R.id.spinner);
         spinner.setBackgroundColor(getResources().getColor(android.R.color.transparent));
@@ -37,7 +37,9 @@ public class Recommendations extends AppCompatActivity implements AdapterView.On
 
     }
 
+    @Override
     public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+        String item;
         item = adapterView.getItemAtPosition(i).toString();
         String text = "";
 
@@ -70,10 +72,15 @@ public class Recommendations extends AppCompatActivity implements AdapterView.On
         //Toast.makeText(this,"You Selected: " + myText.getText(), Toast.LENGTH_SHORT).show();
     }
 
+    @Override
     public void onNothingSelected(AdapterView<?> adapterView) {
 
     }
 
+    /**
+     * Switches the screen to the dashboard page
+     * @param view The view we're looking at
+     */
     public void backToDashboard(View view) {
         Intent intent = new Intent(this, dashboard.class);
         startActivity(intent);

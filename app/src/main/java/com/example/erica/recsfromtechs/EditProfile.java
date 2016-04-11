@@ -9,21 +9,23 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 public class EditProfile extends AppCompatActivity {
-    SharedPreferences userInfo;
-    SharedPreferences.Editor editUserInfo;
-    SharedPreferences currentUser;
-    SharedPreferences.Editor editCurrentUser;
-    MyDBHandler dbHandler;
+    private SharedPreferences currentUser;
+    private SharedPreferences.Editor editCurrentUser;
+    private MyDBHandler dbHandler;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        SharedPreferences userInfo;
+        SharedPreferences.Editor editUserInfo;
+
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit_profile);
         userInfo = getSharedPreferences("AnotherPref", MODE_PRIVATE);
         editUserInfo = userInfo.edit();
         currentUser = getSharedPreferences("CurrentUser", MODE_PRIVATE);
         editCurrentUser = currentUser.edit();
-        dbHandler = new MyDBHandler(this, null, null, 1);
+        dbHandler = new MyDBHandler(this, null);
         Intent oldIntent = getIntent();
         String user = oldIntent.getStringExtra("user");
         //String userName = oldIntent.getStringExtra("userName");

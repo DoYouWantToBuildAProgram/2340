@@ -17,7 +17,7 @@
         android:layout_width="150dp"
         android:id="@+id/back"
         android:layout_height="150dp"
-        android:text = "Back to Dashboard"
+        android:text = "@string/back"
         android:textColor="#FFFFFF"
         android:textStyle = "bold"
         android:onClick = "back"
@@ -38,7 +38,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="Current User:"
+        android:text="@string/currentUser"
         android:id="@+id/currentUser"
         android:layout_alignTop="@+id/back"
         android:layout_alignParentStart="true" />
@@ -46,7 +46,7 @@
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Lock"
+        android:text="@string/lock"
         android:id="@+id/lock"
         android:layout_below="@+id/currentUser"
         android:layout_alignParentStart="true"
@@ -55,7 +55,7 @@
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Unlock"
+        android:text="@string/unlock"
         android:id="@+id/unlock"
         android:layout_below="@+id/lock"
         android:layout_alignParentStart="true"
@@ -64,7 +64,7 @@
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Block"
+        android:text="@string/block"
         android:id="@+id/block"
         android:layout_alignBottom="@+id/lock"
         android:layout_toStartOf="@+id/back"
@@ -74,7 +74,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceSmall"
-        android:text="Is Blocked:"
+        android:text="@string/isBlocked"
         android:id="@+id/isblocked"
         android:layout_below="@+id/unlock"
         android:layout_alignParentStart="true" />
@@ -83,7 +83,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceSmall"
-        android:text="Is Locked: "
+        android:text="@string/isLocked"
         android:id="@+id/isLocked"
         android:layout_below="@+id/isblocked"
         android:layout_alignParentStart="true" />

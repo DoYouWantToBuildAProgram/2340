@@ -31,11 +31,9 @@ public class MyDBHandler extends SQLiteOpenHelper {
     /**
      * constructor for the database
      * @param context The context we're using
-     * @param name the name of the database
      * @param factory the factor we're using
-     * @param version the version of the database
      */
-    public MyDBHandler(Context context, String name, SQLiteDatabase.CursorFactory factory, int version) {
+    public MyDBHandler(Context context, SQLiteDatabase.CursorFactory factory) {
         super(context, DATABASE_NAME, factory, DATABASE_VERSION);
     }
 
@@ -344,12 +342,11 @@ public class MyDBHandler extends SQLiteOpenHelper {
     /**
      * changes the block status of the user that uses a certain username
      * @param username The username we want to change the block status of
-     * @param num the changed block status (1 for locked, 0 for unlocked)
      */
-    public void setBlocked(String username, int num) {
+    public void setBlocked(String username) {
         SQLiteDatabase db = getWritableDatabase();
         ContentValues values = new ContentValues();
-        values.put(COLUMN_ISBANNED, num);
+        values.put(COLUMN_ISBANNED, 1);
         db.update(TABLE_USERS, values, COLUMN_USERNAME + "= '" + username + "';",null);
         db.close();
     }

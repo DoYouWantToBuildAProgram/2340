@@ -16,7 +16,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Movie Title"
+            android:text="@string/movieTitle"
             android:id="@+id/title"
             android:padding="10dp"
             android:textSize="30sp"
@@ -24,7 +24,6 @@
             android:textColor="#B9090B"
             android:textStyle="bold"
             android:layout_gravity="center_horizontal"
-            android:layout_column="14"
             android:layout_alignParentTop="true"
             android:layout_centerHorizontal="true" />
 
@@ -34,14 +33,13 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Movie Year"
+            android:text="@string/movieYear"
             android:id="@+id/year"
             android:padding="10dp"
             android:textSize="15sp"
 
             android:textColor="#B9090B"
             android:textStyle="bold"
-            android:layout_column="14"
             android:layout_marginTop="86dp"
             android:layout_below="@+id/title"
             android:layout_alignParentStart="true" />
@@ -49,15 +47,14 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Movie Rating"
+            android:text="@string/movieRating"
             android:id="@+id/rating"
             android:padding="10dp"
             android:textSize="15sp"
 
             android:textColor="#B9090B"
             android:textStyle="bold"
-            android:layout_gravity="right"
-            android:layout_column="31"
+            android:layout_gravity="end"
             android:layout_alignBottom="@+id/year"
             android:layout_alignParentEnd="true" />
 
@@ -65,7 +62,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="Year Released"
+        android:text="@string/yearReleased"
         android:textColor="#e6b812"
         android:id="@+id/textView"
         android:layout_above="@+id/rating"
@@ -75,7 +72,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="Critics Rating"
+        android:text="@string/criticRating"
         android:textColor="#e6b812"
         android:id="@+id/textView2"
         android:layout_alignTop="@+id/textView"
@@ -87,7 +84,7 @@
         android:textColor="#e6b812"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="Rate Movie"
+        android:text="@string/rateMovie"
         android:id="@+id/textView3"
         android:layout_centerVertical="true"
         android:layout_toEndOf="@+id/textView" />
@@ -99,8 +96,8 @@
         android:clickable="true"
         android:longClickable="true"
         android:numStars="5"
-        android:layout_alignEnd="@+id/title"
-        android:layout_below="@+id/textView3" />
+        android:layout_below="@+id/textView3"
+        android:layout_centerHorizontal="true" />
 
     <Button
         android:layout_width="wrap_content"
@@ -116,7 +113,7 @@
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Rate"
+        android:text="@string/rate"
         android:id="@+id/submit"
         android:layout_alignStart="@+id/textView3"
         android:layout_above="@+id/backToDashboard" />

@@ -6,7 +6,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 public class UserList extends ArrayAdapter<String>{
@@ -15,6 +14,12 @@ public class UserList extends ArrayAdapter<String>{
     private final String[] name;
     private final int[] isBlocked;
 
+    /**
+     * Constructs a list of users
+     * @param context The activity context
+     * @param name The names of the users
+     * @param isBlocked The blocked status of the users
+     */
     public UserList(Activity context,
                     String[] name, int[] isBlocked) {
         super(context, R.layout.list_single, name);

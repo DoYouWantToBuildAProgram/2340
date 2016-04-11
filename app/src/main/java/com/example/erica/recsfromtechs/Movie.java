@@ -5,13 +5,14 @@ import java.util.HashMap;
 import java.util.List;
 
 /**
+ * This is a movie object representing a single movie
  * Created by Courtney on 2/23/16.
  */
 public class Movie {
     private String title;
     private String rating;
     private String year;
-    private HashMap<String, List<Float>> majorRatings;
+    private final HashMap<String, List<Float>>  majorRatings;
 
     public Movie(String title) {
         this.title = title;
@@ -39,7 +40,7 @@ public class Movie {
             ratings = majorRatings.get(major);
             ratings.add(value);
         } else {
-            ratings = new ArrayList<Float>();
+            ratings = new ArrayList<>();
             ratings.add(value);
         }
         majorRatings.put(major,ratings);
@@ -55,7 +56,7 @@ public class Movie {
         return rating;
     }
 
-    public void setyear(String newYear) {
+    public void setYear(String newYear) {
         year = newYear;
     }
     public String getYear() {

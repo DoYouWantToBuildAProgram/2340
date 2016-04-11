@@ -8,6 +8,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 
 
 /**
+ * This creates and handles our movie database which holds movie info
  * Created by Erica on 3/31/2016.
  */
 public class MovieDB extends SQLiteOpenHelper{
@@ -22,7 +23,7 @@ public class MovieDB extends SQLiteOpenHelper{
     private static final String COLUMN_NUMRATING = "numRating";
 
 
-    public MovieDB(Context context, String name, SQLiteDatabase.CursorFactory factory, int version) {
+    public MovieDB(Context context, SQLiteDatabase.CursorFactory factory) {
         super(context, DATABASE_NAME, factory, DATABASE_VERSION);
     }
 

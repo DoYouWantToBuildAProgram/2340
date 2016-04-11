@@ -12,15 +12,16 @@ import android.widget.Toast;
 
 public class Login extends AppCompatActivity {
 
-    SharedPreferences passwords;
-    SharedPreferences.Editor editPasswords;
-    SharedPreferences currentUser;
-    SharedPreferences.Editor editCurrentUser;
 
-    MyDBHandler dbHandler;
+    private SharedPreferences.Editor editCurrentUser;
+
+    private MyDBHandler dbHandler;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        SharedPreferences passwords;
+        SharedPreferences.Editor editPasswords;
+        SharedPreferences currentUser;
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
@@ -31,7 +32,7 @@ public class Login extends AppCompatActivity {
         editCurrentUser = currentUser.edit();
         EditText usernameText = (EditText) findViewById(R.id.username);
         EditText passwordText = (EditText) findViewById(R.id.password);
-        dbHandler = new MyDBHandler(this, null, null, 1);
+        dbHandler = new MyDBHandler(this, null);
     }
 
     /**
