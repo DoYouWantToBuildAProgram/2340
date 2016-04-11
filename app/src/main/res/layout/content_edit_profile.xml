@@ -77,6 +77,7 @@
         android:textColor = "#FFFFFF"
         />
     <Button
+        android:id="@+id/nameButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Edit Name"
@@ -94,7 +95,7 @@
             android:textColorHint = "#FFFFFF"
             android:textColor = "#FFFFFF"/>
         <Button
-            android:id="@+id/profile_update_button"
+            android:id="@+id/usernameButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text = "Edit Username"
@@ -111,6 +112,7 @@
             android:textColorHint = "#FFFFFF"
             android:textColor = "#FFFFFF"/>
         <Button
+            android:id="@+id/passwordButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text = "Edit Password"
@@ -127,6 +129,7 @@
         android:textColorHint = "#FFFFFF"
         android:textColor = "#FFFFFF"/>
     <Button
+        android:id="@+id/emailButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text = "Edit Email"
@@ -143,6 +146,7 @@
         android:textColorHint = "#FFFFFF"
         android:textColor = "#FFFFFF"/>
     <Button
+        android:id="@+id/majorButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text = "Edit Major"
