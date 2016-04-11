@@ -16,10 +16,6 @@ import android.widget.Toast;
 
 public class Register extends AppCompatActivity  implements AdapterView.OnItemSelectedListener{
 
-    SharedPreferences passwords;
-    SharedPreferences.Editor editPasswords;
-    SharedPreferences userInfo;
-    SharedPreferences.Editor editUserInfo;
 
     Spinner spinner;
 
@@ -33,12 +29,6 @@ public class Register extends AppCompatActivity  implements AdapterView.OnItemSe
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         dbHandler = new MyDBHandler(this, null, null, 1);
-
-        passwords  = getSharedPreferences("MyPref", MODE_PRIVATE);
-        editPasswords = passwords.edit();
-        userInfo = getSharedPreferences("AnotherPref", MODE_PRIVATE);
-        editUserInfo = userInfo.edit();
-
         spinner = (Spinner) findViewById(R.id.spinner);
         spinner.setBackgroundColor(getResources().getColor(android.R.color.transparent));
         ArrayAdapter adapter = ArrayAdapter.createFromResource(this, R.array.majors, R.layout.spinner_item);
@@ -59,7 +49,6 @@ public class Register extends AppCompatActivity  implements AdapterView.OnItemSe
         EditText nameText = (EditText) findViewById(R.id.name);
         EditText adminPassText = (EditText) findViewById(R.id.adminPassword);
         User currentUser;
-        //EditText majorText = (TextView) findViewById(R.id.major);
         Spinner mySpinner=(Spinner) findViewById(R.id.spinner);
         String text = mySpinner.getSelectedItem().toString();
         if (adminPassText.getText().toString().equals("CS2340")) {
@@ -112,7 +101,6 @@ public class Register extends AppCompatActivity  implements AdapterView.OnItemSe
     @Override
     public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
         TextView myText = (TextView) view;
-        //Toast.makeText(this,"You Selected: " + myText.getText(), Toast.LENGTH_SHORT).show();
     }
 
     @Override

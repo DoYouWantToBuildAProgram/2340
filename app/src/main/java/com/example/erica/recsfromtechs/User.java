@@ -61,16 +61,7 @@ public class User {
         major = newMajor;
     }
 
-    public void setBan(int num) {
-        if (num == 1 | num == 0) {
-            isLocked = num;
-        }
-    }
-    public void setLock(int num) {
-        if (num == 1 | num == 0) {
-            isLocked = num;
-        }
-    }
+
 
     public String toString() {
         return username +" "+password+" "+email+" "+name;

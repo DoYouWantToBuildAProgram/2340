@@ -40,7 +40,7 @@ public class UserList extends ArrayAdapter<String>{
             blockedString = "Is not blocked";
         }
 
-        txtIsBlocked.setText("");
+        txtIsBlocked.setText(blockedString);
 
         return rowView;
     }

@@ -21,7 +21,6 @@ import java.util.List;
 public class Recommendations extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
     Spinner spinner;
     String item;
-    public myApplication appState;
     RecsDB recsDbHandler;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,9 +31,8 @@ public class Recommendations extends AppCompatActivity implements AdapterView.On
         spinner.setBackgroundColor(getResources().getColor(android.R.color.transparent));
         ArrayAdapter adapter = ArrayAdapter.createFromResource(this,R.array.majors,R.layout.spinner_item);
         spinner.setAdapter(adapter);
-        appState = ((myApplication) this.getApplicationContext());
         spinner.setOnItemSelectedListener(Recommendations.this);
-        //spinner.setOnItemSelectedListener(this);
+
 
 
 
@@ -46,25 +44,6 @@ public class Recommendations extends AppCompatActivity implements AdapterView.On
         HashMap<String,LinkedList<Double>> movies = new HashMap<>();
         String text = "";
 
-//        for(Movie m: appState.getMovies()){
-//            List<Float> list = m.getMajorRatings(item);
-//            double avg =0;
-//            int counter =0;
-//            if(list != null) {
-//                for (Float value : list) {
-//                    avg += value;
-//                    //Log.v("rating", "adding " + value);
-//                    counter++;
-//
-//                }
-//                avg = avg / counter;
-//
-//                if (avg >= 3.5) {
-//                    text += m.getTitle() + " Rating: " + avg + "\n";
-//
-//                }
-//            }
-//        }
         majorRecs = recsDbHandler.listOfRecs(item);
         for(Recs rec:majorRecs){
             System.out.println(rec.getTitle() + " and " + rec.getMajor());
@@ -95,8 +74,7 @@ public class Recommendations extends AppCompatActivity implements AdapterView.On
         recView =(TextView)findViewById(R.id.recommendationList);
         recView.setText(text);
 
-        //Toast.makeText(this,"You Selected: " + myText.getText(), Toast.LENGTH_SHORT).show();
-    }
+        }
 
     public void onNothingSelected(AdapterView<?> adapterView) {
 

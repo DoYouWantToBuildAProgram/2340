@@ -13,17 +13,12 @@ import android.content.Intent;
 
 
 public class MainActivity extends AppCompatActivity {
-    SharedPreferences passwords;
-    SharedPreferences.Editor editPasswords;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        passwords  = getSharedPreferences("MyPref", MODE_PRIVATE);
-        editPasswords = passwords.edit();
-        editPasswords.putString("bob", "password");
-        editPasswords.commit();
     }
 
     @Override

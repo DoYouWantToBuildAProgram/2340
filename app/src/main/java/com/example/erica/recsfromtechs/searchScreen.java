@@ -41,8 +41,6 @@ public class searchScreen extends AppCompatActivity {
     SharedPreferences currentMovie;
     SharedPreferences.Editor editCurrentMovie;
 
-    public myApplication appState;
-
     MovieDB movieDbHandler;
 
     @Override
@@ -52,7 +50,6 @@ public class searchScreen extends AppCompatActivity {
         setContentView(R.layout.activity_search_screen);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        appState = ((myApplication) this.getApplicationContext());
         queue = Volley.newRequestQueue(this);
         queue2 = Volley.newRequestQueue(this);
         movieDbHandler = new MovieDB(this, null, null, 1);
@@ -71,8 +68,6 @@ public class searchScreen extends AppCompatActivity {
 
 
         final ArrayList<ArrayList> movieInfo = new ArrayList<>();
-        //hi
-        System.out.println("You just searched for movie");
         EditText temp   = (EditText)findViewById(R.id.editText);
         String strTemp = temp.getText().toString().trim();
         strTemp = strTemp.replace(" ", "+");
@@ -88,8 +83,6 @@ public class searchScreen extends AppCompatActivity {
                             // fetch the array of movies in the response
                             JSONArray movies = jsonResponse.getJSONArray("movies");
 
-                            // add each movie's title to an array
-                            String[] movieTitles = new String[movies.length()];
                             for (int i = 0; i < movies.length(); i++) {
                                 ArrayList<String> thisMovieArray = new ArrayList<>();
                                 JSONObject movie = movies.getJSONObject(i);
@@ -143,11 +136,8 @@ public class searchScreen extends AppCompatActivity {
         int i = 0;
         for (ArrayList<String> e : movieInfo) {
             movieNames[i] = e.get(0);
-            //System.out.println(e.get(0));
             movieYears[i] = e.get(1);
-            //System.out.println(e.get(1));
             ratings[i] = e.get(2);
-            //System.out.println(e.get(2));
             images[i] = e.get(3);
             i++;
         }
@@ -164,28 +154,14 @@ public class searchScreen extends AppCompatActivity {
                 @Override
                 public void onItemClick(AdapterView<?> parent, View view,
                                         int position, long id) {
-//                    Bundle bundle = new Bundle();
-//                    bundle.putString("title", movieNames[position]);
-//                    bundle.putString("year", movieYears[position]);
-//                    bundle.putString("rating", ratings[position]);
-//                    bundle.putString("image", images[position]);
                     editCurrentMovie.putString("title", movieNames[position]);
                     editCurrentMovie.commit();
                     editCurrentMovie.putString("year", movieYears[position]);
                     editCurrentMovie.commit();
                     editCurrentMovie.putString("rating", ratings[position]);
                     movieDbHandler.addMovie(new Movie(movieNames[position], movieYears[position],ratings[position]));
-
-
-//                    Movie currentMovie = new Movie(movieNames[position],movieYears[position],ratings[position]);
-//                    movieDbHandler.addMovie(currentMovie);
-                    //appState.addMovie(new Movie(movieNames[position], movieYears[position], ratings[position]));
-
                     Intent intent = new Intent(searchScreen.this, MovieActivity.class);
-                    //intent.putExtras(bundle);
-
                     startActivity(intent);
-                   // Toast.makeText(searchScreen.this, "You Clicked at " + movieNames[+position], Toast.LENGTH_SHORT).show();
 
                 }
             });

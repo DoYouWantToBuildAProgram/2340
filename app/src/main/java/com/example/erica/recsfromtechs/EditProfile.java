@@ -16,8 +16,6 @@ import android.widget.Toast;
 import org.w3c.dom.Text;
 
 public class EditProfile extends AppCompatActivity {
-    SharedPreferences userInfo;
-    SharedPreferences.Editor editUserInfo;
     SharedPreferences currentUser;
     SharedPreferences.Editor editCurrentUser;
     MyDBHandler dbHandler;
@@ -27,13 +25,9 @@ public class EditProfile extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit_profile);
-        userInfo = getSharedPreferences("AnotherPref", MODE_PRIVATE);
-        editUserInfo = userInfo.edit();
         currentUser = getSharedPreferences("CurrentUser", MODE_PRIVATE);
         editCurrentUser = currentUser.edit();
         dbHandler = new MyDBHandler(this, null, null, 1);
-        Intent oldIntent = getIntent();
-        String user = oldIntent.getStringExtra("user");
         String userName = dbHandler.getName(currentUser.getString("username", null));
         TextView nameText = (TextView)findViewById(R.id.name);
         nameText.setText(userName);
