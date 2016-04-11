@@ -13,7 +13,7 @@ public class Movie {
 
     /**
      * creates a movie that is not being rated
-     * @param title
+     * @param title the title of the movie
      */
     public Movie(String title) {
         this.title = title;
@@ -23,8 +23,8 @@ public class Movie {
 
     /**
      * creates a movie that is being rated
-     * @param title
-     * @param year
+     * @param title the movie title
+     * @param year the release year
      * @param rating the rating that is being added to
      *               the movie
      */
@@ -36,6 +36,7 @@ public class Movie {
 
 
     /**
+     * returns the movie title
      * @return the title
      */
     public String getTitle() {
@@ -43,14 +44,15 @@ public class Movie {
     }
 
     /**
-     * sets the rating
-     * @param newRating
+     * sets the rating of the string
+     * @param newRating the new rating
      */
     public void setRating(String newRating) {
         rating = newRating;
     }
 
     /**
+     * Returns the rating of the movie
      * @return rating
      */
     public String getRating() {
@@ -58,14 +60,15 @@ public class Movie {
     }
 
     /**
-     * sets the year of release
-     * @param newYear
+     * Sets the year of release
+     * @param newYear the new release year
      */
     public void setyear(String newYear) {
         year = newYear;
     }
 
     /**
+     * Returns the year the movie was released
      * @return year of release
      */
     public String getYear() {
@@ -73,8 +76,8 @@ public class Movie {
     }
 
     /**
-     * sets the title of the movie
-     * @param newTitle
+     * Sets the title of the movie
+     * @param newTitle the new title
      */
     public void setTitle(String newTitle) {
         title = newTitle;

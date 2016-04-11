@@ -52,7 +52,7 @@ public class DVD extends AppCompatActivity {
      * Pulls the DVD movie releases info from the API
      * It then converts it to a JSON object and parses it
      * once it has all the information it calls the
-     * @method populateListView
+     * method populateListView
      *
      * @param view The current layout with all the Android widgets
      */
