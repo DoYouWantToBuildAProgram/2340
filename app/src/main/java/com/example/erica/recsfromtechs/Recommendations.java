@@ -18,7 +18,6 @@ import java.util.List;
  * Created by juliaredston on 3/9/16.
  */
 public class Recommendations extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
-    private myApplication appState;
 
     Spinner spinner;
     String item;
