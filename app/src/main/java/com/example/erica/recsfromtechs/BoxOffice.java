@@ -1,6 +1,8 @@
 package com.example.erica.recsfromtechs;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -29,6 +31,11 @@ import java.util.ArrayList;
 public class BoxOffice extends AppCompatActivity{
     private RequestQueue queue;
     //private RequestQueue queue2;
+    RequestQueue queue;
+    RequestQueue queue2;
+    SharedPreferences currentMovie;
+    SharedPreferences.Editor editCurrentMovie;
+    MovieDB movieDbHandler;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,7 +44,10 @@ public class BoxOffice extends AppCompatActivity{
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         queue = Volley.newRequestQueue(this);
-        //queue2 = Volley.newRequestQueue(this);
+        queue2 = Volley.newRequestQueue(this);
+        movieDbHandler = new MovieDB(this, null);
+        currentMovie = getSharedPreferences("CurrentMovie", MODE_PRIVATE);
+        editCurrentMovie = currentMovie.edit();
         showBoxOfficeMovies(findViewById(R.id.list2));
     }
 
@@ -129,11 +139,13 @@ public class BoxOffice extends AppCompatActivity{
             @Override
             public void onItemClick(AdapterView<?> parent, View view,
                                     int position, long id) {
-                Bundle bundle = new Bundle();
-                bundle.putString("title", movieNames[position]);
-                bundle.putString("image", images[position]);
+                editCurrentMovie.putString("title", movieNames[position]);
+                editCurrentMovie.commit();
+                editCurrentMovie.putString("year", movieYears[position]);
+                editCurrentMovie.commit();
+                editCurrentMovie.putString("rating", ratings[position]);
+                movieDbHandler.addMovie(new Movie(movieNames[position], movieYears[position],ratings[position]));
                 Intent intent = new Intent(BoxOffice.this, MovieActivity.class);
-                intent.putExtras(bundle);
 
                 startActivity(intent);
             }

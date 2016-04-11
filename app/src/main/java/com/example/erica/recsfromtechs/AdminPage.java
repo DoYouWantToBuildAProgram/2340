@@ -32,12 +32,6 @@ public class AdminPage extends AppCompatActivity {
 
 
 
-
-
-        //get all the user from the database
-        //put them in allUsers linked list
-
-        //test
         allUsers = dbHandler.listOfUsers();
 
 
@@ -86,7 +80,7 @@ public class AdminPage extends AppCompatActivity {
 
 
     }
-    //Needs to implemented with database
+
     public void lock(View view) {
         dbHandler.setLocked(currentUser,1);
         TextView isLocked = (TextView) findViewById(R.id.isLocked);

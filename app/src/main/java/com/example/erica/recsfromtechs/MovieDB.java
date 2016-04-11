@@ -50,10 +50,7 @@ public class MovieDB extends SQLiteOpenHelper{
     public boolean addMovie(Movie movie) {
         ContentValues values = new ContentValues();
         SQLiteDatabase db = getWritableDatabase();
-        Cursor c = db.rawQuery("SELECT * FROM " + TABLE_MOVIES
-                + " WHERE " + COLUMN_TITLE + " = '" + movie.getTitle()
-                + "' AND " + COLUMN_YEAR + " = '" + movie.getYear()
-                + "';", null);
+        Cursor c = db.rawQuery("SELECT * FROM " + TABLE_MOVIES + " WHERE " + COLUMN_TITLE + " = '" + movie.getTitle() + "' AND " + COLUMN_YEAR + " = '" + movie.getYear()+ "';", null);
         c.moveToFirst();
         if (c.isBeforeFirst()) {
             values.put(COLUMN_TITLE, movie.getTitle());

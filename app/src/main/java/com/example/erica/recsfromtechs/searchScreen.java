@@ -37,12 +37,10 @@ public class searchScreen extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         SharedPreferences currentMovie;
 
-
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_search_screen);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        appState = ((myApplication) this.getApplicationContext());
         queue = Volley.newRequestQueue(this);
         //queue2 = Volley.newRequestQueue(this);
         movieDbHandler = new MovieDB(this, null);
@@ -69,9 +67,9 @@ public class searchScreen extends AppCompatActivity {
      */
     public void searchForMovie(View view) {
 
-        final ArrayList<ArrayList<String>> movieInfo = new ArrayList<>();
 
-        System.out.println("You just searched for movie");
+
+        final ArrayList<ArrayList<String>> movieInfo = new ArrayList<>();
         EditText temp   = (EditText)findViewById(R.id.editText);
         String strTemp = temp.getText().toString().trim();
         strTemp = strTemp.replace(" ", "+");
@@ -87,8 +85,6 @@ public class searchScreen extends AppCompatActivity {
                             // fetch the array of movies in the response
                             JSONArray movies = jsonResponse.getJSONArray("movies");
 
-                            // add each movie's title to an array
-                            String[] movieTitles = new String[movies.length()];
                             for (int i = 0; i < movies.length(); i++) {
                                 ArrayList<String> thisMovieArray = new ArrayList<>();
                                 JSONObject movie = movies.getJSONObject(i);
@@ -134,9 +130,7 @@ public class searchScreen extends AppCompatActivity {
      * Provides a UI display to see the list of movies searched for
      * @param movieInfo All of the movie info to be included
      */
-    private void populateListView(ArrayList<ArrayList<String>> movieInfo) {
-
-        ListView list;
+    private void populateListView(ArrayList<ArrayList<String>> movieInfo) {        ListView list;
         final String[] movieNames = new String[movieInfo.size()] ;
         final String[] movieYears = new String[movieInfo.size()] ;
         final String[] ratings = new String[movieInfo.size()] ;
@@ -145,11 +139,8 @@ public class searchScreen extends AppCompatActivity {
         int i = 0;
         for (ArrayList<String> e : movieInfo) {
             movieNames[i] = e.get(0);
-            //System.out.println(e.get(0));
             movieYears[i] = e.get(1);
-            //System.out.println(e.get(1));
             ratings[i] = e.get(2);
-            //System.out.println(e.get(2));
             images[i] = e.get(3);
             i++;
         }
@@ -163,37 +154,17 @@ public class searchScreen extends AppCompatActivity {
                 @Override
                 public void onItemClick(AdapterView<?> parent, View view,
                                         int position, long id) {
-//                    Bundle bundle = new Bundle();
-//                    bundle.putString("title", movieNames[position]);
-//                    bundle.putString("year", movieYears[position]);
-//                    bundle.putString("rating", ratings[position]);
-//                    bundle.putString("image", images[position]);
-                    System.out.println(movieNames[position]);
-                    System.out.println(movieYears[position]);
-                    System.out.println(ratings[position]);
                     editCurrentMovie.putString("title", movieNames[position]);
                     editCurrentMovie.commit();
                     editCurrentMovie.putString("year", movieYears[position]);
                     editCurrentMovie.commit();
                     editCurrentMovie.putString("rating", ratings[position]);
                     movieDbHandler.addMovie(new Movie(movieNames[position], movieYears[position],ratings[position]));
-
-
-//                    Movie currentMovie = new Movie(movieNames[position],movieYears[position],ratings[position]);
-//                    movieDbHandler.addMovie(currentMovie);
-                    appState.addMovie(new Movie(movieNames[position], movieYears[position], ratings[position]));
-
                     Intent intent = new Intent(searchScreen.this, MovieActivity.class);
-                    //intent.putExtras(bundle);
-
                     startActivity(intent);
-                   // Toast.makeText(searchScreen.this, "You Clicked at " + movieNames[+position], Toast.LENGTH_SHORT).show();
 
                 }
             });
-
-
     }
-
 
 }

@@ -33,12 +33,6 @@ public class Register extends AppCompatActivity  implements AdapterView.OnItemSe
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         dbHandler = new MyDBHandler(this, null);
-
-        passwords  = getSharedPreferences("MyPref", MODE_PRIVATE);
-        editPasswords = passwords.edit();
-        userInfo = getSharedPreferences("AnotherPref", MODE_PRIVATE);
-        editUserInfo = userInfo.edit();
-
         spinner = (Spinner) findViewById(R.id.spinner);
         spinner.setBackgroundColor(getResources().getColor(android.R.color.transparent));
         ArrayAdapter adapter = ArrayAdapter.createFromResource(this, R.array.majors, R.layout.spinner_item);
@@ -59,7 +53,6 @@ public class Register extends AppCompatActivity  implements AdapterView.OnItemSe
         EditText nameText = (EditText) findViewById(R.id.name);
         EditText adminPassText = (EditText) findViewById(R.id.adminPassword);
         User currentUser;
-        //EditText majorText = (TextView) findViewById(R.id.major);
         Spinner mySpinner=(Spinner) findViewById(R.id.spinner);
         String text = mySpinner.getSelectedItem().toString();
         if (adminPassText.getText().toString().equals("CS2340")) {
@@ -71,33 +64,33 @@ public class Register extends AppCompatActivity  implements AdapterView.OnItemSe
                     emailText.getText().toString(), text,
                     usernameText.getText().toString(), passwordText.getText().toString(), 0, 0,0);
         }
-        boolean test = dbHandler.addUser(currentUser);
-        if (!test) {
-            int duration = Toast.LENGTH_SHORT;
-            Context context = getApplicationContext();
-            CharSequence newText = "This username is already taken.";
-            Toast toast = Toast.makeText(context,newText,duration);
-            toast.show();
+        if (passwordText.getText().toString().length() >= 8 && (emailText.getText().toString().contains("@"))) {
+            boolean test = dbHandler.addUser(currentUser);
+            if (!test) {
+                int duration = Toast.LENGTH_SHORT;
+                Context context = getApplicationContext();
+                CharSequence newText = "This username is already taken.";
+                Toast toast = Toast.makeText(context, newText, duration);
+                toast.show();
+            } else {
+                Intent intent = new Intent(this, Login.class);
+                startActivity(intent);
+            }
         } else {
-            Intent intent = new Intent(this, Login.class);
-            startActivity(intent);
+            if (passwordText.getText().toString().length() < 8) {
+                int duration = Toast.LENGTH_SHORT;
+                Context context = getApplicationContext();
+                CharSequence newText = "Password must be at least 8 characters";
+                Toast toast = Toast.makeText(context, newText, duration);
+                toast.show();
+            }else if (!(emailText.getText().toString().contains("@"))){
+                int duration = Toast.LENGTH_SHORT;
+                Context context = getApplicationContext();
+                CharSequence newText = "Invalid Email";
+                Toast toast = Toast.makeText(context, newText, duration);
+                toast.show();
+            }
         }
-
-        /*editPasswords.putString(usernameText.getText().toString(), passwordText.getText().toString());
-        editPasswords.commit();
-        editUserInfo.putString(usernameText.getText().toString()+"name", nameText.getText().toString());
-        editUserInfo.commit();
-        editUserInfo.putString(usernameText.getText().toString()+"email", emailText.getText().toString());
-        editUserInfo.commit();
-        editUserInfo.putString(usernameText.getText().toString()+"major",majorText.getText().toString());
-        editUserInfo.commit();
-        Intent intent = new Intent(this,Login.class);
-        Bundle bundle = new Bundle();
-        bundle.putString("userName",currentUser.getName());
-        bundle.putString("userEmail", currentUser.getEmail());
-        bundle.putString("userMajor", currentUser.getMajor());
-        intent.putExtras(bundle);
-        startActivity(intent);*/
     }
 
     /**
@@ -112,12 +105,15 @@ public class Register extends AppCompatActivity  implements AdapterView.OnItemSe
     @Override
     public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
         TextView myText = (TextView) view;
-        //Toast.makeText(this,"You Selected: " + myText.getText(), Toast.LENGTH_SHORT).show();
     }
 
     @Override
     public void onNothingSelected(AdapterView<?> adapterView) {
 
+    }
+
+    public MyDBHandler getDb(){
+        return this.dbHandler;
     }
 
 

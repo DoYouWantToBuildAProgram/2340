@@ -3,8 +3,15 @@ package com.example.erica.recsfromtechs;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.app.Activity;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
+import android.widget.EditText;
+import android.widget.ImageView;
+import android.widget.ListView;
+import android.widget.TextView;
+import android.widget.Toast;
 import android.widget.Button;
 import android.widget.RatingBar;
 import android.widget.TextView;
@@ -14,8 +21,13 @@ public class MovieActivity extends AppCompatActivity {
     private SharedPreferences.Editor editMovieInfo;
     private Float rating;
     private Float prevRating;
-    private SharedPreferences currentMovie;
-    private MovieDB movieDbHandler;
+    SharedPreferences currentUser;
+    SharedPreferences.Editor editCurrentUser;
+    MyDBHandler dbHandler;
+    SharedPreferences currentMovie;
+    SharedPreferences.Editor editCurrentMovie;
+    MovieDB movieDbHandler;
+    RecsDB recsDbHandler;
 
 
     @Override
@@ -28,12 +40,6 @@ public class MovieActivity extends AppCompatActivity {
 
 
 
-
-
-
-
-
-
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_movie);
         appState = ((myApplication) this.getApplicationContext());
@@ -41,26 +47,9 @@ public class MovieActivity extends AppCompatActivity {
         currentUser = getSharedPreferences("CurrentUser", MODE_PRIVATE);
         editCurrentUser = currentUser.edit();
         movieDbHandler = new MovieDB(this, null);
+        recsDbHandler = new RecsDB(this, null, null, 1);
         currentMovie = getSharedPreferences("CurrentMovie",MODE_PRIVATE);
         editCurrentMovie = currentMovie.edit();
-
-//        ListView list;
-//        if(savedInstanceState == null) {
-//;
-//            Intent oldIntent = getIntent();
-//            title = oldIntent.getStringExtra("title");
-//            title = "" + title;
-//
-//
-//
-//        } else {
-//            //Log.v("welcome", "saved instance state not null");
-//            title = (String) savedInstanceState.getSerializable("title");
-//
-//
-//        }
-
-
 
         TextView titleTextView =(TextView)findViewById(R.id.title);
         String title = currentMovie.getString("title",null);
@@ -73,7 +62,7 @@ public class MovieActivity extends AppCompatActivity {
 
         //here im getting a movie object from our singleton appState
         //setting the year and rating TextViews to what was stored in the movie object
-        final Movie myMovie = appState.getMovie(title);
+        //final Movie myMovie = appState.getMovie(title);
         //rating =  myMovie.getRating();
         //TextView yearView =new TextView(this);
         TextView yearView =(TextView)findViewById(R.id.year);
@@ -91,29 +80,9 @@ public class MovieActivity extends AppCompatActivity {
         //the string of the major is the key, the values are floats of the ratings
 
         final RatingBar majorRatingBar = (RatingBar) findViewById(R.id.ratingBar2);
-        //float avg =0;
-        //int counter = 0;
-        final String currentMajor = dbHandler.getMajor(currentUser.getString("username",null));
-//        if( myMovie.getMajorRatings(currentMajor) != null) {
-//
-//
-//            for (Float value : myMovie.getMajorRatings(currentMajor)) {
-//                avg += value;
-//
-//                counter++;
-//
-//            }
-//        }
-//
-//        avg = avg/counter;
-//
-//        majorRatingBar.setRating(avg);
         float currentRating = movieDbHandler.getUserRating(title, year);
-        System.out.println("current rating =" + currentRating);
         int currentNum = movieDbHandler.getCurrentNum(title, year);
-        System.out.println("current num=" + currentNum);
         float average = currentRating / currentNum;
-        System.out.println("current average=" + average);
         majorRatingBar.setRating(average);
 
 
@@ -128,20 +97,14 @@ public class MovieActivity extends AppCompatActivity {
                 //if they already rated it that rating is removed and replaced with a new rating
                 //new rating is added to the movie objects hash map
 
-//                if(prevRating != null){
-//                    myMovie.getMajorRatings(currentMajor).remove(prevRating);
-//                }
-                 float newRating = majorRatingBar.getRating();
+                float newRating = majorRatingBar.getRating();
                 String title = currentMovie.getString("title",null);
                 String year = currentMovie.getString("year",null);
+                recsDbHandler.addRec(new Recs(dbHandler.getMajor(currentUser.getString("username",null)),newRating,title,year));
                 float currentRating = movieDbHandler.getUserRating(title,year);
                 int currentNum = movieDbHandler.getCurrentNum(title,year);
                 movieDbHandler.updateUserRating(title,year,currentRating, newRating);
-                myMovie.addMajorRating(currentMajor, newRating);
                 movieDbHandler.incrementNumRating(title,year,currentNum);
-
-                //Log.v("rating", rating.toString());
-                //prevRating = rating;
 
 
 

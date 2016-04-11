@@ -1,12 +1,15 @@
 package com.example.erica.recsfromtechs;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -20,6 +23,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 
 /**
  * This method is the DVD releases page which shows movies recently
@@ -27,8 +31,11 @@ import java.util.ArrayList;
  * Created by Courtney on 2/25/16.
  */
 public class DVD extends AppCompatActivity {
-    private RequestQueue queue;
-    //private RequestQueue queue2;
+    RequestQueue queue;
+    RequestQueue queue2;
+    SharedPreferences currentMovie;
+    SharedPreferences.Editor editCurrentMovie;
+    MovieDB movieDbHandler;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,7 +44,7 @@ public class DVD extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         queue = Volley.newRequestQueue(this);
-        //queue2 = Volley.newRequestQueue(this);
+        queue2 = Volley.newRequestQueue(this);
         showDVDReleases(findViewById(R.id.list3));
     }
 
@@ -128,12 +135,13 @@ public class DVD extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view,
                                     int position, long id) {
-                Bundle bundle = new Bundle();
-                bundle.putString("title", movieNames[position]);
-                bundle.putString("image", images[position]);
+                editCurrentMovie.putString("title", movieNames[position]);
+                editCurrentMovie.commit();
+                editCurrentMovie.putString("year", movieYears[position]);
+                editCurrentMovie.commit();
+                editCurrentMovie.putString("rating", ratings[position]);
+                movieDbHandler.addMovie(new Movie(movieNames[position], movieYears[position],ratings[position]));
                 Intent intent = new Intent(DVD.this, MovieActivity.class);
-                intent.putExtras(bundle);
-
                 startActivity(intent);
             }
         });

@@ -42,7 +42,7 @@ public class MyDBHandler extends SQLiteOpenHelper {
         //This creates all of the columns in our table followed by their data
         // type with a boolean represented as an integer that is either 1 or 0
         String query = "CREATE TABLE " + TABLE_USERS + " ("
-                + COLUMN_USERNAME + " TEXT PRIMARY KEY, "
+                + COLUMN_USERNAME + " TEXT, "
                 + COLUMN_PASSWORD + " TEXT, "
                 + COLUMN_NAME + " TEXT, "
                 + COLUMN_EMAIL + " TEXT, "
@@ -93,6 +93,25 @@ public class MyDBHandler extends SQLiteOpenHelper {
         return true;
     }
 
+    
+    public void deleteUser(String username) {
+        SQLiteDatabase db = getWritableDatabase();
+        db.delete(TABLE_USERS, COLUMN_USERNAME + "= '" + username + "';", null);
+        db.close();
+    }
+
+    public boolean containsUser(String username){
+        SQLiteDatabase db = getReadableDatabase();
+        Cursor c = db.rawQuery("SELECT * FROM " + TABLE_USERS + " WHERE " + COLUMN_USERNAME + " = '" + username + "';", null);
+        c.moveToFirst();
+        if(c.isBeforeFirst()){
+            return false;
+        } else {
+            return true;
+        }
+
+    }
+    
     /**
      * Checks that the username and password entered when logging in is correct
      * @param username The username that the person typed in
@@ -104,8 +123,7 @@ public class MyDBHandler extends SQLiteOpenHelper {
      */
     public boolean authenticateUser(String username, String password) {
         SQLiteDatabase db = getReadableDatabase();
-        //This call is what creates a smaller table, so right now this creates a smaller
-        // table with all of the usernames that match what was inputted
+        //This call is what creates a smaller table, so right now this creates a smaller table with all the usernames that match what was inputted
         Cursor c = db.rawQuery("SELECT * FROM " + TABLE_USERS + " WHERE " + COLUMN_USERNAME + " = '" + username + "';", null);
         //Cursor d = db.rawQuery("SELECT * FROM " + TABLE_USERS + " WHERE " + COLUMN_USERNAME + " = '" + username + "';", null);
         //d.moveToFirst();
@@ -274,6 +292,16 @@ public class MyDBHandler extends SQLiteOpenHelper {
         db.close();
     }
 
+    public boolean authenticateUsername(String username) {
+        SQLiteDatabase db = getReadableDatabase();
+        Cursor c = db.rawQuery("SELECT * FROM " + TABLE_USERS + " WHERE " + COLUMN_USERNAME + " = '" + username + "';", null);
+        c.moveToFirst();
+        if(c.isBeforeFirst()) {
+            return true;
+        } else {
+            return false;
+        }
+    }
     /**
      * changes the password of the user that uses a certain username
      * @param username The username we want to change the password of

@@ -26,12 +26,8 @@ public class Login extends AppCompatActivity {
         setContentView(R.layout.activity_login);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        passwords  = getSharedPreferences("MyPref", MODE_PRIVATE);
-        editPasswords = passwords.edit();
         currentUser = getSharedPreferences("CurrentUser", MODE_PRIVATE);
         editCurrentUser = currentUser.edit();
-        EditText usernameText = (EditText) findViewById(R.id.username);
-        EditText passwordText = (EditText) findViewById(R.id.password);
         dbHandler = new MyDBHandler(this, null);
     }
 

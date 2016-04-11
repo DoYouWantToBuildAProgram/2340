@@ -18,10 +18,6 @@ public class MainActivity extends AppCompatActivity {
         SharedPreferences.Editor editPasswords;
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        passwords  = getSharedPreferences("MyPref", MODE_PRIVATE);
-        editPasswords = passwords.edit();
-        editPasswords.putString("bob", "password");
-        editPasswords.commit();
     }
 
     @Override
