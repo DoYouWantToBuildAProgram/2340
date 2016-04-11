@@ -1,6 +1,7 @@
 package com.example.erica.recsfromtechs;
 
 /**
+ * Recommendation class for objects to be added to our RecsDb
  * Created by Erica on 4/4/2016.
  */
 public class Recs {

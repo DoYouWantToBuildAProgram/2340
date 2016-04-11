@@ -43,6 +43,9 @@ public class DVD extends AppCompatActivity {
         queue = Volley.newRequestQueue(this);
         queue2 = Volley.newRequestQueue(this);
         showDVDReleases(findViewById(R.id.list3));
+        movieDbHandler = new MovieDB(this);
+        currentMovie = getSharedPreferences("CurrentMovie", MODE_PRIVATE);
+        editCurrentMovie = currentMovie.edit();
     }
 
     /**

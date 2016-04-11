@@ -10,7 +10,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import org.w3c.dom.Text;
+
 
 /**
  * This is the Activity for the edit profile page

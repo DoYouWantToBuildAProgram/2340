@@ -29,7 +29,7 @@ public class Profile extends AppCompatActivity {
         currentUser = getSharedPreferences("CurrentUser", MODE_PRIVATE);
         editCurrentUser = currentUser.edit();
 
-        dbHandler = new MyDBHandler(this, null);
+        dbHandler = new MyDBHandler(this);
 
         // make method if user is admin make button clickable'
         Button adminButton = (Button) findViewById(R.id.goToAdminPage);

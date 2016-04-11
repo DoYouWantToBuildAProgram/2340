@@ -10,11 +10,11 @@ import android.content.ContentValues;
 import java.util.LinkedList;
 
 /**
+ * Database that holds our recommendation objects
  * Created by Erica on 4/1/2016.
  */
 public class RecsDB extends SQLiteOpenHelper{
 
-    private static final int DATABASE_VERSION = 1;
     private static final String DATABASE_NAME = "recs.db";
     private static final String TABLE_RECS = "recs";
     private static final String COLUMN_TITLE = "title";
@@ -22,8 +22,8 @@ public class RecsDB extends SQLiteOpenHelper{
     private static final String COLUMN_MAJOR = "major";
     private static final String COLUMN_RATING = "rating";
 
-    public RecsDB(Context context, String name, SQLiteDatabase.CursorFactory factory, int version) {
-        super(context, DATABASE_NAME, factory, DATABASE_VERSION);
+    public RecsDB(Context context) {
+        super(context, DATABASE_NAME, null,1);
     }
 
 

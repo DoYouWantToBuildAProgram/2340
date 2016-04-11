@@ -41,7 +41,7 @@ public class searchScreen extends AppCompatActivity {
         setSupportActionBar(toolbar);
         queue = Volley.newRequestQueue(this);
         //queue2 = Volley.newRequestQueue(this);
-        movieDbHandler = new MovieDB(this, null);
+        movieDbHandler = new MovieDB(this);
         currentMovie = getSharedPreferences("CurrentMovie",MODE_PRIVATE);
         editCurrentMovie = currentMovie.edit();
 

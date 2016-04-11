@@ -35,11 +35,11 @@ public class MovieActivity extends AppCompatActivity {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_movie);
-        dbHandler = new MyDBHandler(this, null);
+        dbHandler = new MyDBHandler(this);
         currentUser = getSharedPreferences("CurrentUser", MODE_PRIVATE);
         editCurrentUser = currentUser.edit();
-        movieDbHandler = new MovieDB(this, null);
-        recsDbHandler = new RecsDB(this, null, null, 1);
+        movieDbHandler = new MovieDB(this);
+        recsDbHandler = new RecsDB(this);
         currentMovie = getSharedPreferences("CurrentMovie",MODE_PRIVATE);
         editCurrentMovie = currentMovie.edit();
 
