@@ -2,7 +2,6 @@ package com.example.erica.recsfromtechs;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -29,13 +28,12 @@ import java.util.ArrayList;
  * Created by Courtney on 2/25/16.
  */
 public class BoxOffice extends AppCompatActivity{
-    private RequestQueue queue;
     //private RequestQueue queue2;
-    RequestQueue queue;
-    RequestQueue queue2;
-    SharedPreferences currentMovie;
-    SharedPreferences.Editor editCurrentMovie;
-    MovieDB movieDbHandler;
+    private RequestQueue queue;
+    private RequestQueue queue2;
+    private SharedPreferences currentMovie;
+    private SharedPreferences.Editor editCurrentMovie;
+    private MovieDB movieDbHandler;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
