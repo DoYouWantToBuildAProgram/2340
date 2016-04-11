@@ -61,7 +61,7 @@ public class RegisterTest {
         assertEquals(0, testUser.getIsLocked());
         assertEquals(0, testUser.getIsBanned());
         assertEquals(1, testUser.getIsAdmin());
-        testDb.deleteUser("testUser");
+        testDb.deleteUser("testAdmin");
 
     }
 
@@ -123,7 +123,37 @@ public class RegisterTest {
         assertEquals(0, testUser.getIsLocked());
         assertEquals(0, testUser.getIsBanned());
         assertEquals(0, testUser.getIsAdmin());
-        testDb.deleteUser("testUser");
         testDb.deleteUser("e");
+    }
+
+    @Test
+    public void addInvalidPassword() {
+        MyDBHandler testDb = registerRule.getActivity().getDb();
+        onView(withId(R.id.username)).perform(typeText("e"), closeSoftKeyboard());
+        onView(withId(R.id.password)).perform(typeText("p"), closeSoftKeyboard());
+        onView(withId(R.id.email)).perform(typeText("email@gmail.com"), closeSoftKeyboard());
+        onView(withId(R.id.name)).perform(typeText("Test"), closeSoftKeyboard());
+        onView(withId(R.id.spinner)).perform(click());
+        onData(allOf(is(instanceOf(String.class)), is("Other"))).perform(click());
+        onView(withId(R.id.adminPassword)).perform(typeText("CS2330"), closeSoftKeyboard());
+        onView(withId(R.id.addUserButton)).perform(click());
+
+        assertFalse(testDb.containsUser("e"));
+
+    }
+
+    @Test
+    public void addInvalidEmail() {
+        MyDBHandler testDb = registerRule.getActivity().getDb();
+        onView(withId(R.id.username)).perform(typeText("e"), closeSoftKeyboard());
+        onView(withId(R.id.password)).perform(typeText("password"), closeSoftKeyboard());
+        onView(withId(R.id.email)).perform(typeText("emailgmail.com"), closeSoftKeyboard());
+        onView(withId(R.id.name)).perform(typeText("Test"), closeSoftKeyboard());
+        onView(withId(R.id.spinner)).perform(click());
+        onData(allOf(is(instanceOf(String.class)), is("Other"))).perform(click());
+        onView(withId(R.id.adminPassword)).perform(typeText("CS2330"), closeSoftKeyboard());
+        onView(withId(R.id.addUserButton)).perform(click());
+
+        assertFalse(testDb.containsUser("e"));
     }
 }
