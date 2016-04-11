@@ -38,8 +38,8 @@ public class MovieActivity extends AppCompatActivity {
         dbHandler = new MyDBHandler(this);
         currentUser = getSharedPreferences("CurrentUser", MODE_PRIVATE);
         editCurrentUser = currentUser.edit();
-        movieDbHandler = new MovieDB(this, null);
-        recsDbHandler = new RecsDB(this, null, null, 1);
+        movieDbHandler = new MovieDB(this);
+        recsDbHandler = new RecsDB(this);
         currentMovie = getSharedPreferences("CurrentMovie",MODE_PRIVATE);
         editCurrentMovie = currentMovie.edit();
 

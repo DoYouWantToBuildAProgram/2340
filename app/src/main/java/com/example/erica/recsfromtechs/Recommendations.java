@@ -12,6 +12,7 @@ import android.widget.TextView;
 import java.util.HashMap;
 import java.util.LinkedList;
 
+
 /**
  * This shows what movies are recommended for a user
  * Created by juliaredston on 3/9/16.
@@ -28,7 +29,7 @@ public class Recommendations extends AppCompatActivity implements AdapterView.On
 
         Spinner spinner;
 
-        recsDbHandler = new RecsDB(this, null, null, 1);
+        recsDbHandler = new RecsDB(this);
         spinner = (Spinner) findViewById(R.id.spinner);
         spinner.setBackgroundColor(getResources().getColor(android.R.color.transparent));
         ArrayAdapter adapter = ArrayAdapter.createFromResource(this,R.array.majors,R.layout.spinner_item);

@@ -34,7 +34,6 @@ import java.util.ArrayList;
  */
 
 public class BoxOffice extends AppCompatActivity{
-    //private RequestQueue queue2;
     private RequestQueue queue;
     private RequestQueue queue2;
     private SharedPreferences currentMovie;
@@ -49,7 +48,7 @@ public class BoxOffice extends AppCompatActivity{
         setSupportActionBar(toolbar);
         queue = Volley.newRequestQueue(this);
         queue2 = Volley.newRequestQueue(this);
-        movieDbHandler = new MovieDB(this, null);
+        movieDbHandler = new MovieDB(this);
         currentMovie = getSharedPreferences("CurrentMovie", MODE_PRIVATE);
         editCurrentMovie = currentMovie.edit();
         showBoxOfficeMovies(findViewById(R.id.list2));

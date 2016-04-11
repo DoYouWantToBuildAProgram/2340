@@ -16,7 +16,6 @@ import android.database.sqlite.SQLiteOpenHelper;
  */
 public class MovieDB extends SQLiteOpenHelper{
 
-    private static final int DATABASE_VERSION = 1;
     private static final String DATABASE_NAME = "movies.db";
     private static final String TABLE_MOVIES = "movies";
     private static final String COLUMN_TITLE = "title";
@@ -26,8 +25,8 @@ public class MovieDB extends SQLiteOpenHelper{
     private static final String COLUMN_NUMRATING = "numRating";
 
 
-    public MovieDB(Context context, SQLiteDatabase.CursorFactory factory) {
-        super(context, DATABASE_NAME, factory, DATABASE_VERSION);
+    public MovieDB(Context context) {
+        super(context, DATABASE_NAME, null, 1);
     }
 
     @Override
