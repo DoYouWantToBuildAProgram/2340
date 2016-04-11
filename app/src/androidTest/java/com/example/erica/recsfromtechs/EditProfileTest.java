@@ -13,7 +13,7 @@ import android.support.test.rule.ActivityTestRule;
 
 
 /**
- * Tests for our EditProfile class
+ * Tests for our Edit Profile class
  * Created by Erica on 4/11/2016.
  */
 

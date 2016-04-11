@@ -28,11 +28,11 @@ import java.util.ArrayList;
  * Created by Courtney on 2/25/16.
  */
 public class DVD extends AppCompatActivity {
-    RequestQueue queue;
-    RequestQueue queue2;
-    SharedPreferences currentMovie;
-    SharedPreferences.Editor editCurrentMovie;
-    MovieDB movieDbHandler;
+    private RequestQueue queue;
+    private RequestQueue queue2;
+    private SharedPreferences currentMovie;
+    private SharedPreferences.Editor editCurrentMovie;
+    private MovieDB movieDbHandler;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,6 +46,7 @@ public class DVD extends AppCompatActivity {
         movieDbHandler = new MovieDB(this);
         currentMovie = getSharedPreferences("CurrentMovie", MODE_PRIVATE);
         editCurrentMovie = currentMovie.edit();
+        editCurrentMovie.apply();
     }
 
     /**
@@ -58,7 +59,7 @@ public class DVD extends AppCompatActivity {
      */
     private void showDVDReleases(View view) {
 
-        final ArrayList<ArrayList<String>> movieInfo = new ArrayList<>();
+        //final ArrayList<ArrayList<String>> movieInfo = new ArrayList<>();
 
         String url ="http://api.rottentomatoes.com/api/public/v1.0/lists/dvds/new_releases.json?page_limit=16&page=1&country=us&apikey=yedukp76ffytfuy24zsqk7f5";
         StringRequest stringRequest = new StringRequest(Request.Method.GET, url, new Response.Listener<String>() {
@@ -74,7 +75,7 @@ public class DVD extends AppCompatActivity {
                     JSONArray movies = jsonResponse.getJSONArray("movies");
 
                     // add each movie's title to an array
-                    String[] movieTitles = new String[movies.length()];
+                    //String[] movieTitles = new String[movies.length()];
                     for (int i = 0; i < movies.length(); i++) {
                         ArrayList<String> thisMovieArray = new ArrayList<>();
                         JSONObject movie = movies.getJSONObject(i);

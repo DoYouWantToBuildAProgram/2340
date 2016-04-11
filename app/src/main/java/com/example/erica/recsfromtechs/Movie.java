@@ -6,7 +6,7 @@ package com.example.erica.recsfromtechs;
  * This is the object class for a movie. it has a variety
  * of useful methods that help the app use OOP
  */
-public class Movie {
+class Movie {
     private String title;
     private String rating;
     private String year;

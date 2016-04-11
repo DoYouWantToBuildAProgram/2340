@@ -28,8 +28,6 @@ public class searchScreen extends AppCompatActivity {
     private RequestQueue queue;
     //private RequestQueue queue2;
     private SharedPreferences.Editor editCurrentMovie;
-
-
     private MovieDB movieDbHandler;
 
     @Override
@@ -45,8 +43,7 @@ public class searchScreen extends AppCompatActivity {
         movieDbHandler = new MovieDB(this);
         currentMovie = getSharedPreferences("CurrentMovie",MODE_PRIVATE);
         editCurrentMovie = currentMovie.edit();
-
-
+        editCurrentMovie.apply();
 
     }
 

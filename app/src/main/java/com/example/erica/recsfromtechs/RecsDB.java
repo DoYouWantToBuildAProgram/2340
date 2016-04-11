@@ -51,7 +51,7 @@ public class RecsDB extends SQLiteOpenHelper{
     public void addRec(Recs rec){
         ContentValues values = new ContentValues();
         SQLiteDatabase db = getWritableDatabase();
-        Cursor c = db.rawQuery("SELECT * FROM " + TABLE_RECS+";",null);
+        //Cursor c = db.rawQuery("SELECT * FROM " + TABLE_RECS+";",null);
         values.put(COLUMN_MAJOR, rec.getMajor());
         values.put(COLUMN_RATING, rec.getRating());
         values.put(COLUMN_TITLE, rec.getTitle());

@@ -19,13 +19,13 @@ import android.widget.TextView;
  * the rating will still be there
  */
 public class MovieActivity extends AppCompatActivity {
-    SharedPreferences currentUser;
-    SharedPreferences.Editor editCurrentUser;
-    MyDBHandler dbHandler;
-    SharedPreferences currentMovie;
-    SharedPreferences.Editor editCurrentMovie;
-    MovieDB movieDbHandler;
-    RecsDB recsDbHandler;
+    private SharedPreferences currentUser;
+    private SharedPreferences.Editor editCurrentUser;
+    private MyDBHandler dbHandler;
+    private SharedPreferences currentMovie;
+    private SharedPreferences.Editor editCurrentMovie;
+    private MovieDB movieDbHandler;
+    private RecsDB recsDbHandler;
 
 
     @Override
@@ -38,11 +38,12 @@ public class MovieActivity extends AppCompatActivity {
         dbHandler = new MyDBHandler(this);
         currentUser = getSharedPreferences("CurrentUser", MODE_PRIVATE);
         editCurrentUser = currentUser.edit();
+        editCurrentUser.apply();
         movieDbHandler = new MovieDB(this);
         recsDbHandler = new RecsDB(this);
         currentMovie = getSharedPreferences("CurrentMovie",MODE_PRIVATE);
         editCurrentMovie = currentMovie.edit();
-
+        editCurrentMovie.apply();
         TextView titleTextView =(TextView)findViewById(R.id.title);
         String title = currentMovie.getString("title",null);
         String year = currentMovie.getString("year",null);

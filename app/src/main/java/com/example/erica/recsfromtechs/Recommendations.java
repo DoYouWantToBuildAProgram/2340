@@ -71,7 +71,7 @@ public class Recommendations extends AppCompatActivity implements AdapterView.On
                 text += key + " Rating: " + average + "\n";
             }
         }
-        if(text == ""){
+        if (text.equals("")) {
             text = "Sorry no recommendations could be given";
         }
         TextView recView;

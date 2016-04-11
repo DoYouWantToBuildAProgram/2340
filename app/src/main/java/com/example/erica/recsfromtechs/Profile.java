@@ -28,6 +28,7 @@ public class Profile extends AppCompatActivity {
 
         currentUser = getSharedPreferences("CurrentUser", MODE_PRIVATE);
         editCurrentUser = currentUser.edit();
+        editCurrentUser.apply();
 
         dbHandler = new MyDBHandler(this);
 

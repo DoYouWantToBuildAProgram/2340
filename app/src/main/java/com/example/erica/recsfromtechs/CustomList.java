@@ -19,12 +19,12 @@ import android.widget.TextView;
  * The method uses an Async task to get the image with
  * the class webImageGetter
  */
-public class CustomList extends ArrayAdapter<String>{
+class CustomList extends ArrayAdapter<String>{
 
     private final Activity context;
     private final String[] name;
-    private final String[] year;
     private final String[] rating;
+    private final String[] year;
     private final String[] imageId;
     public CustomList(Activity context,
                       String[] name, String[] year, String[] rating, String[] imageId) {

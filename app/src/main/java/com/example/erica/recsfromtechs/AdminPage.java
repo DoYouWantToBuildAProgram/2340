@@ -29,7 +29,7 @@ public class AdminPage extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        LinkedList<User> allUsers = new LinkedList<>();
+        LinkedList<User> allUsers;
 
 
         super.onCreate(savedInstanceState);
@@ -118,7 +118,7 @@ public class AdminPage extends AppCompatActivity {
     /**
      * This method goes back to
      */
-    public void back() {
+    public void back(View view) {
         Intent intent = new Intent(this, dashboard.class);
         startActivity(intent);
     }

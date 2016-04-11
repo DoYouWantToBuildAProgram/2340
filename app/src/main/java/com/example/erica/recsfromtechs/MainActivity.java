@@ -1,7 +1,6 @@
 package com.example.erica.recsfromtechs;
 
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
@@ -18,8 +17,8 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        SharedPreferences passwords;
-        SharedPreferences.Editor editPasswords;
+        //SharedPreferences passwords;
+        //SharedPreferences.Editor editPasswords;
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
     }

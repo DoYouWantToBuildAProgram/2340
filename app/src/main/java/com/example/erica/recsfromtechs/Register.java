@@ -10,7 +10,6 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.Spinner;
-import android.widget.TextView;
 import android.widget.Toast;
 
 public class Register extends AppCompatActivity  implements AdapterView.OnItemSelectedListener{
@@ -99,7 +98,7 @@ public class Register extends AppCompatActivity  implements AdapterView.OnItemSe
 
     @Override
     public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-        TextView myText = (TextView) view;
+        //TextView myText = (TextView) view;
     }
 
     @Override

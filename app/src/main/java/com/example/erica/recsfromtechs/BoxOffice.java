@@ -35,22 +35,21 @@ import java.util.ArrayList;
 
 public class BoxOffice extends AppCompatActivity{
     private RequestQueue queue;
-    private RequestQueue queue2;
-    private SharedPreferences currentMovie;
     private SharedPreferences.Editor editCurrentMovie;
     private MovieDB movieDbHandler;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        SharedPreferences currentMovie;
         setContentView(R.layout.activity_box_office);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         queue = Volley.newRequestQueue(this);
-        queue2 = Volley.newRequestQueue(this);
         movieDbHandler = new MovieDB(this);
         currentMovie = getSharedPreferences("CurrentMovie", MODE_PRIVATE);
         editCurrentMovie = currentMovie.edit();
+        editCurrentMovie.apply();
         showBoxOfficeMovies(findViewById(R.id.list2));
     }
 
@@ -153,6 +152,7 @@ public class BoxOffice extends AppCompatActivity{
                 editCurrentMovie.putString("year", movieYears[position]);
                 editCurrentMovie.commit();
                 editCurrentMovie.putString("rating", ratings[position]);
+                editCurrentMovie.commit();
                 movieDbHandler.addMovie(new Movie(movieNames[position], movieYears[position],ratings[position]));
                 Intent intent = new Intent(BoxOffice.this, MovieActivity.class);
 

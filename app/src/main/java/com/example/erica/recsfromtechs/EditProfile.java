@@ -29,6 +29,7 @@ public class EditProfile extends AppCompatActivity {
         setContentView(R.layout.activity_edit_profile);
         currentUser = getSharedPreferences("CurrentUser", MODE_PRIVATE);
         editCurrentUser = currentUser.edit();
+        editCurrentUser.apply();
         dbHandler = new MyDBHandler(this);
         String userName = dbHandler.getName(currentUser.getString("username", null));
         TextView nameText = (TextView)findViewById(R.id.name);
