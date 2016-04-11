@@ -112,6 +112,10 @@ public class Register extends AppCompatActivity  implements AdapterView.OnItemSe
 
     }
 
+    /**
+     * Gets the database for testing
+     * @return the database
+     */
     public MyDBHandler getDb(){
         return this.dbHandler;
     }

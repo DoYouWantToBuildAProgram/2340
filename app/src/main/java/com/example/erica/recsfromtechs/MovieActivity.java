@@ -108,7 +108,7 @@ public class MovieActivity extends AppCompatActivity {
 
     /**
      * this method takes you back to the dashboard
-     * @param view
+     * @param view the current sc
      */
     public void backToDashboard(View view) {
         Intent intent = new Intent(this, dashboard.class);

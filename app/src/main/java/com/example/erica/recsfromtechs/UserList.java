@@ -29,6 +29,14 @@ public class UserList extends ArrayAdapter<String>{
 
 
     }
+
+    /**
+     * Creates a list view of all the users in the database
+     * @param position the position of the user clicked
+     * @param view the activity
+     * @param parent viewgroup
+     * @return the view
+     */
     @Override
     public View getView(int position, View view, ViewGroup parent) {
         LayoutInflater inflater = context.getLayoutInflater();
