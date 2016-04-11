@@ -2,26 +2,18 @@ package com.example.erica.recsfromtechs;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.graphics.Bitmap;
-import android.graphics.drawable.Drawable;
-import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.EditText;
-import android.widget.ImageView;
 import android.widget.ListView;
-import android.widget.TextView;
-import android.widget.Toast;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
-import com.android.volley.toolbox.ImageRequest;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 
@@ -29,45 +21,55 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.io.InputStream;
-import java.net.URL;
 import java.util.ArrayList;
-import java.util.Arrays;
 
 public class searchScreen extends AppCompatActivity {
 
-    RequestQueue queue;
-    RequestQueue queue2;
-    SharedPreferences currentMovie;
-    SharedPreferences.Editor editCurrentMovie;
+    private RequestQueue queue;
+    //private RequestQueue queue2;
+    private SharedPreferences.Editor editCurrentMovie;
 
-    MovieDB movieDbHandler;
+    private myApplication appState;
+
+    private MovieDB movieDbHandler;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        SharedPreferences currentMovie;
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_search_screen);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         queue = Volley.newRequestQueue(this);
-        queue2 = Volley.newRequestQueue(this);
-        movieDbHandler = new MovieDB(this, null, null, 1);
+        //queue2 = Volley.newRequestQueue(this);
+        movieDbHandler = new MovieDB(this, null);
         currentMovie = getSharedPreferences("CurrentMovie",MODE_PRIVATE);
         editCurrentMovie = currentMovie.edit();
 
 
 
     }
+
+    /**
+     * Switches screens to the dashboard page
+     * @param view The view we're looking at
+     */
     public void backToDashboard(View view) {
         Intent intent = new Intent(this, dashboard.class);
         startActivity(intent);
     }
+
+    /**
+     * Connects to the Rotten Tomatoes API to get the list of movies corresponding
+     * to the text entered
+     * @param view The view we're currently look at
+     */
     public void searchForMovie(View view) {
 
 
 
-        final ArrayList<ArrayList> movieInfo = new ArrayList<>();
+        final ArrayList<ArrayList<String>> movieInfo = new ArrayList<>();
         EditText temp   = (EditText)findViewById(R.id.editText);
         String strTemp = temp.getText().toString().trim();
         strTemp = strTemp.replace(" ", "+");
@@ -124,10 +126,11 @@ public class searchScreen extends AppCompatActivity {
 
     // Request a string response from the provided URL.
 
-
-    private void populateListView(ArrayList<ArrayList> movieInfo) {
-
-        ListView list;
+    /**
+     * Provides a UI display to see the list of movies searched for
+     * @param movieInfo All of the movie info to be included
+     */
+    private void populateListView(ArrayList<ArrayList<String>> movieInfo) {        ListView list;
         final String[] movieNames = new String[movieInfo.size()] ;
         final String[] movieYears = new String[movieInfo.size()] ;
         final String[] ratings = new String[movieInfo.size()] ;
@@ -141,9 +144,6 @@ public class searchScreen extends AppCompatActivity {
             images[i] = e.get(3);
             i++;
         }
-
-
-
 
             CustomList adapter = new
                     CustomList(searchScreen.this, movieNames, movieYears, ratings, images);

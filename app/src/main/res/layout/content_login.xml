@@ -13,7 +13,7 @@
 
     <TextView
         android:id="@+id/header"
-        android:text="Recs from Techs"
+        android:text="@string/title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:padding="10dp"
@@ -55,13 +55,13 @@
         android:layout_gravity="center_horizontal"
         />
 
-    <Button
+    <Button android:id="@+id/loginButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="SIGN IN"
+        android:text="@string/login_button"
         android:onClick="loginSuccessful"
         android:textStyle="bold"
-        android:layout_gravity="right"
+        android:layout_gravity="end"
         android:background="#B9090B"
         android:textColor="#FFFFFF"
         />
@@ -69,16 +69,16 @@
     <Space
         android:layout_width="match_parent"
         android:layout_height="30dp"
-        android:layout_gravity="right"
+        android:layout_gravity="end"
         android:background="#6a737b"/>
 
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="CANCEL"
+        android:text="@string/cancel"
         android:onClick="cancel"
         android:textStyle="bold"
-        android:layout_gravity="right"
+        android:layout_gravity="end"
         android:clickable="true"
         android:background="#B9090B"
         android:textColor="#FFFFFF"
@@ -87,7 +87,7 @@
     <Space
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_gravity="right"
+        android:layout_gravity="end"
         android:background="#6a737b"/>
 
 

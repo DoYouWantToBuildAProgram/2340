@@ -9,6 +9,8 @@ import android.database.sqlite.SQLiteOpenHelper;
 import java.util.LinkedList;
 
 /**
+ * This class creates the database used for logging in and editing a profile.
+ * It contains all registered users and their info
  * Created by Courtney on 3/14/16.
  */
 public class MyDBHandler extends SQLiteOpenHelper {
@@ -16,24 +18,29 @@ public class MyDBHandler extends SQLiteOpenHelper {
     //Please use these names for the variables, don't hardcode them in case we need to change something
     private static final int DATABASE_VERSION = 1;
     private static final String DATABASE_NAME = "users.db";
-    public static final String TABLE_USERS = "users";
-    public static final String COLUMN_USERNAME = "username";
-    public static final String COLUMN_PASSWORD = "password";
-    public static final String COLUMN_NAME = "name";
-    public static final String COLUMN_EMAIL = "email";
-    public static final String COLUMN_MAJOR = "major";
-    public static final String COLUMN_ISBANNED = "isBanned";
-    public static final String COLUMN_ISLOCKED = "isLocked";
-    public static final String COLUMN_ISADMIN = "isAdmin";
+    private static final String TABLE_USERS = "users";
+    private static final String COLUMN_USERNAME = "username";
+    private static final String COLUMN_PASSWORD = "password";
+    private static final String COLUMN_NAME = "name";
+    private static final String COLUMN_EMAIL = "email";
+    private static final String COLUMN_MAJOR = "major";
+    private static final String COLUMN_ISBANNED = "isBanned";
+    private static final String COLUMN_ISLOCKED = "isLocked";
+    private static final String COLUMN_ISADMIN = "isAdmin";
 
-
-    public MyDBHandler(Context context, String name, SQLiteDatabase.CursorFactory factory, int version) {
+    /**
+     * constructor for the database
+     * @param context The context we're using
+     * @param factory the factor we're using
+     */
+    public MyDBHandler(Context context, SQLiteDatabase.CursorFactory factory) {
         super(context, DATABASE_NAME, factory, DATABASE_VERSION);
     }
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        //This creates all of the columns in our table followed by their data type with a boolean represented as an integer thats either 1 or 0
+        //This creates all of the columns in our table followed by their data
+        // type with a boolean represented as an integer that is either 1 or 0
         String query = "CREATE TABLE " + TABLE_USERS + " ("
                 + COLUMN_USERNAME + " TEXT, "
                 + COLUMN_PASSWORD + " TEXT, "
@@ -55,7 +62,11 @@ public class MyDBHandler extends SQLiteOpenHelper {
         onCreate(db);
     }
 
-    //Add a new row to the database (used when registering a user)
+    /**
+     * Add a new row to the database (used when registering a user)
+     * @param user The user info to be added to the table
+     * @return boolean value of whether or not the new user has been added
+     */
     public boolean addUser(User user) {
         //Gets a user object and puts all the data in its respective column
         ContentValues values = new ContentValues();
@@ -82,6 +93,7 @@ public class MyDBHandler extends SQLiteOpenHelper {
         return true;
     }
 
+    
     public void deleteUser(String username) {
         SQLiteDatabase db = getWritableDatabase();
         db.delete(TABLE_USERS, COLUMN_USERNAME + "= '" + username + "';", null);
@@ -99,34 +111,44 @@ public class MyDBHandler extends SQLiteOpenHelper {
         }
 
     }
+    
+    /**
+     * Checks that the username and password entered when logging in is correct
+     * @param username The username that the person typed in
+     * @param password The password that the person typed in
+     * @return boolean value of whether or not the user put in the right info.
+     *         If they put in the correct info it will return true.
+     *         If they put in the wrong info, or their account is blocked or locked then it will
+     *         return false.
+     */
     public boolean authenticateUser(String username, String password) {
         SQLiteDatabase db = getReadableDatabase();
         //This call is what creates a smaller table, so right now this creates a smaller table with all the usernames that match what was inputted
         Cursor c = db.rawQuery("SELECT * FROM " + TABLE_USERS + " WHERE " + COLUMN_USERNAME + " = '" + username + "';", null);
-        Cursor d = db.rawQuery("SELECT * FROM " + TABLE_USERS + " WHERE " + COLUMN_USERNAME + " = '" + username + "';", null);
-        d.moveToFirst();
+        //Cursor d = db.rawQuery("SELECT * FROM " + TABLE_USERS + " WHERE " + COLUMN_USERNAME + " = '" + username + "';", null);
+        //d.moveToFirst();
         c.moveToFirst();
-        String realPassword = null;
+        String realPassword;
         int isBlocked;
         int isLocked;
         if (!c.isBeforeFirst()) {
             realPassword = c.getString(c.getColumnIndex(COLUMN_PASSWORD));
             isBlocked = c.getInt(c.getColumnIndex(COLUMN_ISBANNED));
-            isLocked = d.getInt(c.getColumnIndex(COLUMN_ISLOCKED));
+            isLocked = c.getInt(c.getColumnIndex(COLUMN_ISLOCKED));
         } else {
             return false;
         }
-        d.close();
+        //d.close();
         c.close();
         db.close();
-        if (realPassword.equals(password) && isBlocked != 1 && isLocked != 1){
-            return true;
-        } else {
-            return false;
-        }
+        return realPassword.equals(password) && isBlocked != 1 && isLocked != 1;
 
     }
 
+    /**
+     * Provides a list of all the registered users
+     * @return A list of user objects that are registered
+     */
     public LinkedList<User> listOfUsers() {
         SQLiteDatabase db = getReadableDatabase();
         Cursor c = db.rawQuery("SELECT * FROM " + TABLE_USERS, null);
@@ -152,6 +174,11 @@ public class MyDBHandler extends SQLiteOpenHelper {
         return returnList;
     }
 
+    /**
+     * gives the name registered under some username
+     * @param username The username we want the name of
+     * @return String representing the name of the user
+     */
     public String getName(String username) {
         SQLiteDatabase db = getReadableDatabase();
         Cursor c = db.rawQuery("SELECT * FROM " + TABLE_USERS + " WHERE " + COLUMN_USERNAME + " = '" + username + "';", null);
@@ -162,6 +189,11 @@ public class MyDBHandler extends SQLiteOpenHelper {
         return name;
     }
 
+    /**
+     * gives the email registered under some username
+     * @param username The username we want the email of
+     * @return String representing the email of the user
+     */
     public String getEmail(String username) {
         SQLiteDatabase db = getReadableDatabase();
         Cursor c = db.rawQuery("SELECT * FROM " + TABLE_USERS + " WHERE " + COLUMN_USERNAME + " = '" + username + "';", null);
@@ -172,6 +204,11 @@ public class MyDBHandler extends SQLiteOpenHelper {
         return email;
     }
 
+    /**
+     * gives the major registered under some username
+     * @param username The username we want the major of
+     * @return String representing the major of the user
+     */
     public String getMajor(String username) {
         SQLiteDatabase db = getReadableDatabase();
         Cursor c = db.rawQuery("SELECT * FROM " + TABLE_USERS + " WHERE " + COLUMN_USERNAME + " = '" + username + "';", null);
@@ -182,6 +219,11 @@ public class MyDBHandler extends SQLiteOpenHelper {
         return major;
     }
 
+    /**
+     * gives the password registered under some username
+     * @param username The username we want the password of
+     * @return String representing the password of the user
+     */
     public String getPassword(String username) {
         SQLiteDatabase db = getReadableDatabase();
         Cursor c = db.rawQuery("SELECT * FROM " + TABLE_USERS + " WHERE " + COLUMN_USERNAME + " = '" + username + "';", null);
@@ -192,6 +234,11 @@ public class MyDBHandler extends SQLiteOpenHelper {
         return password;
     }
 
+    /**
+     * gives the admin status registered under some username
+     * @param username The username we want the admin status of
+     * @return int representing the admin status of the user (either 1 for true or 0 for false
+     */
     public int getIsAdmin(String username) {
         SQLiteDatabase db = getReadableDatabase();
         Cursor c = db.rawQuery("SELECT * FROM " + TABLE_USERS + " WHERE " + COLUMN_USERNAME + " = '" + username + "';", null);
@@ -202,6 +249,11 @@ public class MyDBHandler extends SQLiteOpenHelper {
         return isAdmin;
     }
 
+    /**
+     * gives the locked status registered under some username
+     * @param username The username we want the locked status of
+     * @return int representing the locked status of the user (either 1 for true or 0 for false
+     */
     public int getIsLocked(String username) {
         SQLiteDatabase db = getReadableDatabase();
         Cursor c = db.rawQuery("SELECT * FROM " + TABLE_USERS + " WHERE " + COLUMN_USERNAME + " = '" + username + "';", null);
@@ -212,6 +264,11 @@ public class MyDBHandler extends SQLiteOpenHelper {
         return isLocked;
     }
 
+    /**
+     * gives the block status registered under some username
+     * @param username The username we want the block status of
+     * @return int representing the block status of the user (either 1 for true or 0 for false
+     */
     public int getIsBlocked(String username) {
         SQLiteDatabase db = getReadableDatabase();
         Cursor c = db.rawQuery("SELECT * FROM " + TABLE_USERS + " WHERE " + COLUMN_USERNAME + " = '" + username + "';", null);
@@ -222,6 +279,11 @@ public class MyDBHandler extends SQLiteOpenHelper {
         return isBlocked;
     }
 
+    /**
+     * changes the name of the user that uses a certain username
+     * @param username The username we want to change the name of
+     * @param newName the new name the user wants to use
+     */
     public void setName(String username, String newName) {
         SQLiteDatabase db = getWritableDatabase();
         ContentValues values = new ContentValues();
@@ -240,6 +302,11 @@ public class MyDBHandler extends SQLiteOpenHelper {
             return false;
         }
     }
+    /**
+     * changes the password of the user that uses a certain username
+     * @param username The username we want to change the password of
+     * @param newPassword the new password the user wants to use
+     */
     public void setPassword(String username, String newPassword) {
         SQLiteDatabase db = getWritableDatabase();
         ContentValues values = new ContentValues();
@@ -248,6 +315,11 @@ public class MyDBHandler extends SQLiteOpenHelper {
         db.close();
     }
 
+    /**
+     * changes the username of the user that uses a certain username
+     * @param username The username we want to change the username of
+     * @param newUsername the new username the user wants to use
+     */
     public void setUsername(String username, String newUsername) {
         SQLiteDatabase db = getWritableDatabase();
         ContentValues values = new ContentValues();
@@ -256,6 +328,11 @@ public class MyDBHandler extends SQLiteOpenHelper {
         db.close();
     }
 
+    /**
+     * changes the email of the user that uses a certain username
+     * @param username The username we want to change the email of
+     * @param newEmail the new email the user wants to use
+     */
     public void setEmail(String username, String newEmail) {
         SQLiteDatabase db = getWritableDatabase();
         ContentValues values = new ContentValues();
@@ -264,6 +341,11 @@ public class MyDBHandler extends SQLiteOpenHelper {
         db.close();
     }
 
+    /**
+     * changes the major of the user that uses a certain username
+     * @param username The username we want to change the major of
+     * @param newMajor the new major the user wants to use
+     */
     public void setMajor(String username, String newMajor) {
         SQLiteDatabase db = getWritableDatabase();
         ContentValues values = new ContentValues();
@@ -272,6 +354,11 @@ public class MyDBHandler extends SQLiteOpenHelper {
         db.close();
     }
 
+    /**
+     * changes the lock status of the user that uses a certain username
+     * @param username The username we want to change the lock status of
+     * @param num the changed lock status (1 for locked, 0 for unlocked)
+     */
     public void setLocked(String username, int num) {
         SQLiteDatabase db = getWritableDatabase();
         ContentValues values = new ContentValues();
@@ -280,10 +367,14 @@ public class MyDBHandler extends SQLiteOpenHelper {
         db.close();
     }
 
-    public void setBlocked(String username, int num) {
+    /**
+     * changes the block status of the user that uses a certain username
+     * @param username The username we want to change the block status of
+     */
+    public void setBlocked(String username) {
         SQLiteDatabase db = getWritableDatabase();
         ContentValues values = new ContentValues();
-        values.put(COLUMN_ISBANNED, num);
+        values.put(COLUMN_ISBANNED, 1);
         db.update(TABLE_USERS, values, COLUMN_USERNAME + "= '" + username + "';",null);
         db.close();
     }

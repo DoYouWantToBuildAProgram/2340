@@ -2,31 +2,29 @@ package com.example.erica.recsfromtechs;
 
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.graphics.drawable.Drawable;
 import android.os.AsyncTask;
-import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.widget.ImageView;
-
-import com.android.volley.RequestQueue;
-import com.android.volley.Response;
-import com.android.volley.VolleyError;
-import com.android.volley.toolbox.ImageRequest;
-import com.android.volley.toolbox.Volley;
 
 import java.io.InputStream;
 
 public class webImageGetter extends AsyncTask<String, Void, Bitmap> {
 
-    ImageView thisView;
-    String urldisplay;
+    private final ImageView thisView;
 
-    public    webImageGetter(ImageView x) {
+    /**
+     * The picture image view to be used
+     * @param x the image view
+     */
+
+    public webImageGetter(ImageView x) {
         thisView = x;
 
     }
 
+    @Override
     protected Bitmap doInBackground(String... urls) {
+        String urldisplay;
+
         urldisplay = urls[0];
         Bitmap mIcon11 = null;
         try {
@@ -39,6 +37,7 @@ public class webImageGetter extends AsyncTask<String, Void, Bitmap> {
         return mIcon11;
     }
 
+    @Override
     protected void onPostExecute(Bitmap result) {
         System.out.println(thisView == null);
         thisView.setImageBitmap(result);

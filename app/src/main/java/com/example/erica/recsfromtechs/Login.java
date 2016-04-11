@@ -20,20 +20,22 @@ import android.widget.Toast;
 public class Login extends AppCompatActivity {
 
 
-    SharedPreferences currentUser;
-    SharedPreferences.Editor editCurrentUser;
+    private SharedPreferences.Editor editCurrentUser;
 
-    MyDBHandler dbHandler;
+    private MyDBHandler dbHandler;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        SharedPreferences passwords;
+        SharedPreferences.Editor editPasswords;
+        SharedPreferences currentUser;
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         currentUser = getSharedPreferences("CurrentUser", MODE_PRIVATE);
         editCurrentUser = currentUser.edit();
-        dbHandler = new MyDBHandler(this, null, null, 1);
+        dbHandler = new MyDBHandler(this, null);
     }
 
     /**

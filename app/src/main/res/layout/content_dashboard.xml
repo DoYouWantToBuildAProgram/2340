@@ -32,7 +32,7 @@
     <Button
         android:layout_width="200dp"
         android:layout_height="wrap_content"
-        android:text="Search for Movies"
+        android:text="@string/movieSearch"
         android:onClick="movieSearch"
         android:background="#B9090B"
         android:textColor="#FFFFFF"
@@ -46,7 +46,7 @@
     <Button
         android:layout_width="200dp"
         android:layout_height="wrap_content"
-        android:text="Box Office Movies"
+        android:text="@string/title_activity_boxoffice"
         android:onClick="getBoxOffice"
         android:background="#B9090B"
         android:textColor="#FFFFFF"
@@ -73,7 +73,7 @@
     <Button
         android:layout_width="200dp"
         android:layout_height="wrap_content"
-        android:text="Get Recommendation"
+        android:text="@string/getRecommendation"
         android:onClick="recommendation"
         android:background="#B9090B"
         android:textColor="#FFFFFF"
@@ -88,7 +88,7 @@
     <Button
         android:layout_width="200dp"
         android:layout_height="wrap_content"
-        android:text="Profile"
+        android:text="@string/title_activity_profile"
         android:onClick="goToProfile"
         android:background="#B9090B"
         android:textColor="#FFFFFF"
@@ -102,7 +102,7 @@
     <Button
         android:layout_width="200dp"
         android:layout_height="wrap_content"
-        android:text="logout"
+        android:text="@string/logout"
         android:onClick="logout"
         android:background="#B9090B"
         android:textColor="#FFFFFF"

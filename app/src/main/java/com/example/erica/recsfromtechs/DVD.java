@@ -2,14 +2,12 @@ package com.example.erica.recsfromtechs;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
-import android.widget.Toast;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -23,9 +21,10 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 
 /**
+ * This method is the DVD releases page which shows movies recently
+ * released to DVD
  * Created by Courtney on 2/25/16.
  */
 public class DVD extends AppCompatActivity {
@@ -43,9 +42,6 @@ public class DVD extends AppCompatActivity {
         setSupportActionBar(toolbar);
         queue = Volley.newRequestQueue(this);
         queue2 = Volley.newRequestQueue(this);
-        movieDbHandler = new MovieDB(this, null, null, 1);
-        currentMovie = getSharedPreferences("CurrentMovie", MODE_PRIVATE);
-        editCurrentMovie = currentMovie.edit();
         showDVDReleases(findViewById(R.id.list3));
     }
 
@@ -57,15 +53,15 @@ public class DVD extends AppCompatActivity {
      *
      * @param view The current layout with all the Android widgets
      */
-    public void showDVDReleases(View view) {
+    private void showDVDReleases(View view) {
 
-        final ArrayList<ArrayList> movieInfo = new ArrayList<>();
+        final ArrayList<ArrayList<String>> movieInfo = new ArrayList<>();
 
         String url ="http://api.rottentomatoes.com/api/public/v1.0/lists/dvds/new_releases.json?page_limit=16&page=1&country=us&apikey=yedukp76ffytfuy24zsqk7f5";
         StringRequest stringRequest = new StringRequest(Request.Method.GET, url, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
-                final ArrayList<ArrayList> boxOfficeInfo = new ArrayList<>();
+                final ArrayList<ArrayList<String>> boxOfficeInfo = new ArrayList<>();
                 //handle a valid response coming back.  Getting this string mainly for debug
                 //printing first 500 chars of the response.  Only want to do this for debug
                 try {
@@ -116,7 +112,7 @@ public class DVD extends AppCompatActivity {
      *
      * @param movieInfo The info to be displayed
      */
-    private void populateListView(ArrayList<ArrayList> movieInfo) {
+    private void populateListView(ArrayList<ArrayList<String>> movieInfo) {
 
         ListView list;
         final String[] movieNames = new String[movieInfo.size()] ;
