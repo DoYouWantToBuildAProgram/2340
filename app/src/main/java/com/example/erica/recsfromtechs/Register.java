@@ -98,7 +98,7 @@ public class Register extends AppCompatActivity  implements AdapterView.OnItemSe
 
     @Override
     public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-        //TextView myText = (TextView) view;
+
     }
 
     @Override
