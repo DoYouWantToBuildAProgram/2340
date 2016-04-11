@@ -103,11 +103,7 @@ public class MyDBHandler extends SQLiteOpenHelper {
         SQLiteDatabase db = getReadableDatabase();
         Cursor c = db.rawQuery("SELECT * FROM " + TABLE_USERS + " WHERE " + COLUMN_USERNAME + " = '" + username + "';", null);
         c.moveToFirst();
-        if(c.isBeforeFirst()){
-            return false;
-        } else {
-            return true;
-        }
+        return c.isBeforeFirst();
 
     }
     
@@ -295,11 +291,7 @@ public class MyDBHandler extends SQLiteOpenHelper {
         SQLiteDatabase db = getReadableDatabase();
         Cursor c = db.rawQuery("SELECT * FROM " + TABLE_USERS + " WHERE " + COLUMN_USERNAME + " = '" + username + "';", null);
         c.moveToFirst();
-        if(c.isBeforeFirst()) {
-            return true;
-        } else {
-            return false;
-        }
+        return c.isBeforeFirst();
     }
     /**
      * changes the password of the user that uses a certain username

@@ -36,7 +36,7 @@ public class AdminPage extends AppCompatActivity {
         setContentView(R.layout.activity_admin_page);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        dbHandler = new MyDBHandler(this, null);
+        dbHandler = new MyDBHandler(this);
 
 
 

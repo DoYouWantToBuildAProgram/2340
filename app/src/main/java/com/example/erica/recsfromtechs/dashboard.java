@@ -5,7 +5,6 @@ import android.content.Intent;
         import android.support.v7.app.AppCompatActivity;
         import android.support.v7.widget.Toolbar;
         import android.view.View;
-        import android.widget.TextView;
 
 /**
  * This is the activity for the Dashboard
@@ -65,7 +64,7 @@ public class dashboard extends AppCompatActivity {
     }
 
     /**
-     * Redirects the user to the page that displys there recommended
+     * Redirects the user to the page that displays there recommended
      * movies based on their major.
      * @param view The current layout with all the Android widgets
      */

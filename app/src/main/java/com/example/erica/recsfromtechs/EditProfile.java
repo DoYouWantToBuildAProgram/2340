@@ -1,7 +1,7 @@
 package com.example.erica.recsfromtechs;
 
-import android.content.Intent;
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -10,12 +10,10 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import org.w3c.dom.Text;
-
 /**
  * This is the Activity for the edit profile page
  * This is where the the user can change
- * information about hois profile like major, password,
+ * information about his profile like major, password,
  * username etc.
  */
 public class EditProfile extends AppCompatActivity {
@@ -29,7 +27,7 @@ public class EditProfile extends AppCompatActivity {
         setContentView(R.layout.activity_edit_profile);
         currentUser = getSharedPreferences("CurrentUser", MODE_PRIVATE);
         editCurrentUser = currentUser.edit();
-        dbHandler = new MyDBHandler(this, null);
+        dbHandler = new MyDBHandler(this);
         String userName = dbHandler.getName(currentUser.getString("username", null));
         TextView nameText = (TextView)findViewById(R.id.name);
         nameText.setText(userName);
@@ -86,7 +84,7 @@ public class EditProfile extends AppCompatActivity {
 
     /**
      * This method gets the new password from TextView and sets it to the
-     * password saved in the databse for this User
+     * password saved in the database for this User
      * @param view the current screen
      */
     public void editPassword(View view) {

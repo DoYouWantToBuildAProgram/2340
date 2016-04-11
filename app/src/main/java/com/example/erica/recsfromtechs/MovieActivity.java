@@ -12,7 +12,7 @@ import android.widget.TextView;
 /**
  * This is the activity class for the movie
  *
- * This page displayes information about the movie
+ * This page displays information about the movie
  * The user can also rate the movie on the page ranging from 0
  * to 5 stars going in increments of .5 stars
  * If the user returns to this page after leaving it
@@ -35,7 +35,7 @@ public class MovieActivity extends AppCompatActivity {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_movie);
-        dbHandler = new MyDBHandler(this, null);
+        dbHandler = new MyDBHandler(this);
         currentUser = getSharedPreferences("CurrentUser", MODE_PRIVATE);
         editCurrentUser = currentUser.edit();
         movieDbHandler = new MovieDB(this, null);
@@ -85,9 +85,10 @@ public class MovieActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                //prevRating is the rating the user already gave, only works if they havent left the page
+                //prevRating is the rating the user already gave, only works if
+                // they haven't left the page
                 //if they already rated it that rating is removed and replaced with a new rating
-                //new rating is added to the movie objects hashmap
+                //new rating is added to the movie objects hash map
 
                 float newRating = majorRatingBar.getRating();
                 String title = currentMovie.getString("title",null);

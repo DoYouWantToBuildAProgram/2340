@@ -52,7 +52,7 @@ public class Movie {
      * Sets the year of release
      * @param newYear the new release year
      */
-    public void setyear(String newYear) {
+    public void setYear(String newYear) {
         year = newYear;
     }
 

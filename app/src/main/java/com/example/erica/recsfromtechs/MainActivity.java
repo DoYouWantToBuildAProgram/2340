@@ -9,7 +9,7 @@ import android.view.MenuItem;
 import android.view.View;
 
 /**
- * The main activity class is the opening activty for the app
+ * The main activity class is the opening activity for the app
  * you can pick between registering or logging in
  *
  */

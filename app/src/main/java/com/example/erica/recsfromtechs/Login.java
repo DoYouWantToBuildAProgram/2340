@@ -12,7 +12,7 @@ import android.widget.Toast;
 
 
 /**
- * This is the activiy for the login screen
+ * This is the activity for the login screen
  * you need to enter a password and username
  * that will be checked in the database
  * to grant you further access to the app

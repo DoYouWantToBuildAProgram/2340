@@ -97,8 +97,8 @@ public class MovieDB extends SQLiteOpenHelper{
     /**
      * This gets the correct movie release year by also taking the name into account
      * as a variable when searching the database
-     * @param title
-     * @param year
+     * @param title the title of the movie
+     * @param year the year of the movie
      * @return the year that the movie came out
      */
     public String getYear(String title, String year) {
@@ -116,8 +116,8 @@ public class MovieDB extends SQLiteOpenHelper{
     /**
      * This method gets the rating by searching for the movie in the database
      * using year and name as variables to search
-     * @param title
-     * @param year
+     * @param title the title of the movie
+     * @param year the year the movie was released
      * @return the rating of the movie as a string
      */
     public String getRating(String title, String year) {
@@ -135,8 +135,8 @@ public class MovieDB extends SQLiteOpenHelper{
     /**
      * This method gets the current # of ratings by searching for the
      * movie in the database by using year and name as variables to search
-     * @param title
-     * @param year
+     * @param title the title of the movie
+     * @param year the year the movie was released
      * @return the num of ratings of the movie as a string
      */
     public int getCurrentNum(String title, String year) {
@@ -153,8 +153,8 @@ public class MovieDB extends SQLiteOpenHelper{
     /**
      * This method gets the user rating by searching for the movie in the database
      * using year and name as variables to search
-     * @param title
-     * @param year
+     * @param title the title of the movie
+     * @param year the year the movie was released
      * @return the  user rating of the movie as a string
      */
     public float getUserRating(String title, String year) {
@@ -173,9 +173,9 @@ public class MovieDB extends SQLiteOpenHelper{
      * This method updates the user rating by adding the new and
      * old rating together
      * @param title name of movie
-     * @param year
-     * @param currentRating
-     * @param newRating
+     * @param year the year the movie was released
+     * @param currentRating the current rating
+     * @param newRating the rating with the new addition
      */
     public void updateUserRating(String title, String year, float currentRating, float newRating){
         SQLiteDatabase db = getWritableDatabase();
@@ -188,9 +188,9 @@ public class MovieDB extends SQLiteOpenHelper{
 
     /**
      * this adds  one to the number of ratings there are
-     * @param title
-     * @param year
-     * @param currentNum
+     * @param title the title of the movie
+     * @param year the year the movie was released
+     * @param currentNum the current rating
      */
     public void incrementNumRating(String title, String year, int currentNum) {
         SQLiteDatabase db = getReadableDatabase();
