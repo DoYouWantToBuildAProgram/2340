@@ -4,12 +4,12 @@ package com.example.erica.recsfromtechs;
  * Recommendation class for objects to be added to our RecsDb
  * Created by Erica on 4/4/2016.
  */
-public class Recs {
+class Recs {
 
-    private String major;
-    private double rating;
-    private String title;
-    private String year;
+    private final String major;
+    private final double rating;
+    private final String title;
+    private final String year;
 
     /**
      * Creates a recommendation

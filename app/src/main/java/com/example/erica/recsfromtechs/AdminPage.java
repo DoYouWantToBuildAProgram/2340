@@ -92,7 +92,7 @@ public class AdminPage extends AppCompatActivity {
     /**
      * This method locks the user that is currently selected
      */
-    public void lock() {
+    public void lock(View view) {
         dbHandler.setLocked(currentUser,1);
         updateTable();
 
@@ -101,7 +101,7 @@ public class AdminPage extends AppCompatActivity {
     /**
      * This method unlocks the user that is currently selected
      */
-    public void unlock() {
+    public void unlock(View view) {
         dbHandler.setLocked(currentUser, 0);
         updateTable();
 
@@ -110,7 +110,7 @@ public class AdminPage extends AppCompatActivity {
     /**
      * This method blocks the user that is currently selected
      */
-    public void block() {
+    public void block(View view) {
         dbHandler.setBlocked(currentUser);
         updateTable();
     }

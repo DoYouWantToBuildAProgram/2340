@@ -8,7 +8,7 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
-public class UserList extends ArrayAdapter<String>{
+class UserList extends ArrayAdapter<String>{
 
     private final Activity context;
     private final String[] name;

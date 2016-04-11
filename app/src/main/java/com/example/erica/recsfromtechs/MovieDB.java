@@ -14,7 +14,7 @@ import android.database.sqlite.SQLiteOpenHelper;
  * database that stores information about movies. It saves information
  * about their name title and the average rating a user gave them.
  */
-public class MovieDB extends SQLiteOpenHelper{
+class MovieDB extends SQLiteOpenHelper{
 
     private static final String DATABASE_NAME = "movies.db";
     private static final String TABLE_MOVIES = "movies";

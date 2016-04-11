@@ -20,8 +20,8 @@ import java.util.LinkedList;
 public class Recommendations extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
 
     Spinner spinner;
-    String item;
-    RecsDB recsDbHandler;
+    private String item;
+    private RecsDB recsDbHandler;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
