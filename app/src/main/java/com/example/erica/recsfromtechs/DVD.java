@@ -58,7 +58,6 @@ public class DVD extends AppCompatActivity {
      */
     private void showDVDReleases(View view) {
 
-        final ArrayList<ArrayList<String>> movieInfo = new ArrayList<>();
 
         String url ="http://api.rottentomatoes.com/api/public/v1.0/lists/dvds/new_releases.json?page_limit=16&page=1&country=us&apikey=yedukp76ffytfuy24zsqk7f5";
         StringRequest stringRequest = new StringRequest(Request.Method.GET, url, new Response.Listener<String>() {
@@ -73,8 +72,6 @@ public class DVD extends AppCompatActivity {
                     // fetch the array of movies in the response
                     JSONArray movies = jsonResponse.getJSONArray("movies");
 
-                    // add each movie's title to an array
-                    String[] movieTitles = new String[movies.length()];
                     for (int i = 0; i < movies.length(); i++) {
                         ArrayList<String> thisMovieArray = new ArrayList<>();
                         JSONObject movie = movies.getJSONObject(i);
@@ -145,6 +142,7 @@ public class DVD extends AppCompatActivity {
                 editCurrentMovie.putString("year", movieYears[position]);
                 editCurrentMovie.commit();
                 editCurrentMovie.putString("rating", ratings[position]);
+                editCurrentMovie.commit();
                 movieDbHandler.addMovie(new Movie(movieNames[position], movieYears[position],ratings[position]));
                 Intent intent = new Intent(DVD.this, MovieActivity.class);
                 startActivity(intent);

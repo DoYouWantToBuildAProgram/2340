@@ -21,13 +21,11 @@ public class Profile extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         SharedPreferences currentUser;
-        SharedPreferences.Editor editCurrentUser;
         MyDBHandler dbHandler;
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile);
 
         currentUser = getSharedPreferences("CurrentUser", MODE_PRIVATE);
-        editCurrentUser = currentUser.edit();
 
         dbHandler = new MyDBHandler(this);
 

@@ -39,8 +39,9 @@ public class webImageGetter extends AsyncTask<String, Void, Bitmap> {
 
     @Override
     protected void onPostExecute(Bitmap result) {
-        System.out.println(thisView == null);
-        thisView.setImageBitmap(result);
+        if (thisView != null) {
+            thisView.setImageBitmap(result);
+        }
     }
 
 }

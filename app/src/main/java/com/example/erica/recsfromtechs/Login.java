@@ -26,8 +26,6 @@ public class Login extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        SharedPreferences passwords;
-        SharedPreferences.Editor editPasswords;
         SharedPreferences currentUser;
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);

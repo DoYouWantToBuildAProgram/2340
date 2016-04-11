@@ -46,7 +46,7 @@ public class UserList extends ArrayAdapter<String>{
 
         txtName.setText(name[position]);
 
-        String blockedString = "";
+        String blockedString;
         if (isBlocked[position] == 0) {
             blockedString = "Is not Blocked";
         } else {

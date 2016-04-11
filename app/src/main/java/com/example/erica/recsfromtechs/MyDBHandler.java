@@ -106,6 +106,7 @@ public class MyDBHandler extends SQLiteOpenHelper {
         if(c.isBeforeFirst()){
             return false;
         }
+        c.close();
         return true;
 
     }
@@ -297,6 +298,7 @@ public class MyDBHandler extends SQLiteOpenHelper {
         if(c.isBeforeFirst()) {
             return true;
         }
+        c.close();
         return false;
     }
     /**
