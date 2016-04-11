@@ -10,6 +10,13 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
+
+/**
+ * This is the activiy for the login screen
+ * you need to enter a password and username
+ * that will be checked in the database
+ * to grant you further access to the app
+ */
 public class Login extends AppCompatActivity {
 
 

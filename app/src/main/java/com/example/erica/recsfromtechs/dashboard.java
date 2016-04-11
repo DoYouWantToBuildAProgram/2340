@@ -1,13 +1,19 @@
+package com.example.erica.recsfromtechs;
 
-        package com.example.erica.recsfromtechs;
-
-        import android.content.Intent;
+import android.content.Intent;
         import android.os.Bundle;
         import android.support.v7.app.AppCompatActivity;
         import android.support.v7.widget.Toolbar;
         import android.view.View;
         import android.widget.TextView;
 
+/**
+ * This is the activity for the Dashboard
+ *
+ * It essentially functions as a menu for the whole
+ * app and lets you choose from a variety of
+ * options
+ */
 public class dashboard extends AppCompatActivity {
 
     @Override
@@ -58,6 +64,11 @@ public class dashboard extends AppCompatActivity {
         startActivity(intent);
     }
 
+    /**
+     * Redirects the user to the page that displys there recommended
+     * movies based on their major.
+     * @param view The current layout with all the Android widgets
+     */
     public void recommendation(View view) {
         Intent intent = new Intent(this, Recommendations.class);
         startActivity(intent);

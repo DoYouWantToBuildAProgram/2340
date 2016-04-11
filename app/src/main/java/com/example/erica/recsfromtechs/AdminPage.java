@@ -12,6 +12,14 @@ import android.widget.Toast;
 
 import java.util.LinkedList;
 
+
+/**
+ * The Activity for the admin page.
+ * This is where you can block, unblock or lock a user
+ * This class gets the user from the database and populates the
+ * listview with it. The user can then click on a user and
+ * select actions to preform.
+ */
 public class AdminPage extends AppCompatActivity {
 
 
@@ -81,26 +89,50 @@ public class AdminPage extends AppCompatActivity {
 
     }
 
+    /**
+     * This method locks the user that is currently selected
+     * @param view the current page
+     */
     public void lock(View view) {
         dbHandler.setLocked(currentUser,1);
         TextView isLocked = (TextView) findViewById(R.id.isLocked);
         updateTable();
 
     }
+
+    /**
+     * This method unlocks the user that is currently selected
+     * @param view the current page
+     */
     public void unlock(View view) {
-        dbHandler.setLocked(currentUser,0);
+        dbHandler.setLocked(currentUser, 0);
         updateTable();
 
     }
+
+    /**
+     * This method blocks the user that is currently selected
+     * @param view the current page
+     */
     public void block(View view) {
         dbHandler.setBlocked(currentUser);
         updateTable();
     }
+
+    /**
+     * This method goes back to
+     * @param view the current page
+     */
     public void back(View view) {
         Intent intent = new Intent(this, dashboard.class);
         startActivity(intent);
     }
 
+    /**
+     * This method will update the table after the user make a
+     * change (block, unblock, etc.) to reflect that change
+     *
+     */
     private void updateTable() {
         TextView isLocked = (TextView) findViewById(R.id.isLocked);
         if(dbHandler.getIsLocked(currentUser) == 0) {

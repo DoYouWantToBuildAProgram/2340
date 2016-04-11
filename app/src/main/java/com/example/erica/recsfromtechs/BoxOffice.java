@@ -26,7 +26,13 @@ import java.util.ArrayList;
  * This method is the Box Office Releases page, which
  * displays movies recently put out in theaters
  * Created by Courtney on 2/25/16.
+ * This method displays the movies that are currently in
+ * the box office. It accesses the Rotten Tomatoes API
+ * and then uses the information found to populate a
+ * listview.
+ *
  */
+
 public class BoxOffice extends AppCompatActivity{
     //private RequestQueue queue2;
     private RequestQueue queue;
@@ -49,8 +55,12 @@ public class BoxOffice extends AppCompatActivity{
         showBoxOfficeMovies(findViewById(R.id.list2));
     }
 
+
     /**
      * Pulls the box office movie info from the API
+     * It then converts it to a JSON object and parses it
+     * once it has all the information it calls the
+     * @method populateListView
      *
      * @param view The current layout with all the Android widgets
      */
@@ -107,7 +117,9 @@ public class BoxOffice extends AppCompatActivity{
     }
 
     /**
-     * Helps to populate the view of the list of movies
+     * Populates the view of the list of movies.
+     * The method also adds the movie to the database
+     * once they are clicked
      *
      * @param movieInfo The info to be displayed
      */
