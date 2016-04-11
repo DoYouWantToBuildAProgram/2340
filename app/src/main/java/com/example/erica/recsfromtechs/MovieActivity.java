@@ -3,24 +3,22 @@ package com.example.erica.recsfromtechs;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.app.Activity;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.View;
-import android.widget.EditText;
-import android.widget.ImageView;
-import android.widget.ListView;
-import android.widget.TextView;
-import android.widget.Toast;
 import android.widget.Button;
 import android.widget.RatingBar;
 import android.widget.TextView;
 
+/**
+ * This is the activity class for the movie
+ *
+ * This page displayes information about the movie
+ * The user can also rate the movie on the page ranging from 0
+ * to 5 stars going in increments of .5 stars
+ * If the user returns to this page after leaving it
+ * the rating will still be there
+ */
 public class MovieActivity extends AppCompatActivity {
-    private SharedPreferences movieInfo;
-    private SharedPreferences.Editor editMovieInfo;
-    private Float rating;
-    private Float prevRating;
     SharedPreferences currentUser;
     SharedPreferences.Editor editCurrentUser;
     MyDBHandler dbHandler;
@@ -32,17 +30,11 @@ public class MovieActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        myApplication appState;
-        SharedPreferences currentUser;
-        SharedPreferences.Editor editCurrentUser;
-        MyDBHandler dbHandler;
-        SharedPreferences.Editor editCurrentMovie;
 
 
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_movie);
-        appState = ((myApplication) this.getApplicationContext());
         dbHandler = new MyDBHandler(this, null);
         currentUser = getSharedPreferences("CurrentUser", MODE_PRIVATE);
         editCurrentUser = currentUser.edit();
@@ -93,9 +85,9 @@ public class MovieActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                //prevRating is the rating the user already gave, only works if they haven't left the page
+                //prevRating is the rating the user already gave, only works if they havent left the page
                 //if they already rated it that rating is removed and replaced with a new rating
-                //new rating is added to the movie objects hash map
+                //new rating is added to the movie objects hashmap
 
                 float newRating = majorRatingBar.getRating();
                 String title = currentMovie.getString("title",null);
@@ -112,20 +104,12 @@ public class MovieActivity extends AppCompatActivity {
         });
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
     }
+
+    /**
+     * this method takes you back to the dashboard
+     * @param view
+     */
     public void backToDashboard(View view) {
         Intent intent = new Intent(this, dashboard.class);
         startActivity(intent);
