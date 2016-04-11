@@ -3,18 +3,21 @@ package com.example.erica.recsfromtechs;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.app.Activity;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.View;
-import android.widget.EditText;
-import android.widget.ImageView;
-import android.widget.ListView;
-import android.widget.TextView;
-import android.widget.Toast;
 import android.widget.Button;
 import android.widget.RatingBar;
+import android.widget.TextView;
 
+/**
+ * This is the activity class for the movie
+ *
+ * This page displayes information about the movie
+ * The user can also rate the movie on the page ranging from 0
+ * to 5 stars going in increments of .5 stars
+ * If the user returns to this page after leaving it
+ * the rating will still be there
+ */
 public class MovieActivity extends AppCompatActivity {
     SharedPreferences currentUser;
     SharedPreferences.Editor editCurrentUser;
@@ -32,10 +35,10 @@ public class MovieActivity extends AppCompatActivity {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_movie);
-        dbHandler = new MyDBHandler(this, null, null, 1);
+        dbHandler = new MyDBHandler(this, null);
         currentUser = getSharedPreferences("CurrentUser", MODE_PRIVATE);
         editCurrentUser = currentUser.edit();
-        movieDbHandler = new MovieDB(this, null, null, 1);
+        movieDbHandler = new MovieDB(this, null);
         recsDbHandler = new RecsDB(this, null, null, 1);
         currentMovie = getSharedPreferences("CurrentMovie",MODE_PRIVATE);
         editCurrentMovie = currentMovie.edit();
@@ -101,20 +104,12 @@ public class MovieActivity extends AppCompatActivity {
         });
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
     }
+
+    /**
+     * this method takes you back to the dashboard
+     * @param view
+     */
     public void backToDashboard(View view) {
         Intent intent = new Intent(this, dashboard.class);
         startActivity(intent);

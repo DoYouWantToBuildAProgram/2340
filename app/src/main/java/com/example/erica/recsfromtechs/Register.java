@@ -16,19 +16,23 @@ import android.widget.Toast;
 
 public class Register extends AppCompatActivity  implements AdapterView.OnItemSelectedListener{
 
-
-    Spinner spinner;
-
-    MyDBHandler dbHandler;
+    private MyDBHandler dbHandler;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        SharedPreferences passwords;
+        SharedPreferences.Editor editPasswords;
+        SharedPreferences userInfo;
+        SharedPreferences.Editor editUserInfo;
+        Spinner spinner;
+
         setContentView(R.layout.activity_register);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        dbHandler = new MyDBHandler(this, null, null, 1);
+        dbHandler = new MyDBHandler(this, null);
         spinner = (Spinner) findViewById(R.id.spinner);
         spinner.setBackgroundColor(getResources().getColor(android.R.color.transparent));
         ArrayAdapter adapter = ArrayAdapter.createFromResource(this, R.array.majors, R.layout.spinner_item);

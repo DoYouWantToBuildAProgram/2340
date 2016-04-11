@@ -9,6 +9,7 @@ import android.widget.Button;
 import android.widget.TextView;
 
 /**
+ * This is the profile page, where you can see a display of user info
  * Created by Niklas on 3/14/2016.
  */
 
@@ -16,20 +17,19 @@ import android.widget.TextView;
 
 public class Profile extends AppCompatActivity {
 
-    SharedPreferences currentUser;
-    SharedPreferences.Editor editCurrentUser;
-    MyDBHandler dbHandler;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        SharedPreferences currentUser;
+        SharedPreferences.Editor editCurrentUser;
+        MyDBHandler dbHandler;
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile);
 
         currentUser = getSharedPreferences("CurrentUser", MODE_PRIVATE);
         editCurrentUser = currentUser.edit();
 
-        dbHandler = new MyDBHandler(this, null, null, 1);
+        dbHandler = new MyDBHandler(this, null);
 
         // make method if user is admin make button clickable'
         Button adminButton = (Button) findViewById(R.id.goToAdminPage);
@@ -56,11 +56,19 @@ public class Profile extends AppCompatActivity {
 
     }
 
+    /**
+     * Switches screens to the edit profile page
+     * @param view the view we're looking at
+     */
     public void goToEditProfile(View view) {
         Intent intent = new Intent(this, EditProfile.class);
         startActivity(intent);
     }
 
+    /**
+     * Switches screens to the admin page
+     * @param view the view we're looking at
+     */
     public void gotToAdminPage(View view) {
         Intent intent = new Intent(this, AdminPage.class);
         startActivity(intent);

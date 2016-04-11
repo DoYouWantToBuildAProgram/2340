@@ -1,16 +1,17 @@
 package com.example.erica.recsfromtechs;
 
-        import android.content.ContentValues;
-        import android.content.Context;
-        import android.database.Cursor;
-        import android.database.sqlite.SQLiteDatabase;
-        import android.database.sqlite.SQLiteOpenHelper;
+import android.content.ContentValues;
+import android.content.Context;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
+import android.database.sqlite.SQLiteOpenHelper;
 
-        import java.util.LinkedList;
+import java.util.LinkedList;
 
 /**
  * This class creates the database used for logging in and editing a profile.
  * It contains all registered users and their info
+ * Created by Courtney on 3/14/16.
  */
 public class MyDBHandler extends SQLiteOpenHelper {
 
@@ -41,7 +42,7 @@ public class MyDBHandler extends SQLiteOpenHelper {
         //This creates all of the columns in our table followed by their data
         // type with a boolean represented as an integer that is either 1 or 0
         String query = "CREATE TABLE " + TABLE_USERS + " ("
-                + COLUMN_USERNAME + " TEXT PRIMARY KEY, "
+                + COLUMN_USERNAME + " TEXT, "
                 + COLUMN_PASSWORD + " TEXT, "
                 + COLUMN_NAME + " TEXT, "
                 + COLUMN_EMAIL + " TEXT, "
@@ -92,6 +93,25 @@ public class MyDBHandler extends SQLiteOpenHelper {
         return true;
     }
 
+    
+    public void deleteUser(String username) {
+        SQLiteDatabase db = getWritableDatabase();
+        db.delete(TABLE_USERS, COLUMN_USERNAME + "= '" + username + "';", null);
+        db.close();
+    }
+
+    public boolean containsUser(String username){
+        SQLiteDatabase db = getReadableDatabase();
+        Cursor c = db.rawQuery("SELECT * FROM " + TABLE_USERS + " WHERE " + COLUMN_USERNAME + " = '" + username + "';", null);
+        c.moveToFirst();
+        if(c.isBeforeFirst()){
+            return false;
+        } else {
+            return true;
+        }
+
+    }
+    
     /**
      * Checks that the username and password entered when logging in is correct
      * @param username The username that the person typed in
@@ -103,8 +123,7 @@ public class MyDBHandler extends SQLiteOpenHelper {
      */
     public boolean authenticateUser(String username, String password) {
         SQLiteDatabase db = getReadableDatabase();
-        //This call is what creates a smaller table, so right now this creates a smaller
-        // table with all of the usernames that match what was inputted
+        //This call is what creates a smaller table, so right now this creates a smaller table with all the usernames that match what was inputted
         Cursor c = db.rawQuery("SELECT * FROM " + TABLE_USERS + " WHERE " + COLUMN_USERNAME + " = '" + username + "';", null);
         //Cursor d = db.rawQuery("SELECT * FROM " + TABLE_USERS + " WHERE " + COLUMN_USERNAME + " = '" + username + "';", null);
         //d.moveToFirst();
@@ -273,6 +292,16 @@ public class MyDBHandler extends SQLiteOpenHelper {
         db.close();
     }
 
+    public boolean authenticateUsername(String username) {
+        SQLiteDatabase db = getReadableDatabase();
+        Cursor c = db.rawQuery("SELECT * FROM " + TABLE_USERS + " WHERE " + COLUMN_USERNAME + " = '" + username + "';", null);
+        c.moveToFirst();
+        if(c.isBeforeFirst()) {
+            return true;
+        } else {
+            return false;
+        }
+    }
     /**
      * changes the password of the user that uses a certain username
      * @param username The username we want to change the password of
@@ -282,7 +311,7 @@ public class MyDBHandler extends SQLiteOpenHelper {
         SQLiteDatabase db = getWritableDatabase();
         ContentValues values = new ContentValues();
         values.put(COLUMN_PASSWORD, newPassword);
-        db.update(TABLE_USERS, values, COLUMN_USERNAME + "= '" + username + "';", null);
+        db.update(TABLE_USERS, values, COLUMN_USERNAME + "= '" + username + "';",null);
         db.close();
     }
 
@@ -295,7 +324,7 @@ public class MyDBHandler extends SQLiteOpenHelper {
         SQLiteDatabase db = getWritableDatabase();
         ContentValues values = new ContentValues();
         values.put(COLUMN_USERNAME, newUsername);
-        db.update(TABLE_USERS, values, COLUMN_USERNAME + "= '" + username + "';", null);
+        db.update(TABLE_USERS, values, COLUMN_USERNAME + "= '" + username + "';",null);
         db.close();
     }
 
@@ -337,46 +366,6 @@ public class MyDBHandler extends SQLiteOpenHelper {
         db.update(TABLE_USERS, values, COLUMN_USERNAME + "= '" + username + "';",null);
         db.close();
     }
-    /**
-     * deletes user from database
-     * @param username The username we want to change the lock status of
-     */
-    public void deleteUser(String username) {
-        SQLiteDatabase db = getWritableDatabase();
-        db.delete(TABLE_USERS, COLUMN_USERNAME + "= '" + username + "';", null);
-        db.close();
-    }
-    /**
-     * Returns boolean of whether the user exists
-     * @param username The username we want to change the lock status of
-     * @return boolean of whether user exists
-     */
-    public boolean containsUser(String username){
-        SQLiteDatabase db = getReadableDatabase();
-        Cursor c = db.rawQuery("SELECT * FROM " + TABLE_USERS + " WHERE " + COLUMN_USERNAME + " = '" + username + "';", null);
-        c.moveToFirst();
-        if(c.isBeforeFirst()){
-            return false;
-        } else {
-            return true;
-        }
-
-    }
-    /**
-     * Makes sure the user exists in system
-     * @param username The username we want to change the lock status of
-     * @return boolean of whether username is okay
-     */
-    public boolean authenticateUsername(String username) {
-        SQLiteDatabase db = getReadableDatabase();
-        Cursor c = db.rawQuery("SELECT * FROM " + TABLE_USERS + " WHERE " + COLUMN_USERNAME + " = '" + username + "';", null);
-        c.moveToFirst();
-        if(c.isBeforeFirst()) {
-            return true;
-        } else {
-            return false;
-        }
-    }
 
     /**
      * changes the block status of the user that uses a certain username
@@ -392,7 +381,3 @@ public class MyDBHandler extends SQLiteOpenHelper {
 
 
 }
-
-
-
-

@@ -10,23 +10,32 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
+
+/**
+ * This is the activiy for the login screen
+ * you need to enter a password and username
+ * that will be checked in the database
+ * to grant you further access to the app
+ */
 public class Login extends AppCompatActivity {
 
 
-    SharedPreferences currentUser;
-    SharedPreferences.Editor editCurrentUser;
+    private SharedPreferences.Editor editCurrentUser;
 
-    MyDBHandler dbHandler;
+    private MyDBHandler dbHandler;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        SharedPreferences passwords;
+        SharedPreferences.Editor editPasswords;
+        SharedPreferences currentUser;
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         currentUser = getSharedPreferences("CurrentUser", MODE_PRIVATE);
         editCurrentUser = currentUser.edit();
-        dbHandler = new MyDBHandler(this, null, null, 1);
+        dbHandler = new MyDBHandler(this, null);
     }
 
     /**

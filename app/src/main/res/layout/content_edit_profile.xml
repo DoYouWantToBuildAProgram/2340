@@ -13,7 +13,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Text1 for name"
+        android:text="@string/name"
         android:id="@+id/name"
         android:padding="10dp"
         android:textSize="20sp"
@@ -24,7 +24,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text = "Text For Username"
+        android:text = "@string/username"
         android:id="@+id/username"
         android:padding="10dp"
         android:textSize="20sp"
@@ -35,7 +35,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text = "Text For Password"
+        android:text = "@string/password"
         android:id="@+id/password"
         android:padding="10dp"
         android:textSize="20sp"
@@ -46,7 +46,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Text2 for email"
+        android:text="@string/email"
         android:id="@+id/email"
         android:padding="10dp"
         android:textSize="20sp"
@@ -57,7 +57,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Text 3 for major"
+        android:text="@string/major"
         android:id="@+id/major"
         android:padding="10dp"
         android:textSize="20sp"
@@ -72,7 +72,7 @@
     <EditText android:id="@+id/newName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:hint="Enter your new name"
+        android:hint="@string/newName"
         android:textColorHint="#FFFFFF"
         android:textColor = "#FFFFFF"
         />
@@ -80,7 +80,7 @@
         android:id="@+id/nameButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Edit Name"
+        android:text="@string/editName"
         android:onClick="editName"
         />
     </LinearLayout>
@@ -91,14 +91,14 @@
         <EditText android:id="@+id/newUsername"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:hint="Enter your new username"
+            android:hint="@string/newUsername"
             android:textColorHint = "#FFFFFF"
             android:textColor = "#FFFFFF"/>
         <Button
             android:id="@+id/usernameButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text = "Edit Username"
+            android:text = "@string/editUsername"
             android:onClick="editUsername"/>
     </LinearLayout>
     <LinearLayout
@@ -108,14 +108,14 @@
         <EditText android:id="@+id/newPassword"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:hint="Enter your new password"
+            android:hint="@string/newPassword"
             android:textColorHint = "#FFFFFF"
             android:textColor = "#FFFFFF"/>
         <Button
             android:id="@+id/passwordButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text = "Edit Password"
+            android:text = "@string/editPassword"
             android:onClick="editPassword"/>
     </LinearLayout>
     <LinearLayout
@@ -125,14 +125,14 @@
     <EditText android:id="@+id/newEmail"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:hint="Enter your new email"
+        android:hint="@string/newEmail"
         android:textColorHint = "#FFFFFF"
         android:textColor = "#FFFFFF"/>
     <Button
         android:id="@+id/emailButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text = "Edit Email"
+        android:text = "@string/editEmail"
         android:onClick="editEmail"/>
     </LinearLayout>
     <LinearLayout
@@ -142,14 +142,14 @@
     <EditText android:id="@+id/newMajor"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:hint="Enter your new major"
+        android:hint="@string/newMajor"
         android:textColorHint = "#FFFFFF"
         android:textColor = "#FFFFFF"/>
     <Button
         android:id="@+id/majorButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text = "Edit Major"
+        android:text = "@string/editMajor"
         android:onClick = "editMajor"/>
     </LinearLayout>
     <Button
