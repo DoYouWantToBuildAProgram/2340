@@ -15,6 +15,15 @@ import android.widget.Toast;
 import android.widget.Button;
 import android.widget.RatingBar;
 
+/**
+ * This is the activity class for the movie
+ *
+ * This page displayes information about the movie
+ * The user can also rate the movie on the page ranging from 0
+ * to 5 stars going in increments of .5 stars
+ * If the user returns to this page after leaving it
+ * the rating will still be there
+ */
 public class MovieActivity extends AppCompatActivity {
     SharedPreferences currentUser;
     SharedPreferences.Editor editCurrentUser;
@@ -115,6 +124,11 @@ public class MovieActivity extends AppCompatActivity {
 
 
     }
+
+    /**
+     * this method takes you back to the dashboard
+     * @param view
+     */
     public void backToDashboard(View view) {
         Intent intent = new Intent(this, dashboard.class);
         startActivity(intent);

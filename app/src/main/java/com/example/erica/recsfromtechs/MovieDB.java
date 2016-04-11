@@ -9,6 +9,9 @@ import android.database.sqlite.SQLiteOpenHelper;
 
 /**
  * Created by Erica on 3/31/2016.
+ * This is the class that handels communication with SQLite
+ * databas that stores information about movies. It saves information
+ * about their name title and the average rating a user gave them.
  */
 public class MovieDB extends SQLiteOpenHelper{
 
@@ -46,6 +49,11 @@ public class MovieDB extends SQLiteOpenHelper{
         onCreate(db);
     }
 
+    /**
+     * this method adds a movie to the database
+     * @param movie the movie that is to be added to the database
+     * @return a boolean stating wether it was successful
+     */
     public boolean addMovie(Movie movie) {
         ContentValues values = new ContentValues();
         SQLiteDatabase db = getWritableDatabase();
@@ -66,6 +74,13 @@ public class MovieDB extends SQLiteOpenHelper{
         return true;
     }
 
+    /**
+     * This gets the correct movie by also taking the year into account
+     * as a variale when searching the databse
+     * @param title
+     * @param year
+     * @return the name of the movie from that year
+     */
     public String getTitle(String title, String year) {
         SQLiteDatabase db = getReadableDatabase();
         Cursor c = db.rawQuery("SELECT * FROM " + TABLE_MOVIES + " WHERE "
@@ -78,6 +93,13 @@ public class MovieDB extends SQLiteOpenHelper{
 
     }
 
+    /**
+     * This gets the correct movie release year by also taking the name into account
+     * as a variale when searching the databse
+     * @param title
+     * @param year
+     * @return the year that the movie came out
+     */
     public String getYear(String title, String year) {
         SQLiteDatabase db = getReadableDatabase();
         Cursor c = db.rawQuery("SELECT * FROM " + TABLE_MOVIES + " WHERE "
@@ -90,6 +112,13 @@ public class MovieDB extends SQLiteOpenHelper{
 
     }
 
+    /**
+     * This method gets the rating by searching for the movie in the databse
+     * using year and name as variables to search
+     * @param title
+     * @param year
+     * @return the rating of the movie as a string
+     */
     public String getRating(String title, String year) {
         SQLiteDatabase db = getReadableDatabase();
         Cursor c = db.rawQuery("SELECT * FROM " + TABLE_MOVIES + " WHERE "
@@ -102,6 +131,13 @@ public class MovieDB extends SQLiteOpenHelper{
 
     }
 
+    /**
+     * This method gets the current # of ratings by searching for the
+     * movie in the database by using year and name as variables to search
+     * @param title
+     * @param year
+     * @return the num of ratings of the movie as a string
+     */
     public int getCurrentNum(String title, String year) {
         SQLiteDatabase db = getReadableDatabase();
         Cursor c = db.rawQuery("SELECT * FROM " + TABLE_MOVIES + " WHERE "
@@ -113,6 +149,13 @@ public class MovieDB extends SQLiteOpenHelper{
         return currentNum;
     }
 
+    /**
+     * This method gets the user rating by searching for the movie in the databse
+     * using year and name as variables to search
+     * @param title
+     * @param year
+     * @return the  user rating of the movie as a string
+     */
     public float getUserRating(String title, String year) {
         SQLiteDatabase db = getReadableDatabase();
         Cursor c = db.rawQuery("SELECT * FROM " + TABLE_MOVIES + " WHERE "
@@ -125,6 +168,14 @@ public class MovieDB extends SQLiteOpenHelper{
 
     }
 
+    /**
+     * This method upadates the user rating by adding the new and
+     * old rating together
+     * @param title name of movie
+     * @param year
+     * @param currentRating
+     * @param newRating
+     */
     public void updateUserRating(String title, String year, float currentRating, float newRating){
         SQLiteDatabase db = getWritableDatabase();
         ContentValues values = new ContentValues();
@@ -134,6 +185,12 @@ public class MovieDB extends SQLiteOpenHelper{
         db.close();
     }
 
+    /**
+     * this adds  one to the number of ratings there are
+     * @param title
+     * @param year
+     * @param currentNum
+     */
     public void incrementNumRating(String title, String year, int currentNum) {
         SQLiteDatabase db = getReadableDatabase();
         ContentValues values = new ContentValues();

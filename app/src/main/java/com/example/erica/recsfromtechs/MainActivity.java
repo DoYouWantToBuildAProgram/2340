@@ -11,7 +11,11 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.content.Intent;
 
-
+/**
+ * The main activity class is the opening activty for the app
+ * you can pick between registering or logging in
+ *
+ */
 public class MainActivity extends AppCompatActivity {
 
 
