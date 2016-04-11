@@ -58,31 +58,21 @@ public class AdminPage extends AppCompatActivity {
         ListView list = (ListView) findViewById(R.id.list3);
         list.setAdapter(adapter);
         list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-
             @Override
             public void onItemClick(AdapterView<?> parent, View view,
                                     int position, long id) {
                 Toast.makeText(AdminPage.this, "You Clicked at " + names[position], Toast.LENGTH_SHORT).show();
-
                 currentUser = names[position];
-
                 TextView selectedUserText = (TextView) findViewById(R.id.currentUser);
                 selectedUserText.setText("Current User: " + currentUser);
                 TextView isLocked = (TextView) findViewById(R.id.isLocked);
                 if(dbHandler.getIsLocked(currentUser) == 0) {
                     isLocked.setText("Is Locked: NO");
-                } else {
-                    isLocked.setText("Is Locked: YES");
-                }
+                } else { isLocked.setText("Is Locked: YES");}
                 TextView isBlocked = (TextView) findViewById(R.id.isblocked);
                 if(dbHandler.getIsBlocked(currentUser) == 0) {
                     isBlocked.setText("Is Blocked: NO");
-                } else {
-                    isBlocked.setText("Is Blocked: YES");
-                }
-
-
-
+                } else {isBlocked.setText("Is Blocked: YES");}
             }
         });
 
