@@ -1,30 +1,19 @@
 package com.example.erica.recsfromtechs;
 import static org.junit.Assert.*;
 
-import android.support.test.espresso.Espresso;
-import android.test.ActivityInstrumentationTestCase2;
+
 import android.support.test.runner.AndroidJUnit4;
 
-import org.junit.Before;
+
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
 import android.support.test.rule.ActivityTestRule;
 
-import static android.support.test.espresso.Espresso.onData;
-import static android.support.test.espresso.Espresso.onView;
-import static android.support.test.espresso.action.ViewActions.click;
-import static android.support.test.espresso.action.ViewActions.closeSoftKeyboard;
-import static android.support.test.espresso.action.ViewActions.typeText;
-import static android.support.test.espresso.assertion.ViewAssertions.matches;
-import static android.support.test.espresso.matcher.ViewMatchers.withId;
-import static android.support.test.espresso.matcher.ViewMatchers.withText;
-import static org.hamcrest.Matchers.instanceOf;
-import static org.hamcrest.Matchers.is;
-import static org.hamcrest.core.AllOf.allOf;
 
 /**
+ * Tests for our EditProfile class
  * Created by Erica on 4/11/2016.
  */
 
@@ -64,16 +53,16 @@ public class EditProfileTest {
     public void changeUsernameSuccess() {
         MyDBHandler testDb = editProfileRule.getActivity().getDb();
 
-        User testUser = new User("Erica", "echia3@gatech.edu", "Computer Science", "e", "mercedes9", 0, 0, 0);
+        User testUser = new User("Erica", "echia3@gatech.edu", "Computer Science", "b", "mercedes9", 0, 0, 0);
         testDb.addUser(testUser);
         User dummy = new User("Courtney", "cbran@gatech.edu", "Business", "cb","password",0,0,0);
         testDb.addUser(dummy);
 
-        editProfileRule.getActivity().changeUsername("e", "cb");
+        editProfileRule.getActivity().changeUsername("b", "cb");
 
-        assertEquals("mercedes9", testDb.getPassword("e"));
+        assertEquals("mercedes9", testDb.getPassword("b"));
         assertEquals("password", testDb.getPassword("cb"));
-        testDb.deleteUser("e");
+        testDb.deleteUser("b");
         testDb.deleteUser("cb");
     }
 
