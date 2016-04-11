@@ -91,20 +91,17 @@ public class AdminPage extends AppCompatActivity {
 
     /**
      * This method locks the user that is currently selected
-     * @param view the current page
      */
-    public void lock(View view) {
+    public void lock() {
         dbHandler.setLocked(currentUser,1);
-        TextView isLocked = (TextView) findViewById(R.id.isLocked);
         updateTable();
 
     }
 
     /**
      * This method unlocks the user that is currently selected
-     * @param view the current page
      */
-    public void unlock(View view) {
+    public void unlock() {
         dbHandler.setLocked(currentUser, 0);
         updateTable();
 
@@ -112,18 +109,16 @@ public class AdminPage extends AppCompatActivity {
 
     /**
      * This method blocks the user that is currently selected
-     * @param view the current page
      */
-    public void block(View view) {
+    public void block() {
         dbHandler.setBlocked(currentUser);
         updateTable();
     }
 
     /**
      * This method goes back to
-     * @param view the current page
      */
-    public void back(View view) {
+    public void back() {
         Intent intent = new Intent(this, dashboard.class);
         startActivity(intent);
     }

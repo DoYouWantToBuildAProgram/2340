@@ -105,9 +105,8 @@ public class MyDBHandler extends SQLiteOpenHelper {
         c.moveToFirst();
         if(c.isBeforeFirst()){
             return false;
-        } else {
-            return true;
         }
+        return true;
 
     }
     
@@ -297,9 +296,8 @@ public class MyDBHandler extends SQLiteOpenHelper {
         c.moveToFirst();
         if(c.isBeforeFirst()) {
             return true;
-        } else {
-            return false;
         }
+        return false;
     }
     /**
      * changes the password of the user that uses a certain username

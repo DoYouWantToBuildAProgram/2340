@@ -34,7 +34,6 @@ import java.util.ArrayList;
  */
 
 public class BoxOffice extends AppCompatActivity{
-    //private RequestQueue queue2;
     private RequestQueue queue;
     private RequestQueue queue2;
     private SharedPreferences currentMovie;
