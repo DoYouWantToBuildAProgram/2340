@@ -44,6 +44,10 @@ public class RecsDB extends SQLiteOpenHelper{
         onCreate(db);
     }
 
+    /**
+     * Adds a recommendation to the database
+     * @param rec the recommendation to be added
+     */
     public void addRec(Recs rec){
         ContentValues values = new ContentValues();
         SQLiteDatabase db = getWritableDatabase();
@@ -55,6 +59,11 @@ public class RecsDB extends SQLiteOpenHelper{
         db.insert(TABLE_RECS, null, values);
     }
 
+    /**
+     * Gives a list of the recommendations
+     * @param major The major we're searching for
+     * @return the list of movies that we'd recommend for that major
+     */
     public LinkedList<Recs> listOfRecs(String major) {
         SQLiteDatabase db = getReadableDatabase();
         Cursor c = db.rawQuery("SELECT * FROM " + TABLE_RECS + " WHERE " + COLUMN_MAJOR + " = '" + major + "';",null);

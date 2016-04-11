@@ -1,9 +1,5 @@
 package com.example.erica.recsfromtechs;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-
 /**
  * Created by Courtney on 2/23/16.
  * This is the object class for a movie. it has a variety
@@ -13,16 +9,6 @@ public class Movie {
     private String title;
     private String rating;
     private String year;
-
-    /**
-     * creates a movie that is not being rated
-     * @param title
-     */
-    public Movie(String title) {
-        this.title = title;
-        rating = "0";
-    }
-
 
     /**
      * creates a movie that is being rated
@@ -45,13 +31,6 @@ public class Movie {
         return title;
     }
 
-    /**
-     * sets the rating
-     * @param newRating
-     */
-    public void setRating(String newRating) {
-        rating = newRating;
-    }
 
     /**
      * @return rating
@@ -60,13 +39,6 @@ public class Movie {
         return rating;
     }
 
-    /**
-     * sets the year of release
-     * @param newYear
-     */
-    public void setyear(String newYear) {
-        year = newYear;
-    }
 
     /**
      * @return year of release
@@ -75,12 +47,5 @@ public class Movie {
         return year;
     }
 
-    /**
-     * sets the title of the movie
-     * @param newTitle
-     */
-    public void setTitle(String newTitle) {
-        title = newTitle;
-    }
 }
 

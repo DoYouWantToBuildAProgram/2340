@@ -29,7 +29,7 @@ import java.util.ArrayList;
  * This method displays the movies that are currently in
  * the box office. It accesses the Rotten Tomatoes API
  * and then uses the information found to populate a
- * listview.
+ * list view.
  *
  */
 
@@ -60,13 +60,13 @@ public class BoxOffice extends AppCompatActivity{
      * Pulls the box office movie info from the API
      * It then converts it to a JSON object and parses it
      * once it has all the information it calls the
-     * @method populateListView
+     * method populateListView
      *
      * @param view The current layout with all the Android widgets
      */
     private void showBoxOfficeMovies(View view) {
 
-        final ArrayList<ArrayList<String>> movieInfo = new ArrayList<>();
+        //final ArrayList<ArrayList<String>> movieInfo = new ArrayList<>();
 
         String url ="http://api.rottentomatoes.com/api/public/v1.0/lists/movies/box_office.json?limit=16&country=us&apikey=yedukp76ffytfuy24zsqk7f5";
         StringRequest stringRequest = new StringRequest(Request.Method.GET, url, new Response.Listener<String>() {
@@ -82,7 +82,7 @@ public class BoxOffice extends AppCompatActivity{
                     JSONArray movies = jsonResponse.getJSONArray("movies");
 
                     // add each movie's title to an array
-                    String[] movieTitles = new String[movies.length()];
+                    //String[] movieTitles = new String[movies.length()];
                     for (int i = 0; i < movies.length(); i++) {
                         ArrayList<String> thisMovieArray = new ArrayList<>();
                         JSONObject movie = movies.getJSONObject(i);

@@ -17,7 +17,7 @@ import java.util.LinkedList;
  * The Activity for the admin page.
  * This is where you can block, unblock or lock a user
  * This class gets the user from the database and populates the
- * listview with it. The user can then click on a user and
+ * list view with it. The user can then click on a user and
  * select actions to preform.
  */
 public class AdminPage extends AppCompatActivity {
@@ -29,7 +29,7 @@ public class AdminPage extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        LinkedList<User> allUsers = new LinkedList<>();
+        LinkedList<User> allUsers;
 
 
         super.onCreate(savedInstanceState);
@@ -95,7 +95,7 @@ public class AdminPage extends AppCompatActivity {
      */
     public void lock(View view) {
         dbHandler.setLocked(currentUser,1);
-        TextView isLocked = (TextView) findViewById(R.id.isLocked);
+        //TextView isLocked = (TextView) findViewById(R.id.isLocked);
         updateTable();
 
     }

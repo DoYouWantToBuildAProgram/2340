@@ -10,8 +10,8 @@ import android.database.sqlite.SQLiteOpenHelper;
 /**
  * This creates and handles our movie database which holds movie info
  * Created by Erica on 3/31/2016.
- * This is the class that handels communication with SQLite
- * databas that stores information about movies. It saves information
+ * This is the class that handles communication with SQLite
+ * database that stores information about movies. It saves information
  * about their name title and the average rating a user gave them.
  */
 public class MovieDB extends SQLiteOpenHelper{
@@ -53,7 +53,7 @@ public class MovieDB extends SQLiteOpenHelper{
     /**
      * this method adds a movie to the database
      * @param movie the movie that is to be added to the database
-     * @return a boolean stating wether it was successful
+     * @return a boolean stating whether it was successful
      */
     public boolean addMovie(Movie movie) {
         ContentValues values = new ContentValues();
@@ -77,9 +77,9 @@ public class MovieDB extends SQLiteOpenHelper{
 
     /**
      * This gets the correct movie by also taking the year into account
-     * as a variale when searching the databse
-     * @param title
-     * @param year
+     * as a variable when searching the database
+     * @param title the title of the movie
+     * @param year the year the movie was released
      * @return the name of the movie from that year
      */
     public String getTitle(String title, String year) {
@@ -96,7 +96,7 @@ public class MovieDB extends SQLiteOpenHelper{
 
     /**
      * This gets the correct movie release year by also taking the name into account
-     * as a variale when searching the databse
+     * as a variable when searching the database
      * @param title
      * @param year
      * @return the year that the movie came out
@@ -114,7 +114,7 @@ public class MovieDB extends SQLiteOpenHelper{
     }
 
     /**
-     * This method gets the rating by searching for the movie in the databse
+     * This method gets the rating by searching for the movie in the database
      * using year and name as variables to search
      * @param title
      * @param year
@@ -151,7 +151,7 @@ public class MovieDB extends SQLiteOpenHelper{
     }
 
     /**
-     * This method gets the user rating by searching for the movie in the databse
+     * This method gets the user rating by searching for the movie in the database
      * using year and name as variables to search
      * @param title
      * @param year
@@ -170,7 +170,7 @@ public class MovieDB extends SQLiteOpenHelper{
     }
 
     /**
-     * This method upadates the user rating by adding the new and
+     * This method updates the user rating by adding the new and
      * old rating together
      * @param title name of movie
      * @param year

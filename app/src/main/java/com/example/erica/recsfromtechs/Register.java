@@ -32,7 +32,7 @@ public class Register extends AppCompatActivity  implements AdapterView.OnItemSe
         setContentView(R.layout.activity_register);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        dbHandler = new MyDBHandler(this, null);
+        dbHandler = new MyDBHandler(this);
         spinner = (Spinner) findViewById(R.id.spinner);
         spinner.setBackgroundColor(getResources().getColor(android.R.color.transparent));
         ArrayAdapter adapter = ArrayAdapter.createFromResource(this, R.array.majors, R.layout.spinner_item);

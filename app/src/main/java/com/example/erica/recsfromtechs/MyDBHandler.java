@@ -31,10 +31,9 @@ public class MyDBHandler extends SQLiteOpenHelper {
     /**
      * constructor for the database
      * @param context The context we're using
-     * @param factory the factor we're using
      */
-    public MyDBHandler(Context context, SQLiteDatabase.CursorFactory factory) {
-        super(context, DATABASE_NAME, factory, DATABASE_VERSION);
+    public MyDBHandler(Context context) {
+        super(context, DATABASE_NAME, null, DATABASE_VERSION);
     }
 
     @Override

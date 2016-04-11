@@ -23,16 +23,16 @@ public class webImageGetter extends AsyncTask<String, Void, Bitmap> {
 
     @Override
     protected Bitmap doInBackground(String... urls) {
-        String urldisplay;
+        String urlDisplay;
 
-        urldisplay = urls[0];
+        urlDisplay = urls[0];
         Bitmap mIcon11 = null;
         try {
-            InputStream in = new java.net.URL(urldisplay).openStream();
+            InputStream in = new java.net.URL(urlDisplay).openStream();
             mIcon11 = BitmapFactory.decodeStream(in);
 
         } catch (Exception e) {
-            System.out.println("Could not find the image at URL:" + urldisplay);
+            System.out.println("Could not find the image at URL:" + urlDisplay);
         }
         return mIcon11;
     }

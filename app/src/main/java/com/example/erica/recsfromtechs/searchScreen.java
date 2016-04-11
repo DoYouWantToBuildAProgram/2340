@@ -29,7 +29,6 @@ public class searchScreen extends AppCompatActivity {
     //private RequestQueue queue2;
     private SharedPreferences.Editor editCurrentMovie;
 
-    private myApplication appState;
 
     private MovieDB movieDbHandler;
 
