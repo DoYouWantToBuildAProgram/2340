@@ -33,6 +33,6 @@
         android:layout_alignParentBottom="true"
         android:layout_alignParentStart="true"
         android:layout_below="@+id/back"
-        android:background="#@color/colorLightGray" />
+        android:background="@color/colorLightGray" />
 
 </RelativeLayout>
