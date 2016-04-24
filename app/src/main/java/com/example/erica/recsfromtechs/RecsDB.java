@@ -13,7 +13,7 @@ import java.util.LinkedList;
  * Database that holds our recommendation objects
  * Created by Erica on 4/1/2016.
  */
-public class RecsDB extends SQLiteOpenHelper{
+class RecsDB extends SQLiteOpenHelper{
 
     private static final String DATABASE_NAME = "recs.db";
     private static final String TABLE_RECS = "recs";
