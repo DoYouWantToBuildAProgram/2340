@@ -15,6 +15,7 @@ import android.widget.Toast;
 public class Register extends AppCompatActivity  implements AdapterView.OnItemSelectedListener{
 
     private MyDBHandler dbHandler;
+    private final int minPassLen = 8;
 
 
     @Override
@@ -58,7 +59,7 @@ public class Register extends AppCompatActivity  implements AdapterView.OnItemSe
                     emailText.getText().toString(), text,
                     usernameText.getText().toString(), passwordText.getText().toString(), 0, 0,0);
         }
-        if (passwordText.getText().toString().length() >= 8 && (emailText.getText().toString().contains("@"))) {
+        if (passwordText.getText().toString().length() >= minPassLen && (emailText.getText().toString().contains("@"))) {
             boolean test = dbHandler.addUser(currentUser);
             if (!test) {
                 int duration = Toast.LENGTH_SHORT;
@@ -71,7 +72,7 @@ public class Register extends AppCompatActivity  implements AdapterView.OnItemSe
                 startActivity(intent);
             }
         } else {
-            if (passwordText.getText().toString().length() < 8) {
+            if (passwordText.getText().toString().length() < minPassLen) {
                 int duration = Toast.LENGTH_SHORT;
                 Context context = getApplicationContext();
                 CharSequence newText = "Password must be at least 8 characters";

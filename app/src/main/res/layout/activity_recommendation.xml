@@ -4,28 +4,15 @@
     android:layout_height="match_parent">
 
 
-    <Spinner
-        android:layout_width="209dp"
+    <android.support.design.widget.AppBarLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textColor="#FFFFFF"
-        android:id="@+id/spinner"
-        android:ems="10"
-        android:hint="@string/majorChoice"
-        android:layout_gravity="center_horizontal" />
+        android:theme="@style/AppTheme.AppBarOverlay">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text=""
-        android:id="@+id/recommendationList" />
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:background="#B9090B"
-        android:textColor="#FFFFFF"
-        android:text = "@string/back"
-        android:onClick = "backToDashboard"
-        android:id="@+id/backToDashboard"
-        />
+
+
+    </android.support.design.widget.AppBarLayout>
+
+    <include layout="@layout/content_recommendation" />
 
 </LinearLayout>

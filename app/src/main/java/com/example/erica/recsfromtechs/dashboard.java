@@ -13,7 +13,7 @@ import android.view.View;
  * app and lets you choose from a variety of
  * options
  */
-public class dashboard extends AppCompatActivity {
+public class Dashboard extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -22,11 +22,10 @@ public class dashboard extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
 
         setSupportActionBar(toolbar);
-
     }
 
     /**
-     * Logs the user out of the dashboard and brings them back to the welcome page
+     * Logs the user out of the Dashboard and brings them back to the welcome page
      */
     public void logout(View view) {
         Intent intent = new Intent(this,MainActivity.class);

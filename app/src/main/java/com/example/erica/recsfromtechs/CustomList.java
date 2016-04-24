@@ -17,20 +17,22 @@ import android.widget.TextView;
  * This particular list is for movies
  *
  * The method uses an Async task to get the image with
- * the class webImageGetter
+ * the class WebImageGetter
  */
 class CustomList extends ArrayAdapter<String>{
 
     private final Activity context;
     private final String[] name;
     private final String[] rating;
-    private final String[] year;
+    //private final String[] year;
     private final String[] imageId;
+
+
     public CustomList(Activity context,
                       String[] name, String[] year, String[] rating, String[] imageId) {
         super(context, R.layout.list_single, name);
 
-        this.year = year;
+        //this.year = year;
         this.context = context;
         this.name = name;
         this.rating = rating;
@@ -60,7 +62,7 @@ class CustomList extends ArrayAdapter<String>{
 
         txtRating.setText(ratingString);
 
-        new webImageGetter(imageView).execute(imageId[position]);
+        new WebImageGetter(imageView).execute(imageId[position]);
 
         return rowView;
     }

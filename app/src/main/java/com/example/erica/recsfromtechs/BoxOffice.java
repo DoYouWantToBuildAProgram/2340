@@ -8,6 +8,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
+import java.util.List;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -121,7 +122,7 @@ public class BoxOffice extends AppCompatActivity{
      *
      * @param movieInfo The info to be displayed
      */
-    private void populateListView(ArrayList<ArrayList<String>> movieInfo) {
+    private void populateListView(List<ArrayList<String>> movieInfo) {
 
         ListView list;
         final String[] movieNames = new String[movieInfo.size()] ;
@@ -162,11 +163,11 @@ public class BoxOffice extends AppCompatActivity{
     }
 
     /**
-     * Allows the user to go back to the dashboard
+     * Allows the user to go back to the Dashboard
      * @param view The current layout with all the Android widgets
      */
     public void backToDashboard(View view) {
-        Intent intent = new Intent(this, dashboard.class);
+        Intent intent = new Intent(this, Dashboard.class);
         startActivity(intent);
     }
 

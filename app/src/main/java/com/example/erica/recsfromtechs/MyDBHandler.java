@@ -7,6 +7,7 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
 import java.util.LinkedList;
+import java.util.List;
 
 /**
  * This class creates the database used for logging in and editing a profile.
@@ -92,12 +93,21 @@ public class MyDBHandler extends SQLiteOpenHelper {
         return true;
     }
 
+    /**
+     * Deletes user from database
+     * @param username Username to be deleted from database
+     */
     
     public void deleteUser(String username) {
         SQLiteDatabase db = getWritableDatabase();
         db.delete(TABLE_USERS, COLUMN_USERNAME + "= '" + username + "';", null);
         db.close();
     }
+    /**
+     * Checks to see if user was in database
+     * @param username Username to be deleted from database
+     * @return boolean of whether it is contained
+     */
 
     public boolean containsUser(String username){
         SQLiteDatabase db = getReadableDatabase();
@@ -148,11 +158,11 @@ public class MyDBHandler extends SQLiteOpenHelper {
      * Provides a list of all the registered users
      * @return A list of user objects that are registered
      */
-    public LinkedList<User> listOfUsers() {
+    public List<User> listOfUsers() {
         SQLiteDatabase db = getReadableDatabase();
         Cursor c = db.rawQuery("SELECT * FROM " + TABLE_USERS, null);
         c.moveToFirst();
-        LinkedList<User> returnList = new LinkedList<>();
+        List<User> returnList = new LinkedList<>();
         while(!c.isAfterLast()) {
             String name = c.getString(c.getColumnIndex(COLUMN_NAME));
             String email = c.getString(c.getColumnIndex(COLUMN_EMAIL));

@@ -111,25 +111,37 @@ public class EditProfileTest {
     public void changeEmailSuccess() {
         MyDBHandler testDb = editProfileRule.getActivity().getDb();
 
-        User testUser = new User("Erica", "echia3@gatech.edu", "Computer Science", "e", "mercedes9", 0, 0, 0);
+        User testUser = new User("Rachel", "rgolding3@gatech.edu", "Computer Science", "r", "mercedes9", 0, 0, 0);
         testDb.addUser(testUser);
 
-        editProfileRule.getActivity().changeEmail("e", "e@gatech.edu");
+        editProfileRule.getActivity().changeEmail("r", "r@gatech.edu");
 
-        assertEquals("e@gatech.edu", testDb.getEmail("e"));
-        testDb.deleteUser("e");
+        assertEquals("r@gatech.edu", testDb.getEmail("r"));
+        testDb.deleteUser("r");
     }
 
     public void changeEmailNoSuccess (){
         MyDBHandler testDb = editProfileRule.getActivity().getDb();
 
-        User testUser = new User("Erica", "echia3@gatech.edu", "Computer Science", "e", "mercedes9", 0, 0, 0);
+        User testUser = new User("Rachel", "rgolding3@gatech.edu", "Computer Science", "r", "mercedes9", 0, 0, 0);
         testDb.addUser(testUser);
 
-        editProfileRule.getActivity().changeEmail("e", "erica");
+        editProfileRule.getActivity().changeEmail("r", "julia");
 
-        assertEquals("echia3@gatech.edu", testDb.getEmail("e"));
+        assertEquals("rgolding3@gatech.edu", testDb.getEmail("r"));
         testDb.deleteUser("e");
+    }
+    @Test
+    public void changeEmailNoSuccess2() {
+        MyDBHandler testDb = editProfileRule.getActivity().getDb();
+
+        User testUser = new User("Julia", "julia3@gatech.edu", "Computer Science", "j", "mercedes9", 0, 0, 0);
+        testDb.addUser(testUser);
+
+        editProfileRule.getActivity().changeEmail("j", "");
+
+        assertEquals("julia3@gatech.edu", testDb.getEmail("j"));
+        testDb.deleteUser("j");
     }
 
 }
