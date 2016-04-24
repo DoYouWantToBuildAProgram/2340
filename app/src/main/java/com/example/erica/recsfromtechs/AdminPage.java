@@ -108,7 +108,7 @@ public class AdminPage extends AppCompatActivity {
      * This method goes back to
      */
     public void back(View view) {
-        Intent intent = new Intent(this, Dashboard.class);
+        Intent intent = new Intent(this, dashboard.class);
         startActivity(intent);
     }
 

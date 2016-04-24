@@ -57,7 +57,7 @@ public class Login extends AppCompatActivity {
         if (dbHandler.authenticateUser(usernameText.getText().toString(), passwordText.getText().toString())) {
             editCurrentUser.putString("username", usernameText.getText().toString());
             editCurrentUser.commit();
-            Intent intent = new Intent(this,Dashboard.class);
+            Intent intent = new Intent(this,dashboard.class);
             startActivity(intent);
 
         } else {
