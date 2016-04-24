@@ -6,6 +6,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.webkit.WebSettings;
 import android.webkit.WebView;
 
 /**
@@ -21,7 +22,8 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         WebView wv = (WebView) findViewById(R.id.webView1);
-        wv.loadUrl("file:///android_asset/logo3.gif");
+        wv.loadUrl("file:///android_asset/logo2.gif");
+        wv.setBackgroundColor(333333);
     }
 
     @Override
