@@ -21,18 +21,18 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
-
+import java.util.List;
 /**
  * This method is the DVD releases page which shows movies recently
  * released to DVD
  * Created by Courtney on 2/25/16.
  */
 public class DVD extends AppCompatActivity {
-    RequestQueue queue;
-    RequestQueue queue2;
-    SharedPreferences currentMovie;
-    SharedPreferences.Editor editCurrentMovie;
-    MovieDB movieDbHandler;
+    private RequestQueue queue;
+    //private RequestQueue queue2;
+    private SharedPreferences currentMovie;
+    private SharedPreferences.Editor editCurrentMovie;
+    private MovieDB movieDbHandler;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,8 +41,12 @@ public class DVD extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         queue = Volley.newRequestQueue(this);
-        queue2 = Volley.newRequestQueue(this);
+        //queue2 = Volley.newRequestQueue(this);
         showDVDReleases(findViewById(R.id.list3));
+        movieDbHandler = new MovieDB(this);
+        currentMovie = getSharedPreferences("CurrentMovie", MODE_PRIVATE);
+        editCurrentMovie = currentMovie.edit();
+        editCurrentMovie.apply();
     }
 
     /**
@@ -55,7 +59,6 @@ public class DVD extends AppCompatActivity {
      */
     private void showDVDReleases(View view) {
 
-        final ArrayList<ArrayList<String>> movieInfo = new ArrayList<>();
 
         String url ="http://api.rottentomatoes.com/api/public/v1.0/lists/dvds/new_releases.json?page_limit=16&page=1&country=us&apikey=yedukp76ffytfuy24zsqk7f5";
         StringRequest stringRequest = new StringRequest(Request.Method.GET, url, new Response.Listener<String>() {
@@ -70,8 +73,6 @@ public class DVD extends AppCompatActivity {
                     // fetch the array of movies in the response
                     JSONArray movies = jsonResponse.getJSONArray("movies");
 
-                    // add each movie's title to an array
-                    String[] movieTitles = new String[movies.length()];
                     for (int i = 0; i < movies.length(); i++) {
                         ArrayList<String> thisMovieArray = new ArrayList<>();
                         JSONObject movie = movies.getJSONObject(i);
@@ -112,7 +113,7 @@ public class DVD extends AppCompatActivity {
      *
      * @param movieInfo The info to be displayed
      */
-    private void populateListView(ArrayList<ArrayList<String>> movieInfo) {
+    private void populateListView(List<ArrayList<String>> movieInfo) {
 
         ListView list;
         final String[] movieNames = new String[movieInfo.size()] ;
@@ -142,6 +143,7 @@ public class DVD extends AppCompatActivity {
                 editCurrentMovie.putString("year", movieYears[position]);
                 editCurrentMovie.commit();
                 editCurrentMovie.putString("rating", ratings[position]);
+                editCurrentMovie.commit();
                 movieDbHandler.addMovie(new Movie(movieNames[position], movieYears[position],ratings[position]));
                 Intent intent = new Intent(DVD.this, MovieActivity.class);
                 startActivity(intent);
@@ -150,7 +152,7 @@ public class DVD extends AppCompatActivity {
     }
 
     /**
-     * Allows the user to go back to the dashboard
+     * Allows the user to go back to the Dashboard
      * @param view The current layout with all the Android widgets
      */
     public void backToDashboard(View view) {

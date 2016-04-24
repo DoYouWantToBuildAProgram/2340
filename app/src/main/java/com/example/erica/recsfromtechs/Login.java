@@ -12,7 +12,7 @@ import android.widget.Toast;
 
 
 /**
- * This is the activiy for the login screen
+ * This is the activity for the login screen
  * you need to enter a password and username
  * that will be checked in the database
  * to grant you further access to the app
@@ -26,8 +26,6 @@ public class Login extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        SharedPreferences passwords;
-        SharedPreferences.Editor editPasswords;
         SharedPreferences currentUser;
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
@@ -35,7 +33,8 @@ public class Login extends AppCompatActivity {
         setSupportActionBar(toolbar);
         currentUser = getSharedPreferences("CurrentUser", MODE_PRIVATE);
         editCurrentUser = currentUser.edit();
-        dbHandler = new MyDBHandler(this, null);
+        editCurrentUser.apply();
+        dbHandler = new MyDBHandler(this);
     }
 
     /**
@@ -48,7 +47,7 @@ public class Login extends AppCompatActivity {
     }
 
     /**
-     * When the user types in a correct username and password, it will take them to the dashboard
+     * When the user types in a correct username and password, it will take them to the Dashboard
      * If not, then it will allow the user to know that one of the two is incorrect
      * @param view The current layout with all the Android widgets
      */

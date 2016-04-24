@@ -8,6 +8,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
+import java.util.List;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -29,29 +30,27 @@ import java.util.ArrayList;
  * This method displays the movies that are currently in
  * the box office. It accesses the Rotten Tomatoes API
  * and then uses the information found to populate a
- * listview.
+ * list view.
  *
  */
 
 public class BoxOffice extends AppCompatActivity{
-    //private RequestQueue queue2;
     private RequestQueue queue;
-    private RequestQueue queue2;
-    private SharedPreferences currentMovie;
     private SharedPreferences.Editor editCurrentMovie;
     private MovieDB movieDbHandler;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        SharedPreferences currentMovie;
         setContentView(R.layout.activity_box_office);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         queue = Volley.newRequestQueue(this);
-        queue2 = Volley.newRequestQueue(this);
-        movieDbHandler = new MovieDB(this, null);
+        movieDbHandler = new MovieDB(this);
         currentMovie = getSharedPreferences("CurrentMovie", MODE_PRIVATE);
         editCurrentMovie = currentMovie.edit();
+        editCurrentMovie.apply();
         showBoxOfficeMovies(findViewById(R.id.list2));
     }
 
@@ -60,13 +59,13 @@ public class BoxOffice extends AppCompatActivity{
      * Pulls the box office movie info from the API
      * It then converts it to a JSON object and parses it
      * once it has all the information it calls the
-     * @method populateListView
+     * method populateListView
      *
      * @param view The current layout with all the Android widgets
      */
     private void showBoxOfficeMovies(View view) {
 
-        final ArrayList<ArrayList<String>> movieInfo = new ArrayList<>();
+        //final ArrayList<ArrayList<String>> movieInfo = new ArrayList<>();
 
         String url ="http://api.rottentomatoes.com/api/public/v1.0/lists/movies/box_office.json?limit=16&country=us&apikey=yedukp76ffytfuy24zsqk7f5";
         StringRequest stringRequest = new StringRequest(Request.Method.GET, url, new Response.Listener<String>() {
@@ -82,7 +81,7 @@ public class BoxOffice extends AppCompatActivity{
                     JSONArray movies = jsonResponse.getJSONArray("movies");
 
                     // add each movie's title to an array
-                    String[] movieTitles = new String[movies.length()];
+                    //String[] movieTitles = new String[movies.length()];
                     for (int i = 0; i < movies.length(); i++) {
                         ArrayList<String> thisMovieArray = new ArrayList<>();
                         JSONObject movie = movies.getJSONObject(i);
@@ -123,7 +122,7 @@ public class BoxOffice extends AppCompatActivity{
      *
      * @param movieInfo The info to be displayed
      */
-    private void populateListView(ArrayList<ArrayList<String>> movieInfo) {
+    private void populateListView(List<ArrayList<String>> movieInfo) {
 
         ListView list;
         final String[] movieNames = new String[movieInfo.size()] ;
@@ -154,6 +153,7 @@ public class BoxOffice extends AppCompatActivity{
                 editCurrentMovie.putString("year", movieYears[position]);
                 editCurrentMovie.commit();
                 editCurrentMovie.putString("rating", ratings[position]);
+                editCurrentMovie.commit();
                 movieDbHandler.addMovie(new Movie(movieNames[position], movieYears[position],ratings[position]));
                 Intent intent = new Intent(BoxOffice.this, MovieActivity.class);
 
@@ -163,7 +163,7 @@ public class BoxOffice extends AppCompatActivity{
     }
 
     /**
-     * Allows the user to go back to the dashboard
+     * Allows the user to go back to the Dashboard
      * @param view The current layout with all the Android widgets
      */
     public void backToDashboard(View view) {

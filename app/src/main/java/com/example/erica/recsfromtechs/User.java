@@ -4,7 +4,7 @@ package com.example.erica.recsfromtechs;
  * Creates a user with the info below
  * Created by Erica on 2/23/2016.
  */
-public class User {
+class User {
 
     private String name;
     private String email;

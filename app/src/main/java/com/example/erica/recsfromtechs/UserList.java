@@ -8,7 +8,7 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
-public class UserList extends ArrayAdapter<String>{
+class UserList extends ArrayAdapter<String>{
 
     private final Activity context;
     private final String[] name;
@@ -34,7 +34,7 @@ public class UserList extends ArrayAdapter<String>{
      * Creates a list view of all the users in the database
      * @param position the position of the user clicked
      * @param view the activity
-     * @param parent viewgroup
+     * @param parent view group
      * @return the view
      */
     @Override
@@ -46,7 +46,7 @@ public class UserList extends ArrayAdapter<String>{
 
         txtName.setText(name[position]);
 
-        String blockedString = "";
+        String blockedString;
         if (isBlocked[position] == 0) {
             blockedString = "Is not Blocked";
         } else {

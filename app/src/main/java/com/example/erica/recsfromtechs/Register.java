@@ -2,7 +2,6 @@ package com.example.erica.recsfromtechs;
 
 import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -11,28 +10,24 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.Spinner;
-import android.widget.TextView;
 import android.widget.Toast;
 
 public class Register extends AppCompatActivity  implements AdapterView.OnItemSelectedListener{
 
     private MyDBHandler dbHandler;
+    private final int minPassLen = 8;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        SharedPreferences passwords;
-        SharedPreferences.Editor editPasswords;
-        SharedPreferences userInfo;
-        SharedPreferences.Editor editUserInfo;
         Spinner spinner;
 
         setContentView(R.layout.activity_register);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        dbHandler = new MyDBHandler(this, null);
+        dbHandler = new MyDBHandler(this);
         spinner = (Spinner) findViewById(R.id.spinner);
         spinner.setBackgroundColor(getResources().getColor(android.R.color.transparent));
         ArrayAdapter adapter = ArrayAdapter.createFromResource(this, R.array.majors, R.layout.spinner_item);
@@ -64,7 +59,7 @@ public class Register extends AppCompatActivity  implements AdapterView.OnItemSe
                     emailText.getText().toString(), text,
                     usernameText.getText().toString(), passwordText.getText().toString(), 0, 0,0);
         }
-        if (passwordText.getText().toString().length() >= 8 && (emailText.getText().toString().contains("@"))) {
+        if (passwordText.getText().toString().length() >= minPassLen && (emailText.getText().toString().contains("@"))) {
             boolean test = dbHandler.addUser(currentUser);
             if (!test) {
                 int duration = Toast.LENGTH_SHORT;
@@ -77,7 +72,7 @@ public class Register extends AppCompatActivity  implements AdapterView.OnItemSe
                 startActivity(intent);
             }
         } else {
-            if (passwordText.getText().toString().length() < 8) {
+            if (passwordText.getText().toString().length() < minPassLen) {
                 int duration = Toast.LENGTH_SHORT;
                 Context context = getApplicationContext();
                 CharSequence newText = "Password must be at least 8 characters";
@@ -104,7 +99,7 @@ public class Register extends AppCompatActivity  implements AdapterView.OnItemSe
 
     @Override
     public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-        TextView myText = (TextView) view;
+
     }
 
     @Override

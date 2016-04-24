@@ -11,7 +11,7 @@ import android.widget.TextView;
 
 import java.util.HashMap;
 import java.util.LinkedList;
-import java.util.List;
+
 
 /**
  * This shows what movies are recommended for a user
@@ -19,17 +19,18 @@ import java.util.List;
  */
 public class Recommendations extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
 
-    Spinner spinner;
-    String item;
-    RecsDB recsDbHandler;
+    private Spinner spinner;
+    private String item;
+    private RecsDB recsDbHandler;
+    private double thresholdRating = 3.5;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_recommendation);
 
-        Spinner spinner;
+        //Spinner spinner;
 
-        recsDbHandler = new RecsDB(this, null, null, 1);
+        recsDbHandler = new RecsDB(this);
         spinner = (Spinner) findViewById(R.id.spinner);
         spinner.setBackgroundColor(getResources().getColor(android.R.color.transparent));
         ArrayAdapter adapter = ArrayAdapter.createFromResource(this,R.array.majors,R.layout.spinner_item);
@@ -48,7 +49,7 @@ public class Recommendations extends AppCompatActivity implements AdapterView.On
         HashMap<String,LinkedList<Double>> movies = new HashMap<>();
         String text = "";
 
-        majorRecs = recsDbHandler.listOfRecs(item);
+        majorRecs = (LinkedList<Recs>) recsDbHandler.listOfRecs(item);
         for(Recs rec:majorRecs){
             System.out.println(rec.getTitle() + " and " + rec.getMajor());
             if(movies.containsKey(rec.getTitle()+ " " + rec.getYear())) {
@@ -67,11 +68,12 @@ public class Recommendations extends AppCompatActivity implements AdapterView.On
                 counter++;
             }
             double average = sum / counter;
-            if(average > 3.5) {
+
+            if (average > thresholdRating) {
                 text += key + " Rating: " + average + "\n";
             }
         }
-        if(text == ""){
+        if (text.equals("")) {
             text = "Sorry no recommendations could be given";
         }
         TextView recView;
@@ -86,7 +88,7 @@ public class Recommendations extends AppCompatActivity implements AdapterView.On
     }
 
     /**
-     * Switches the screen to the dashboard page
+     * Switches the screen to the Dashboard page
      * @param view The view we're looking at
      */
     public void backToDashboard(View view) {

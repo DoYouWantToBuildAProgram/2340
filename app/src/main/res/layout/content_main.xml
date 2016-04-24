@@ -1,12 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context="com.example.erica.recsfromtechs.MainActivity"
+    tools:showIn="@layout/activity_main"
     android:background="#333333"
-    android:weightSum="1"
+    android:orientation="vertical"
     >
+
+
 
     <TextView
         android:id="@+id/header"
@@ -21,31 +26,11 @@
 
         />
 
-    <LinearLayout
-        android:orientation="horizontal"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="#f6f7f2">
 
-        <WebView  xmlns:android="http://schemas.android.com/apk/res/android"
-            android:id="@+id/webView1"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="top|center|right" />
-    </LinearLayout>
-
-    <Space
-        android:layout_width="match_parent"
-        android:layout_height="10dp"
-        android:background= "#3d4141"/>
-    <Space
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:background= "#3d4141"/>
 
     <Button
-        android:layout_width="155dp"
-        android:layout_height="wrap_content"
+        android:layout_width="fill_parent"
+        android:layout_height="60dp"
         android:text="@string/login_button"
         android:onClick="login"
         android:background="#B9090B"
@@ -57,25 +42,25 @@
         android:focusableInTouchMode="true"
         android:visibility="visible"
 
-        android:layout_weight="0.15" />
+        android:layout_weight="0.15"
+        android:layout_above="@+id/button3"
+        android:layout_alignParentStart="true"
+        android:layout_marginBottom="50dp" />
 
-    <Space
-        android:layout_width="match_parent"
-        android:layout_height="30dp" />
+
 
     <Button
-        android:layout_width="154dp"
-        android:layout_height="75dp"
+        android:layout_width="fill_parent"
+        android:layout_height="60dp"
         android:text="@string/register_button"
         android:onClick="register"
         android:textSize="19sp"
         android:background="#B9090B"
         android:textColor="#FFFFFF"
         android:layout_gravity="center_horizontal"
-        android:layout_weight="0.07" />
-
-
-
-
-</LinearLayout>
-
+        android:layout_weight="0.07"
+        android:layout_marginBottom="158dp"
+        android:id="@+id/button3"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentStart="true" />
+</RelativeLayout>

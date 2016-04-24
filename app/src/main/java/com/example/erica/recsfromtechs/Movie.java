@@ -1,28 +1,15 @@
 package com.example.erica.recsfromtechs;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
 
 /**
  * Created by Courtney on 2/23/16.
  * This is the object class for a movie. it has a variety
  * of useful methods that help the app use OOP
  */
-public class Movie {
+class Movie {
     private String title;
     private String rating;
     private String year;
-
-    /**
-     * creates a movie that is not being rated
-     * @param title the title of the movie
-     */
-    public Movie(String title) {
-        this.title = title;
-        rating = "0";
-    }
-
 
     /**
      * creates a movie that is being rated
@@ -66,7 +53,7 @@ public class Movie {
      * Sets the year of release
      * @param newYear the new release year
      */
-    public void setyear(String newYear) {
+    public void setYear(String newYear) {
         year = newYear;
     }
 

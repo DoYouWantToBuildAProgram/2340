@@ -1,7 +1,6 @@
 package com.example.erica.recsfromtechs;
 
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
@@ -10,7 +9,7 @@ import android.view.View;
 import android.webkit.WebView;
 
 /**
- * The main activity class is the opening activty for the app
+ * The main activity class is the opening activity for the app
  * you can pick between registering or logging in
  *
  */
@@ -19,8 +18,6 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        SharedPreferences passwords;
-        SharedPreferences.Editor editPasswords;
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         WebView wv = (WebView) findViewById(R.id.webView1);
