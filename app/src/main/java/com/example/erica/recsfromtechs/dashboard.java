@@ -13,7 +13,7 @@ import android.view.View;
  * app and lets you choose from a variety of
  * options
  */
-public class Dashboard extends AppCompatActivity {
+public class dashboard extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

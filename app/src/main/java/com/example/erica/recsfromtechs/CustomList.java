@@ -62,7 +62,7 @@ class CustomList extends ArrayAdapter<String>{
 
         txtRating.setText(ratingString);
 
-        new WebImageGetter(imageView).execute(imageId[position]);
+        new webImageGetter(imageView).execute(imageId[position]);
 
         return rowView;
     }

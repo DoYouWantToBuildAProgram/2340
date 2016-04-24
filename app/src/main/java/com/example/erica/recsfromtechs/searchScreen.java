@@ -53,7 +53,7 @@ public class searchScreen extends AppCompatActivity {
      * @param view The view we're looking at
      */
     public void backToDashboard(View view) {
-        Intent intent = new Intent(this, Dashboard.class);
+        Intent intent = new Intent(this, dashboard.class);
         startActivity(intent);
     }
 

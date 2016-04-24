@@ -167,7 +167,7 @@ public class BoxOffice extends AppCompatActivity{
      * @param view The current layout with all the Android widgets
      */
     public void backToDashboard(View view) {
-        Intent intent = new Intent(this, Dashboard.class);
+        Intent intent = new Intent(this, dashboard.class);
         startActivity(intent);
     }
 

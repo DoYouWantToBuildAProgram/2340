@@ -7,7 +7,7 @@ import android.widget.ImageView;
 
 import java.io.InputStream;
 
-class WebImageGetter extends AsyncTask<String, Void, Bitmap> {
+class webImageGetter extends AsyncTask<String, Void, Bitmap> {
 
     private final ImageView thisView;
 
@@ -16,7 +16,7 @@ class WebImageGetter extends AsyncTask<String, Void, Bitmap> {
      * @param x the image view
      */
 
-    public WebImageGetter(ImageView x) {
+    public webImageGetter(ImageView x) {
         thisView = x;
 
     }
