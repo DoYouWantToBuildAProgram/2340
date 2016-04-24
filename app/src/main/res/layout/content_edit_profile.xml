@@ -8,153 +8,150 @@
     tools:context="com.example.erica.recsfromtechs.Profile"
     tools:showIn="@layout/activity_edit_profile"
     android:background="#333333"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:weightSum="1">
 
     <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/name"
-        android:id="@+id/name"
+
         android:padding="10dp"
-        android:textSize="20sp"
-        android:textColor="#B9090B"
+        android:textSize="30sp"
         android:textStyle="bold"
-        android:background="#231f20"
-        />
-    <TextView
-        android:layout_width="wrap_content"
+        android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:text = "@string/username"
-        android:id="@+id/username"
-        android:padding="10dp"
-        android:textSize="20sp"
-        android:textColor="#B9090B"
-        android:textStyle="bold"
-        android:background="#231f20"
-        />
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text = "@string/password"
-        android:id="@+id/password"
-        android:padding="10dp"
-        android:textSize="20sp"
-        android:textColor="#B9090B"
-        android:textStyle="bold"
-        android:background="#231f20"
-        />
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/email"
-        android:id="@+id/email"
-        android:padding="10dp"
-        android:textSize="20sp"
-        android:textColor="#B9090B"
-        android:textStyle="bold"
-        android:background="#231f20"
-        />
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/major"
-        android:id="@+id/major"
-        android:padding="10dp"
-        android:textSize="20sp"
-        android:textColor="#B9090B"
-        android:textStyle="bold"
-        android:background="#231f20"
-        />
+        android:text="@string/profile"
+        android:onClick="register"
+        android:textColor="#FFFFFF"
+        android:layout_gravity="center_horizontal"
+        android:id="@+id/textView4"
+
+        android:layout_weight="0.35" />
+
+
     <LinearLayout
+        android:orientation="horizontal"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
-    <EditText android:id="@+id/newName"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:hint="@string/newName"
-        android:textColorHint="#FFFFFF"
-        android:textColor = "#FFFFFF"
-        />
-    <Button
-        android:id="@+id/nameButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/editName"
-        android:onClick="editName"
-        />
-    </LinearLayout>
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
-        <EditText android:id="@+id/newUsername"
-            android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <EditText android:id="@+id/newName"
+            android:inputType=""
+            android:layout_width="200dp"
             android:layout_height="wrap_content"
-            android:hint="@string/newUsername"
-            android:textColorHint = "#FFFFFF"
-            android:textColor = "#FFFFFF"/>
+            android:hint="@string/username"
+            android:textColorHint="#FFFFFF"
+            android:textColor = "#FFFFFF"
+
+            />
+
+
         <Button
-            android:id="@+id/usernameButton"
+            android:id="@+id/nameButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text = "@string/editUsername"
-            android:onClick="editUsername"/>
+            android:text="@string/editName"
+            android:onClick="editName"
+            android:layout_below="@+id/newUsername" />
     </LinearLayout>
+
     <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content">
+
+        <EditText android:id="@+id/newMajor"
+            android:layout_width="200dp"
+            android:text="@string/major"
+            android:layout_height="wrap_content"
+
+            android:textColorHint = "#FFFFFF"
+            android:textColor = "#FFFFFF"
+            />
+
+        <Button
+        android:id="@+id/majorButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
-        <EditText android:id="@+id/newPassword"
-            android:layout_width="wrap_content"
+        android:text = "@string/editMajor"
+        android:onClick = "editMajor"
+ />
+    </LinearLayout>
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content">
+
+        <EditText android:id="@+id/newEmail"
+            android:inputType="textEmailAddress"
+            android:layout_width="200dp"
             android:layout_height="wrap_content"
-            android:hint="@string/newPassword"
+            android:hint="@string/email"
             android:textColorHint = "#FFFFFF"
-            android:textColor = "#FFFFFF"/>
+            android:textColor = "#FFFFFF"
+     />
+
+        <Button
+        android:id="@+id/emailButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text = "@string/editEmail"
+        android:onClick="editEmail"
+ />
+    </LinearLayout>
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content">
+
+        <EditText
+            android:id="@+id/newPassword"
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:hint="@+id/password"
+            android:textColorHint = "#FFFFFF"
+            android:textColor = "#FFFFFF"
+            android:inputType="textPassword" />
+
         <Button
             android:id="@+id/passwordButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text = "@string/editPassword"
-            android:onClick="editPassword"/>
+            android:onClick="editPassword"
+            />
+
     </LinearLayout>
+
     <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
-    <EditText android:id="@+id/newEmail"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:hint="@string/newEmail"
-        android:textColorHint = "#FFFFFF"
-        android:textColor = "#FFFFFF"/>
-    <Button
-        android:id="@+id/emailButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text = "@string/editEmail"
-        android:onClick="editEmail"/>
-    </LinearLayout>
-    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content">
+        <EditText android:id="@+id/newUsername"
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:hint="@+id/username"
+            android:textColorHint = "#FFFFFF"
+            android:textColor = "#FFFFFF"
+            />
+
+        <Button
+            android:id="@+id/usernameButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
-    <EditText android:id="@+id/newMajor"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:hint="@string/newMajor"
-        android:textColorHint = "#FFFFFF"
-        android:textColor = "#FFFFFF"/>
-    <Button
-        android:id="@+id/majorButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text = "@string/editMajor"
-        android:onClick = "editMajor"/>
+            android:text = "@string/editUsername"
+            android:onClick="editUsername"
+ />
     </LinearLayout>
+
     <Button
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text = "@string/back"
-        android:onClick = "backToDashboard"/>
+        android:onClick = "backToDashboard"
+
+        android:textColor="#FFFFFF"
+        android:background="#B9090B"
+        android:textSize="20sp" />
+
+
 </LinearLayout>

@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:context="com.example.erica.recsfromtechs.Profile"
+    tools:context="com.example.erica.recsfromtechs.Movie"
     tools:showIn="@layout/activity_movie"
     android:background="#231f20"
 
@@ -97,7 +97,8 @@
         android:longClickable="true"
         android:numStars="5"
         android:layout_below="@+id/textView3"
-        android:layout_centerHorizontal="true" />
+        android:layout_centerHorizontal="true"
+        android:progressTint="#FFFF00" />
 
     <Button
         android:layout_width="wrap_content"

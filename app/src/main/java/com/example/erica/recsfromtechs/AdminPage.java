@@ -40,17 +40,16 @@ public class AdminPage extends AppCompatActivity {
 
 
 
-        allUsers = dbHandler.listOfUsers();
+        allUsers = (LinkedList<User>) dbHandler.listOfUsers();
 
 
         final String[] names = new String[allUsers.size()];
         int[] isBlocked = new int[allUsers.size()];
 
-        int index = 0;
-        for (User i : allUsers) {
+
+        for (int index = 0; index < allUsers.size(); index++) {
             names[index] = allUsers.get(index).getUsername();
             isBlocked[index] = allUsers.get(index).getIsLocked();
-            index++;
         }
 
         UserList adapter = new
@@ -109,7 +108,7 @@ public class AdminPage extends AppCompatActivity {
      * This method goes back to
      */
     public void back(View view) {
-        Intent intent = new Intent(this, dashboard.class);
+        Intent intent = new Intent(this, Dashboard.class);
         startActivity(intent);
     }
 

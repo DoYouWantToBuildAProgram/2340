@@ -8,6 +8,7 @@ import android.database.Cursor;
 import android.content.ContentValues;
 
 import java.util.LinkedList;
+import java.util.List;
 
 /**
  * Database that holds our recommendation objects
@@ -63,11 +64,11 @@ class RecsDB extends SQLiteOpenHelper{
      * @param major The major we're searching for
      * @return the list of movies that we'd recommend for that major
      */
-    public LinkedList<Recs> listOfRecs(String major) {
+    public List<Recs> listOfRecs(String major) {
         SQLiteDatabase db = getReadableDatabase();
         Cursor c = db.rawQuery("SELECT * FROM " + TABLE_RECS + " WHERE " + COLUMN_MAJOR + " = '" + major + "';",null);
         c.moveToFirst();
-        LinkedList<Recs> recs = new LinkedList<>();
+        List<Recs> recs = new LinkedList<>();
         while(!c.isAfterLast()) {
             String title = c.getString(c.getColumnIndex(COLUMN_TITLE));
             String year = c.getString(c.getColumnIndex(COLUMN_YEAR));

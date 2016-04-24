@@ -47,7 +47,7 @@ public class Login extends AppCompatActivity {
     }
 
     /**
-     * When the user types in a correct username and password, it will take them to the dashboard
+     * When the user types in a correct username and password, it will take them to the Dashboard
      * If not, then it will allow the user to know that one of the two is incorrect
      * @param view The current layout with all the Android widgets
      */
@@ -57,7 +57,7 @@ public class Login extends AppCompatActivity {
         if (dbHandler.authenticateUser(usernameText.getText().toString(), passwordText.getText().toString())) {
             editCurrentUser.putString("username", usernameText.getText().toString());
             editCurrentUser.commit();
-            Intent intent = new Intent(this,dashboard.class);
+            Intent intent = new Intent(this,Dashboard.class);
             startActivity(intent);
 
         } else {
