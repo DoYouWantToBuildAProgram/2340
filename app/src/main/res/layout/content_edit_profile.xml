@@ -7,7 +7,7 @@
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context="com.example.erica.recsfromtechs.Profile"
     tools:showIn="@layout/activity_edit_profile"
-    android:background="#333333"
+    android:background="@color/colorPrimary"
     android:orientation="vertical"
     android:weightSum="1">
 
@@ -20,7 +20,7 @@
         android:layout_height="wrap_content"
         android:text="@string/profile"
         android:onClick="register"
-        android:textColor="#FFFFFF"
+        android:textColor="@color/colorWhite"
         android:layout_gravity="center_horizontal"
         android:id="@+id/textView4"
 
@@ -37,8 +37,8 @@
             android:layout_width="200dp"
             android:layout_height="wrap_content"
             android:hint="@string/username"
-            android:textColorHint="#FFFFFF"
-            android:textColor = "#FFFFFF"
+            android:textColorHint="@color/colorWhite"
+            android:textColor = "@color/colorWhite"
 
             />
 
@@ -62,8 +62,8 @@
             android:text="@string/major"
             android:layout_height="wrap_content"
 
-            android:textColorHint = "#FFFFFF"
-            android:textColor = "#FFFFFF"
+            android:textColorHint = "@color/colorWhite"
+            android:textColor = "@color/colorWhite"
             />
 
         <Button
@@ -85,8 +85,8 @@
             android:layout_width="200dp"
             android:layout_height="wrap_content"
             android:hint="@string/email"
-            android:textColorHint = "#FFFFFF"
-            android:textColor = "#FFFFFF"
+            android:textColorHint = "@color/colorWhite"
+            android:textColor = "@color/colorWhite"
      />
 
         <Button
@@ -108,8 +108,8 @@
             android:layout_width="200dp"
             android:layout_height="wrap_content"
             android:hint="@+id/password"
-            android:textColorHint = "#FFFFFF"
-            android:textColor = "#FFFFFF"
+            android:textColorHint = "@color/colorWhite"
+            android:textColor = "@color/colorWhite"
             android:inputType="textPassword" />
 
         <Button
@@ -130,8 +130,8 @@
             android:layout_width="200dp"
             android:layout_height="wrap_content"
             android:hint="@+id/username"
-            android:textColorHint = "#FFFFFF"
-            android:textColor = "#FFFFFF"
+            android:textColorHint = "@color/colorWhite"
+            android:textColor = "@color/colorWhite"
             />
 
         <Button
@@ -149,7 +149,7 @@
         android:text = "@string/back"
         android:onClick = "backToDashboard"
 
-        android:textColor="#FFFFFF"
+        android:textColor="@color/colorWhite"
         android:background="#B9090B"
         android:textSize="20sp" />
 

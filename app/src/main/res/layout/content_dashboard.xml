@@ -8,7 +8,7 @@
     tools:context=".dashboard"
     tools:showIn="@layout/activity_dashboard"
     android:orientation="vertical"
-    android:background="#333333">
+    android:background="@color/colorPrimary">
 
     <TextView
         android:id="@+id/header"
@@ -17,16 +17,16 @@
         android:layout_height="wrap_content"
         android:padding="10dp"
         android:textSize="40sp"
-        android:textColor="#B9090B"
+        android:textColor="@color/colorAccent"
         android:textStyle="bold"
-        android:background="#231f20"
+        android:background="@color/colorPrimaryDark"
 
         />
 
     <Space
         android:layout_width="match_parent"
         android:layout_height="40dp"
-        android:background= "#3d4141"
+        android:background= "@color/colorPrimaryLight"
         />
 
     <Button
@@ -34,8 +34,8 @@
         android:layout_height="wrap_content"
         android:text="@string/movieSearch"
         android:onClick="movieSearch"
-        android:background="#B9090B"
-        android:textColor="#FFFFFF"
+        android:background="@color/colorAccent"
+        android:textColor="@color/colorWhite"
         android:textStyle = "bold"
         android:layout_gravity="center_horizontal" />
 
@@ -48,8 +48,8 @@
         android:layout_height="wrap_content"
         android:text="@string/title_activity_boxoffice"
         android:onClick="getBoxOffice"
-        android:background="#B9090B"
-        android:textColor="#FFFFFF"
+        android:background="@color/colorAccent"
+        android:textColor="@color/colorWhite"
         android:textStyle = "bold"
         android:layout_gravity="center_horizontal" />
 
@@ -62,8 +62,8 @@
         android:layout_height="wrap_content"
         android:text="@string/title_dvd"
         android:onClick="getDVD"
-        android:background="#B9090B"
-        android:textColor="#FFFFFF"
+        android:background="@color/colorAccent"
+        android:textColor="@color/colorWhite"
         android:textStyle = "bold"
         android:layout_gravity="center_horizontal" />
 
@@ -75,8 +75,8 @@
         android:layout_height="wrap_content"
         android:text="@string/getRecommendation"
         android:onClick="recommendation"
-        android:background="#B9090B"
-        android:textColor="#FFFFFF"
+        android:background="@color/colorAccent"
+        android:textColor="@color/colorWhite"
         android:textStyle = "bold"
         android:layout_gravity="center_horizontal" />
 
@@ -90,8 +90,8 @@
         android:layout_height="wrap_content"
         android:text="@string/title_activity_profile"
         android:onClick="goToProfile"
-        android:background="#B9090B"
-        android:textColor="#FFFFFF"
+        android:background="@color/colorAccent"
+        android:textColor="@color/colorWhite"
         android:textStyle = "bold"
         android:layout_gravity="center_horizontal"/>
 
@@ -104,8 +104,8 @@
         android:layout_height="wrap_content"
         android:text="@string/logout"
         android:onClick="logout"
-        android:background="#B9090B"
-        android:textColor="#FFFFFF"
+        android:background="@color/colorAccent"
+        android:textColor="@color/colorWhite"
         android:textStyle = "bold"
         android:layout_gravity="center_horizontal"
         />

@@ -66,15 +66,16 @@ public class MyDBHandler extends SQLiteOpenHelper {
      * @param user The user info to be added to the table
      * @return boolean value of whether or not the new user has been added
      */
-    public boolean addUser(User user) {
+    public boolean addUser(User user) throws Exception {
         //Gets a user object and puts all the data in its respective column
         ContentValues values = new ContentValues();
         SQLiteDatabase db = getWritableDatabase();
         Cursor c = db.rawQuery("SELECT * FROM " + TABLE_USERS + " WHERE " + COLUMN_USERNAME + " = '" + user.getUsername() + "';", null);
         c.moveToFirst();
+        String encryptPass = getHexString(user.getPassword().getBytes("UTF-8"));
         if (c.isBeforeFirst()) {
             values.put(COLUMN_USERNAME, user.getUsername());
-            values.put(COLUMN_PASSWORD, user.getPassword());
+            values.put(COLUMN_PASSWORD, encryptPass);
             values.put(COLUMN_NAME, user.getName());
             values.put(COLUMN_EMAIL, user.getEmail());
             values.put(COLUMN_MAJOR, user.getMajor());
@@ -90,6 +91,15 @@ public class MyDBHandler extends SQLiteOpenHelper {
         db.close();
         c.close();
         return true;
+    }
+
+    public static String getHexString(byte[] b) throws Exception {
+        String result = "";
+        for (int i=0; i < b.length; i++) {
+            result +=
+                    Integer.toString( ( b[i] & 0xff ) + 0x100, 16).substring( 1 );
+        }
+        return result;
     }
 
     /**
@@ -128,7 +138,7 @@ public class MyDBHandler extends SQLiteOpenHelper {
      *         If they put in the wrong info, or their account is blocked or locked then it will
      *         return false.
      */
-    public boolean authenticateUser(String username, String password) {
+    public boolean authenticateUser(String username, String password) throws Exception {
         SQLiteDatabase db = getReadableDatabase();
         //This call is what creates a smaller table, so right now this creates a smaller table with all the usernames that match what was inputted
         Cursor c = db.rawQuery("SELECT * FROM " + TABLE_USERS + " WHERE " + COLUMN_USERNAME + " = '" + username + "';", null);
@@ -148,7 +158,7 @@ public class MyDBHandler extends SQLiteOpenHelper {
         //d.close();
         c.close();
         db.close();
-        return realPassword.equals(password) && isBlocked != 1 && isLocked != 1;
+        return realPassword.equals(getHexString(password.getBytes("UTF-8"))) && isBlocked != 1 && isLocked != 1;
 
     }
 
@@ -314,10 +324,10 @@ public class MyDBHandler extends SQLiteOpenHelper {
      * @param username The username we want to change the password of
      * @param newPassword the new password the user wants to use
      */
-    public void setPassword(String username, String newPassword) {
+    public void setPassword(String username, String newPassword) throws Exception {
         SQLiteDatabase db = getWritableDatabase();
         ContentValues values = new ContentValues();
-        values.put(COLUMN_PASSWORD, newPassword);
+        values.put(COLUMN_PASSWORD, getHexString(newPassword.getBytes("UTF-8")));
         db.update(TABLE_USERS, values, COLUMN_USERNAME + "= '" + username + "';",null);
         db.close();
     }
