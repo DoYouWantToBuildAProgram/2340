@@ -7,7 +7,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 
 /**
- * This is the activity for the Dashboard
+ * This is the activity for the dashboard
  *
  * It essentially functions as a menu for the whole
  * app and lets you choose from a variety of

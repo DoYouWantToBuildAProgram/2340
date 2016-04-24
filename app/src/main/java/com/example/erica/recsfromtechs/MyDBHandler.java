@@ -92,13 +92,21 @@ public class MyDBHandler extends SQLiteOpenHelper {
         return true;
     }
 
-    
+    /**
+     * This deletes a user from the database
+     * @param username Deletes the column with this username
+     */
     public void deleteUser(String username) {
         SQLiteDatabase db = getWritableDatabase();
         db.delete(TABLE_USERS, COLUMN_USERNAME + "= '" + username + "';", null);
         db.close();
     }
 
+    /**
+     * Checks to see if the database has a user
+     * @param username the username we're searching for
+     * @return true if it exists in the database and false if not
+     */
     public boolean containsUser(String username){
         SQLiteDatabase db = getReadableDatabase();
         Cursor c = db.rawQuery("SELECT * FROM " + TABLE_USERS + " WHERE " + COLUMN_USERNAME + " = '" + username + "';", null);
