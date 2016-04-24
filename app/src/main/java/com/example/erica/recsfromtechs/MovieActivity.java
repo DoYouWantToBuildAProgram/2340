@@ -109,7 +109,7 @@ public class MovieActivity extends AppCompatActivity {
     }
 
     /**
-     * this method takes you back to the dashboard
+     * this method takes you back to the Dashboard
      * @param view the current sc
      */
     public void backToDashboard(View view) {

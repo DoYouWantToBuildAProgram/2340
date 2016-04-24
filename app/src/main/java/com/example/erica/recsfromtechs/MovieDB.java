@@ -54,7 +54,7 @@ class MovieDB extends SQLiteOpenHelper{
      * @param movie the movie that is to be added to the database
      * @return a boolean stating whether it was successful
      */
-    public boolean addMovie(Movie movie) {
+    public void addMovie(Movie movie) {
         ContentValues values = new ContentValues();
         SQLiteDatabase db = getWritableDatabase();
         Cursor c = db.rawQuery("SELECT * FROM " + TABLE_MOVIES + " WHERE " + COLUMN_TITLE + " = '" + movie.getTitle() + "' AND " + COLUMN_YEAR + " = '" + movie.getYear()+ "';", null);
@@ -66,12 +66,9 @@ class MovieDB extends SQLiteOpenHelper{
             values.put(COLUMN_YEAR, movie.getYear());
             values.put(COLUMN_NUMRATING,0);
             db.insert(TABLE_MOVIES, null, values);
-        } else {
-            return false;
         }
         c.close();
         db.close();
-        return true;
     }
 
     /**

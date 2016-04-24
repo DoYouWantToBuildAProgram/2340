@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -24,11 +24,7 @@
         />
 
 
-    <Space
-        android:layout_width="match_parent"
-        android:layout_height="100dp"
-        android:background= "#3d4141"
-        />
+
 
     <EditText android:id="@+id/username"
         android:layout_width="209dp"
@@ -36,7 +32,11 @@
         android:hint="@string/username"
         android:textColorHint="#FFFFFF"
         android:textColor="#FFFFFF"
-        android:layout_gravity="center_horizontal" />
+        android:layout_gravity="center_horizontal"
+        android:layout_above="@+id/password"
+        android:layout_alignStart="@+id/password"
+        android:layout_marginBottom="10dp"
+        android:layout_alignEnd="@+id/password" />
 
     <EditText android:id="@+id/password"
         android:layout_width="209dp"
@@ -46,34 +46,31 @@
         android:hint="@string/password"
         android:layout_gravity="center_horizontal"
         android:textColorHint="#FFFFFF"
-        android:textColor="#FFFFFF" />
+        android:textColor="#FFFFFF"
+        android:layout_centerVertical="true"
+        android:layout_alignStart="@+id/loginButton"
+        android:layout_alignEnd="@+id/loginButton" />
 
 
-    <Space
-        android:layout_width="match_parent"
-        android:layout_height="30dp"
-        android:layout_gravity="center_horizontal"
-        />
+
 
     <Button android:id="@+id/loginButton"
-        android:layout_width="wrap_content"
+        android:layout_width="212dp"
         android:layout_height="wrap_content"
         android:text="@string/login_button"
         android:onClick="loginSuccessful"
         android:textStyle="bold"
-        android:layout_gravity="end"
         android:background="#B9090B"
         android:textColor="#FFFFFF"
-        />
+        android:layout_above="@+id/button2"
+        android:layout_alignStart="@+id/button2"
+        android:layout_marginBottom="43dp"
+        android:layout_alignEnd="@+id/button2" />
 
-    <Space
-        android:layout_width="match_parent"
-        android:layout_height="30dp"
-        android:layout_gravity="end"
-        android:background="#6a737b"/>
+
 
     <Button
-        android:layout_width="wrap_content"
+        android:layout_width="300dp"
         android:layout_height="wrap_content"
         android:text="@string/cancel"
         android:onClick="cancel"
@@ -82,13 +79,11 @@
         android:clickable="true"
         android:background="#B9090B"
         android:textColor="#FFFFFF"
-        />
-
-    <Space
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_gravity="end"
-        android:background="#6a737b"/>
+        android:layout_marginBottom="99dp"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:id="@+id/button2" />
 
 
-</LinearLayout>
+
+</RelativeLayout>

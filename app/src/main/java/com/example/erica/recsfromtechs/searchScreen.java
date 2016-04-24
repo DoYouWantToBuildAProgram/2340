@@ -22,6 +22,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class searchScreen extends AppCompatActivity {
 
@@ -48,7 +49,7 @@ public class searchScreen extends AppCompatActivity {
     }
 
     /**
-     * Switches screens to the dashboard page
+     * Switches screens to the Dashboard page
      * @param view The view we're looking at
      */
     public void backToDashboard(View view) {
@@ -126,14 +127,14 @@ public class searchScreen extends AppCompatActivity {
      * Provides a UI display to see the list of movies searched for
      * @param movieInfo All of the movie info to be included
      */
-    private void populateListView(ArrayList<ArrayList<String>> movieInfo) {        ListView list;
+    private void populateListView(List<ArrayList<String>> movieInfo) {        ListView list;
         final String[] movieNames = new String[movieInfo.size()] ;
         final String[] movieYears = new String[movieInfo.size()] ;
         final String[] ratings = new String[movieInfo.size()] ;
         final String[] images = new String[movieInfo.size()];
 
         int i = 0;
-        for (ArrayList<String> e : movieInfo) {
+        for (List<String> e : movieInfo) {
             movieNames[i] = e.get(0);
             movieYears[i] = e.get(1);
             ratings[i] = e.get(2);

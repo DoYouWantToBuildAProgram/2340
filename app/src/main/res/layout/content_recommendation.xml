@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context="com.example.erica.recsfromtechs.Recommendations"
+    tools:showIn="@layout/activity_recommendation"
+    android:background="#333333"
+    android:orientation="vertical"
+    >
+
+
+
+    <Spinner
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="#FFFFFF"
+        android:textColorHint="#FFFFFF"
+        android:id="@+id/spinner"
+        android:ems="10"
+        android:hint="@string/majorChoice"
+        android:layout_gravity="center_horizontal"
+        android:backgroundTint="#FFFFFF"
+        android:spinnerMode="dropdown" />
+
+    <TextView
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text=""
+        android:id="@+id/recommendationList"
+        android:textColor="#FFFFFF"
+        android:layout_below="@+id/spinner"
+        android:layout_alignParentStart="true"
+
+        android:padding="10dp"
+        android:textSize="20sp"
+
+        android:textStyle="bold"
+        android:background="#231f20"/>
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="#B9090B"
+        android:textColor="#FFFFFF"
+        android:text = "@string/back"
+        android:onClick = "backToDashboard"
+        android:id="@+id/backToDashboard"
+        android:layout_alignParentBottom="true" />
+</RelativeLayout>

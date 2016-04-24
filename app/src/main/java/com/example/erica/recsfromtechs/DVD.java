@@ -21,7 +21,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
-
+import java.util.List;
 /**
  * This method is the DVD releases page which shows movies recently
  * released to DVD
@@ -29,7 +29,7 @@ import java.util.ArrayList;
  */
 public class DVD extends AppCompatActivity {
     private RequestQueue queue;
-    private RequestQueue queue2;
+    //private RequestQueue queue2;
     private SharedPreferences currentMovie;
     private SharedPreferences.Editor editCurrentMovie;
     private MovieDB movieDbHandler;
@@ -41,7 +41,7 @@ public class DVD extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         queue = Volley.newRequestQueue(this);
-        queue2 = Volley.newRequestQueue(this);
+        //queue2 = Volley.newRequestQueue(this);
         showDVDReleases(findViewById(R.id.list3));
         movieDbHandler = new MovieDB(this);
         currentMovie = getSharedPreferences("CurrentMovie", MODE_PRIVATE);
@@ -113,7 +113,7 @@ public class DVD extends AppCompatActivity {
      *
      * @param movieInfo The info to be displayed
      */
-    private void populateListView(ArrayList<ArrayList<String>> movieInfo) {
+    private void populateListView(List<ArrayList<String>> movieInfo) {
 
         ListView list;
         final String[] movieNames = new String[movieInfo.size()] ;
@@ -152,7 +152,7 @@ public class DVD extends AppCompatActivity {
     }
 
     /**
-     * Allows the user to go back to the dashboard
+     * Allows the user to go back to the Dashboard
      * @param view The current layout with all the Android widgets
      */
     public void backToDashboard(View view) {

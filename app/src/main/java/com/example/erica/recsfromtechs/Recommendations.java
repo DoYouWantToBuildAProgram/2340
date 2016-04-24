@@ -19,15 +19,16 @@ import java.util.LinkedList;
  */
 public class Recommendations extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
 
-    Spinner spinner;
+    private Spinner spinner;
     private String item;
     private RecsDB recsDbHandler;
+    private double thresholdRating = 3.5;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_recommendation);
 
-        Spinner spinner;
+        //Spinner spinner;
 
         recsDbHandler = new RecsDB(this);
         spinner = (Spinner) findViewById(R.id.spinner);
@@ -48,7 +49,7 @@ public class Recommendations extends AppCompatActivity implements AdapterView.On
         HashMap<String,LinkedList<Double>> movies = new HashMap<>();
         String text = "";
 
-        majorRecs = recsDbHandler.listOfRecs(item);
+        majorRecs = (LinkedList<Recs>) recsDbHandler.listOfRecs(item);
         for(Recs rec:majorRecs){
             System.out.println(rec.getTitle() + " and " + rec.getMajor());
             if(movies.containsKey(rec.getTitle()+ " " + rec.getYear())) {
@@ -67,7 +68,8 @@ public class Recommendations extends AppCompatActivity implements AdapterView.On
                 counter++;
             }
             double average = sum / counter;
-            if(average > 3.5) {
+
+            if (average > thresholdRating) {
                 text += key + " Rating: " + average + "\n";
             }
         }
@@ -86,7 +88,7 @@ public class Recommendations extends AppCompatActivity implements AdapterView.On
     }
 
     /**
-     * Switches the screen to the dashboard page
+     * Switches the screen to the Dashboard page
      * @param view The view we're looking at
      */
     public void backToDashboard(View view) {

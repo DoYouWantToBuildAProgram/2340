@@ -45,8 +45,8 @@ public class Profile extends AppCompatActivity {
         nameText.setText(dbHandler.getName(currentUser.getString("username",null)));
         TextView usernameText = (TextView) findViewById(R.id.username);
         usernameText.setText(currentUser.getString("username",null));
-        TextView passwordText = (TextView) findViewById(R.id.password);
-        passwordText.setText(dbHandler.getPassword(currentUser.getString("username",null)));
+        //TextView passwordText = (TextView) findViewById(R.id.password);
+        //passwordText.setText(dbHandler.getPassword(currentUser.getString("username",null)));
         TextView majorText = (TextView) findViewById(R.id.major);
         majorText.setText(dbHandler.getMajor(currentUser.getString("username",null)));
         TextView emailText = (TextView) findViewById(R.id.email);
@@ -69,6 +69,10 @@ public class Profile extends AppCompatActivity {
      */
     public void gotToAdminPage(View view) {
         Intent intent = new Intent(this, AdminPage.class);
+        startActivity(intent);
+    }
+    public void backToDashboard(View view) {
+        Intent intent = new Intent(this, dashboard.class);
         startActivity(intent);
     }
 }

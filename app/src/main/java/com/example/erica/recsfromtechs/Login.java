@@ -47,7 +47,7 @@ public class Login extends AppCompatActivity {
     }
 
     /**
-     * When the user types in a correct username and password, it will take them to the dashboard
+     * When the user types in a correct username and password, it will take them to the Dashboard
      * If not, then it will allow the user to know that one of the two is incorrect
      * @param view The current layout with all the Android widgets
      */
