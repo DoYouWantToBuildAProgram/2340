@@ -1,6 +1,7 @@
 package com.example.erica.recsfromtechs;
 
 
+
 /**
  * Created by Courtney on 2/23/16.
  * This is the object class for a movie. it has a variety
