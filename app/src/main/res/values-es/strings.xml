@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+<string name="app_name">RecsDeTechs</string>
+<string name="login_button">Iniciar Sesión</string>
+<string name="register_button">Registrar</string>
+<string name="title">Recs De Techs</string>
+<string name="action_settings">Ajustes</string>
+<string name="title_activity_login">Iniciar Sesión</string>
+<string name="username">Nombre de Usario</string>
+<string name="password">Contraseña</string>
+<string name="title_activity_register">Registrar</string>
+<string name="title_activity_recommendations">Recomendaciones</string>
+<string name="cancel">Cancelar</string>
+<string name="title_activity_dashboard">Tablero de Instrumentos</string>
+<string name="dashboard">Tablero de Mandos</string>
+<string name="title_activity_edit_profile">Editar Perfil</string>
+<string name="logout">Cerrar Sesión</string>
+<string name="createuser">Crear un Nombre de Usuario</string>
+<string name="createpass">Crear un Contreseña</string>
+<string name="major">Introduce tu Especializarse de Estudios</string>
+<string name="email">Introduce tu Correo Electrónico</string>
+<string name="title_activity_profile">Perfil</string>
+<string name="title_activity_boxoffice">Películas de Taquilla</string>
+<string name="title_dvd">Lanzamientos de DVD</string>
+<string name="name">Nombre</string>
+<string name="searchScreen">Pantalla de Búsqueda</string>
+<string name="back">Volver al Tablero de Mandos</string>
+<string name="majorChoice">Elija tu Especializarse de Estudios</string>
+<string name="newName">Introduzca tu Nuevo Nombre</string>
+<string name="editName">Editar Nombre</string>
+<string name="newUsername">Introduzca tu Nuevo Nombre de Usario</string>
+<string name="editUsername">Editar tu Nombre de Usario</string>
+<string name="newPassword">Introduzca tu Nuevo Contraseña</string>
+<string name="editPassword">Editar tu Contraseña</string>
+<string name="editEmail">Editar tu Correo Electrónico</string>
+<string name="newMajor">Ilija tu Nuevo Especializarse de Estudios</string>
+<string name="editMajor">Editar tu Especializarse de Estudios</string>
+<string name="newEmail">Introduzca tu Nuevo Correo Electrónico</string>
+<string name="movieTitle">Título de la Película</string>
+<string name="movieYear">Año de Cine</string>
+<string name="movieRating">Clasificación de la Película</string>
+<string name="yearReleased">Año de Lanzamiento</string>
+<string name="criticRating">Puntuación Crítico</string>
+<string name="rateMovie">Calificar la Película</string>
+<string name="rate">Calificar!</string>
+<string name="emailProfileScreen">Correo Electrónico:  </string>
+<string name="majorProfileScreen">Especializarse de Estudios:  </string>
+<string name="passwordProfileScreen">Contraseña:  </string>
+<string name="nameProfileScreen">Nombre:  </string>
+<string name="usernameProfileScreen">Nombre de Usario:  </string>
+<string name="editProfile">Editar Perfil</string>
+<string name="adminPage">Página de Administrador</string>
+<string name="currentUser">Usario Actual: </string>
+<string name="lock">Trabar</string>
+<string name="unlock">Abrir Cerradura</string>
+<string name="block">Bloquear</string>
+<string name="isBlocked">Está Bloqueado: </string>
+<string name="isLocked">Está trabeado: </string>
+<string name="movieSearch">Buscar por Películas</string>
+<string name="getRecommendation">Obtener Recomendaciones</string>
+<string name="adminPass">Si eres adminstrador, entrar la contraseña</string>
+<string name="image">imagen</string>
+<string name="profile">Editar Perfil</string>
+<string name="myProfile">Mi Perfil</string>
+<string name="search">Buscar</string>
+<string name="title_activity_movie">Actividad de las Películas</string>
+<string-array name="majors">
+    <item>Seleccione su Especializado de Estudio</item>
+    <item>Ciencias de la Computación</item>
+    <item>Ingenieria</item>
+    <item>Negocio</item>
+    <item>Ciencias</item>
+    <item>Otro</item>
+</string-array>
+<string name="title_activity_admin_page">Página de Administración</string>
+</resources>
