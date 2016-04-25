@@ -93,6 +93,12 @@ public class MyDBHandler extends SQLiteOpenHelper {
         return true;
     }
 
+    /**
+     * Encrypts the password using SHA1 technique
+     * @param b A byte array of the password string
+     * @return A new string as a hex string representing the password
+     * @throws Exception the possible exception that could be thrown
+     */
     public static String getHexString(byte[] b) throws Exception {
         String result = "";
         for (int i=0; i < b.length; i++) {
