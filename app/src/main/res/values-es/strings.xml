@@ -63,8 +63,14 @@
 <string name="profile">Editar Perfil</string>
 <string name="myProfile">Mi Perfil</string>
 <string name="search">Buscar</string>
+
 <string name="title_activity_movie">Actividad de las Películas</string>
-<string-array name="majors">
+    <string name="noRating">Esta película no tiene una clasificación.</string>
+    <string name="noRec">Lo siento, no recomendaciones existen.</string>
+
+
+
+    <string-array name="majors">
     <item>Seleccione su Especializado de Estudio</item>
     <item>Ciencias de la Computación</item>
     <item>Ingenieria</item>

@@ -70,11 +70,11 @@ public class Recommendations extends AppCompatActivity implements AdapterView.On
             double average = sum / counter;
 
             if (average > thresholdRating) {
-                text += key + " Rating: " + average + "\n";
+                text += key + " " + getResources().getString(R.string.movieRating) + ": " + average + "\n";
             }
         }
         if (text.equals("")) {
-            text = "Sorry no recommendations could be given";
+            text = getResources().getString(R.string.noRec);
         }
         TextView recView;
         recView =(TextView)findViewById(R.id.recommendationList);

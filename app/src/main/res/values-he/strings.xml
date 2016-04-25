@@ -62,28 +62,9 @@
     <string name="profile">Edit Profile</string>
     <string name="myProfile">My Profile</string>
     <string name="search">Search</string>
+    <string name="title_activity_movie">MovieActivity</string>
     <string name="noRating">This movie has no rating.</string>
     <string name="noRec">Sorry, no recommendations could be given.</string>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    <string name="title_activity_movie">MovieActivity</string>
 
     <string-array name="majors">
         <item>Select your Major</item>

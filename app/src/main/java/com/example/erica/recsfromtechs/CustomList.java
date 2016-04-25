@@ -54,13 +54,16 @@ class CustomList extends ArrayAdapter<String>{
         //Format the rating string
         String ratingString;
         if (rating[position].equals ("-1")) {
-            ratingString = "This movie has no rating";
+            txtRating.setText(context.getResources().getString(R.string.noRating));
+
+            //ratingString = "This movie has no rating";
         } else {
-            ratingString = "Critics Rating: " +  rating[position];
+            txtRating.setText(context.getResources().getString(R.string.criticRating) + ": " + rating[position]);
+            //ratingString = rating[position];
         }
 
 
-        txtRating.setText(ratingString);
+        //txtRating.setText(context.getResources().getString(R.string.criticRating) + ": " + ratingString);
 
         new webImageGetter(imageView).execute(imageId[position]);
 
