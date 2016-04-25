@@ -1,14 +1,20 @@
 package com.example.erica.recsfromtechs;
 
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.text.InputType;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
+
+
 
 public class Login extends AppCompatActivity {
 
@@ -16,6 +22,7 @@ public class Login extends AppCompatActivity {
     SharedPreferences.Editor editPasswords;
     SharedPreferences currentUser;
     SharedPreferences.Editor editCurrentUser;
+
 
     MyDBHandler dbHandler;
 
@@ -25,13 +32,14 @@ public class Login extends AppCompatActivity {
         setContentView(R.layout.activity_login);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        passwords  = getSharedPreferences("MyPref", MODE_PRIVATE);
+        passwords = getSharedPreferences("MyPref", MODE_PRIVATE);
         editPasswords = passwords.edit();
         currentUser = getSharedPreferences("CurrentUser", MODE_PRIVATE);
         editCurrentUser = currentUser.edit();
         EditText usernameText = (EditText) findViewById(R.id.username);
         EditText passwordText = (EditText) findViewById(R.id.password);
         dbHandler = new MyDBHandler(this, null, null, 1);
+
     }
 
     /**
@@ -54,23 +62,10 @@ public class Login extends AppCompatActivity {
         if (dbHandler.authenticateUser(usernameText.getText().toString(), passwordText.getText().toString())) {
             editCurrentUser.putString("username", usernameText.getText().toString());
             editCurrentUser.commit();
+            // Configure sign-in to request the user's ID, email address, and basic profile. ID and
+
+
             Intent intent = new Intent(this,dashboard.class);
-            //this sends the user name to the dashboard
-            //called "extra", it is essentially a map
-            //"user" is our key
-            /* Not sure what any of this does, so I commented it out for now
-            Intent oldIntent = getIntent();
-            String userName = oldIntent.getStringExtra("userName");
-            String userEmail = oldIntent.getStringExtra("userEmail");
-            String userMajor = oldIntent.getStringExtra("userMajor");
-            Bundle bundle = new Bundle();
-            bundle.putString("userName",userName);
-            bundle.putString("userEmail", userEmail);
-            bundle.putString("userMajor", userMajor);
-            bundle.putString("user", usernameText.getText().toString());
-            intent.putExtras(bundle);
-            Log.v("welcome", "input" + usernameText.getText());
-            */
             startActivity(intent);
 
         } else {
@@ -81,6 +76,72 @@ public class Login extends AppCompatActivity {
             toast.show();
         }
 
+    }
+
+    public void resetPassword(View view){
+
+        String newPass = "";
+        for(int i =0; i<12; i++){
+            newPass += (char) Math.random()%93 + 33;
+
+        }
+        final String newPassFinal = newPass;
+
+
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("Input Email");
+
+
+        final EditText input = new EditText(this);
+
+        input.setInputType(
+                InputType.TYPE_CLASS_TEXT
+        );
+        builder.setView(input);
+
+
+        builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                String email = input.getText().toString();
+
+                sendEmail(email, newPassFinal);
+
+            }
+        });
+        builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.cancel();
+            }
+        });
+
+
+    }
+
+    protected void sendEmail(String email, String password) {
+        //
+
+        String[] TO = {email};
+
+        Intent emailIntent = new Intent(Intent.ACTION_SEND);
+        emailIntent.setData(Uri.parse("mailto:"));
+        emailIntent.setType("text/plain");
+
+
+        emailIntent.putExtra(Intent.EXTRA_EMAIL, TO);
+
+        emailIntent.putExtra(Intent.EXTRA_SUBJECT, "Forgotten Password");
+        emailIntent.putExtra(Intent.EXTRA_TEXT, "Your new password is "+password+". Please log in using this password and go to edit profile to set your new password");
+
+        try {
+            startActivity(Intent.createChooser(emailIntent, "Send mail..."));
+            finish();
+
+        } catch (android.content.ActivityNotFoundException ex) {
+            Toast.makeText(Login.this,
+                    "There is no email client installed.", Toast.LENGTH_SHORT).show();
+        }
     }
 
 }

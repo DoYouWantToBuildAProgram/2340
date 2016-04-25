@@ -66,6 +66,18 @@
         android:textColor="#FFFFFF"
         />
 
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Forgot Password"
+        android:onClick="resetPassword"
+        android:textStyle="bold"
+        android:layout_gravity="right"
+        android:background="#B9090B"
+        android:textColor="#FFFFFF"
+        />
+
+
     <Space
         android:layout_width="match_parent"
         android:layout_height="30dp"

@@ -2,26 +2,18 @@ package com.example.erica.recsfromtechs;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.graphics.Bitmap;
-import android.graphics.drawable.Drawable;
-import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.EditText;
-import android.widget.ImageView;
 import android.widget.ListView;
-import android.widget.TextView;
-import android.widget.Toast;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
-import com.android.volley.toolbox.ImageRequest;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 
@@ -29,10 +21,9 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.io.InputStream;
-import java.net.URL;
+
 import java.util.ArrayList;
-import java.util.Arrays;
+
 
 public class searchScreen extends AppCompatActivity {
 
@@ -42,6 +33,7 @@ public class searchScreen extends AppCompatActivity {
     SharedPreferences.Editor editCurrentMovie;
 
     public myApplication appState;
+    public ArrayList<ArrayList> movieList = new ArrayList<>();
 
     MovieDB movieDbHandler;
 
@@ -93,7 +85,7 @@ public class searchScreen extends AppCompatActivity {
                             for (int i = 0; i < movies.length(); i++) {
                                 ArrayList<String> thisMovieArray = new ArrayList<>();
                                 JSONObject movie = movies.getJSONObject(i);
-                                thisMovieArray.add(movie.getString("title"));
+                             thisMovieArray.add(movie.getString("title"));
                                 thisMovieArray.add(movie.getString("year"));
 
                                 JSONObject rating = movie.getJSONObject("ratings");
@@ -104,6 +96,7 @@ public class searchScreen extends AppCompatActivity {
                                 movieInfo.add(thisMovieArray);
 
                             }
+                            movieList = movieInfo;
                             populateListView(movieInfo);
 
                         } catch (JSONException e) {
@@ -159,6 +152,9 @@ public class searchScreen extends AppCompatActivity {
                     CustomList(searchScreen.this, movieNames, movieYears, ratings, images);
             list= (ListView) findViewById(R.id.list);
             list.setAdapter(adapter);
+
+
+
             list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 
                 @Override
