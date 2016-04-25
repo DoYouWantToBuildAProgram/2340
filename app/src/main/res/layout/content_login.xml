@@ -67,6 +67,22 @@
         android:layout_marginBottom="43dp"
         android:layout_alignEnd="@+id/button2" />
 
+    <Button
+        android:layout_width="212dp"
+        android:layout_height="wrap_content"
+        android:text="Forgot Password"
+        android:onClick="resetPassword"
+        android:textStyle="bold"
+        android:background="@color/colorAccent"
+        android:textColor="@color/colorWhite"
+        android:layout_above="@+id/button2"
+        android:layout_alignEnd="@+id/loginButton"
+        android:layout_marginBottom="10dp"
+        android:layout_alignStart="@+id/loginButton" />
+
+
+
+
 
 
     <Button

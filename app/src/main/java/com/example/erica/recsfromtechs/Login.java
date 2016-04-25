@@ -1,11 +1,15 @@
 package com.example.erica.recsfromtechs;
 
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.text.InputType;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -68,6 +72,99 @@ public class Login extends AppCompatActivity {
             toast.show();
         }
 
+    }
+
+
+
+    //this is the on click for the forgot password button
+    //it makes a new password and creates an AlertDialog
+    //where people enter their email, then either click ok or cancel
+
+    public void resetPassword(View view){
+
+
+        //this creates the new password, its 12 randomly generated characters
+        String newPass = "";
+        for(int i =0; i<12; i++){
+            newPass += (char) (Math.random()*93 + 33);
+
+        }
+
+
+        //the AlertDialog can only take final variables, so we need to make our password final
+        final String newPassFinal = newPass;
+
+        //create our Alert
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("Input Email");
+        builder.setCancelable(true);
+
+
+        //create an edittext for our alert, this is where people enter their email
+        //later on we are going to use this email to find the User associated with it
+        //so that we can set their password to the new password we created
+        //if its easier for you on the database end, instead we could have them enter their username
+        //and from that we could set their password and find their email
+        final EditText input = new EditText(this);
+
+        input.setInputType(
+                InputType.TYPE_CLASS_TEXT
+        );
+        builder.setView(input);
+
+        //our alert has two options
+        //"positive button" gets the email entered and calls sendEmail
+        //"negative button" just cancels the whole thing
+        builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                String email = input.getText().toString();
+
+                sendEmail(email, newPassFinal);
+
+            }
+        });
+        builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.cancel();
+            }
+        });
+
+        AlertDialog alert11 = builder.create();
+        alert11.show();
+
+
+
+    }
+
+    //this is where we send the email
+    // inside this is where you should get the users information from the database
+    //and set their password to the new password
+    protected void sendEmail(String email, String password) {
+        //here we need to find the user associated with this email
+        //and change their password
+
+        String[] TO = {email};
+
+        Intent emailIntent = new Intent(Intent.ACTION_SEND);
+        emailIntent.setData(Uri.parse("mailto:"));
+        emailIntent.setType("text/plain");
+
+
+        emailIntent.putExtra(Intent.EXTRA_EMAIL, TO);
+
+        emailIntent.putExtra(Intent.EXTRA_SUBJECT, "Forgotten Password");
+        emailIntent.putExtra(Intent.EXTRA_TEXT, "Your new password is "+password+". Please log in using this password and go to edit profile to set your new password");
+
+        try {
+            startActivity(Intent.createChooser(emailIntent, "Send mail..."));
+            finish();
+
+        } catch (android.content.ActivityNotFoundException ex) {
+            Toast.makeText(Login.this,
+                    "There is no email client installed.", Toast.LENGTH_SHORT).show();
+        }
     }
 
 }
