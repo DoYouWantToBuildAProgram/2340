@@ -132,6 +132,8 @@
 
     <string name="noRating">Dieser Film hat kein Rating</string>
 
+    <string name="noRec">Es konnten leider keine empfehlungen gegeben werden.</string>
+
 
 
     <string-array name="majors">
