@@ -56,6 +56,8 @@
 <string name="block">Bloquear</string>
 <string name="isBlocked">Está Bloqueado: </string>
 <string name="isLocked">Está trabeado: </string>
+    <string name="yes">SI</string>
+    <string name="no">NO</string>
 <string name="movieSearch">Buscar por Películas</string>
 <string name="getRecommendation">Obtener Recomendaciones</string>
 <string name="adminPass">Si eres adminstrador, entrar la contraseña</string>

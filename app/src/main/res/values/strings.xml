@@ -55,6 +55,8 @@
     <string name="block">Block</string>
     <string name="isBlocked">Is Blocked: </string>
     <string name="isLocked">Is Locked: </string>
+    <string name="yes">YES</string>
+    <string name="no">NO</string>
     <string name="movieSearch">Search for Movies</string>
     <string name="getRecommendation">Get Recommendations</string>
     <string name="adminPass">If Admin Enter Password</string>
@@ -64,22 +66,6 @@
     <string name="search">Search</string>
     <string name="noRating">This movie has no rating.</string>
     <string name="noRec">Sorry, no recommendations could be given.</string>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 

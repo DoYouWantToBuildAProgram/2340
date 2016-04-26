@@ -60,18 +60,18 @@ public class AdminPage extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view,
                                     int position, long id) {
-                Toast.makeText(AdminPage.this, "You Clicked at " + names[position], Toast.LENGTH_SHORT).show();
+                Toast.makeText(AdminPage.this, "You Clicked " + names[position], Toast.LENGTH_SHORT).show();
                 currentUser = names[position];
                 TextView selectedUserText = (TextView) findViewById(R.id.currentUser);
-                selectedUserText.setText("Current User: " + currentUser);
+                selectedUserText.setText(getResources().getString(R.string.currentUser) + currentUser);
                 TextView isLocked = (TextView) findViewById(R.id.isLocked);
                 if(dbHandler.getIsLocked(currentUser) == 0) {
-                    isLocked.setText("Is Locked: NO");
-                } else { isLocked.setText("Is Locked: YES");}
+                    isLocked.setText(getResources().getString(R.string.isLocked) + getResources().getString(R.string.no));
+                } else { isLocked.setText(getResources().getString(R.string.isLocked) + getResources().getString(R.string.yes));}
                 TextView isBlocked = (TextView) findViewById(R.id.isblocked);
                 if(dbHandler.getIsBlocked(currentUser) == 0) {
-                    isBlocked.setText("Is Blocked: NO");
-                } else {isBlocked.setText("Is Blocked: YES");}
+                    isBlocked.setText(getResources().getString(R.string.isBlocked) + getResources().getString(R.string.no));
+                } else {isBlocked.setText(getResources().getString(R.string.isBlocked) + getResources().getString(R.string.yes));}
             }
         });
 
@@ -120,15 +120,15 @@ public class AdminPage extends AppCompatActivity {
     private void updateTable() {
         TextView isLocked = (TextView) findViewById(R.id.isLocked);
         if(dbHandler.getIsLocked(currentUser) == 0) {
-            isLocked.setText("Is Locked: NO");
+            isLocked.setText(getResources().getString(R.string.isLocked) + getResources().getString(R.string.no));
         } else {
-            isLocked.setText("Is Locked: YES");
+            isLocked.setText(getResources().getString(R.string.isLocked) + getResources().getString(R.string.yes));
         }
         TextView isBlocked = (TextView) findViewById(R.id.isblocked);
         if(dbHandler.getIsBlocked(currentUser) == 0) {
-            isBlocked.setText("Is Blocked: NO");
+            isBlocked.setText(getResources().getString(R.string.isBlocked) + getResources().getString(R.string.no));
         } else {
-            isBlocked.setText("Is Blocked: YES");
+            isBlocked.setText(getResources().getString(R.string.isBlocked) + getResources().getString(R.string.yes));
         }
 
 
