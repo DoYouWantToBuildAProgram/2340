@@ -7,7 +7,7 @@
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context="com.example.erica.recsfromtechs.Register"
     tools:showIn="@layout/activity_register"
-    android:background="#333333"
+    android:background="@color/colorPrimary"
     android:orientation="vertical">
 
     <TextView
@@ -17,9 +17,9 @@
         android:layout_height="wrap_content"
         android:padding="10dp"
         android:textSize="40sp"
-        android:textColor="#B9090B"
+        android:textColor="@color/colorAccent"
         android:textStyle="bold"
-        android:background="#231f20"
+        android:background="@color/colorPrimaryDark"
         />
 
     <Space
@@ -29,29 +29,29 @@
         android:layout_width="209dp"
         android:layout_height="wrap_content"
         android:hint="@string/name"
-        android:textColorHint="#FFFFFF"
-        android:textColor="#FFFFFF"
+        android:textColorHint="@color/colorWhite"
+        android:textColor="@color/colorWhite"
         android:layout_gravity="center_horizontal" />
     <EditText android:id="@+id/username"
         android:layout_width="209dp"
         android:layout_height="wrap_content"
         android:hint="@string/createuser"
-        android:textColorHint="#FFFFFF"
-        android:textColor="#FFFFFF"
+        android:textColorHint="@color/colorWhite"
+        android:textColor="@color/colorWhite"
         android:layout_gravity="center_horizontal" />
     <EditText android:id="@+id/password"
         android:layout_width="209dp"
         android:layout_height="wrap_content"
-        android:textColorHint="#FFFFFF"
+        android:textColorHint="@color/colorWhite"
         android:inputType="textPassword"
         android:ems="10"
-        android:textColor="#FFFFFF"
+        android:textColor="@color/colorWhite"
         android:hint="@string/createpass"
         android:layout_gravity="center_horizontal" />
     <Spinner
         android:layout_width="209dp"
         android:layout_height="wrap_content"
-        android:textColor="#FFFFFF"
+        android:textColor="@color/colorWhite"
         android:id="@+id/spinner"
         android:ems="10"
         android:hint="@string/major"
@@ -60,21 +60,23 @@
         android:layout_width="209dp"
         android:layout_height="1dp"
         android:layout_gravity="center_horizontal"
-        android:background="#000000"/>
+        android:background="@color/colorBlack"/>
 
     <EditText android:id="@+id/email"
         android:layout_width="209dp"
         android:layout_height="wrap_content"
         android:hint="@string/email"
         android:layout_gravity="center_horizontal"
-        android:textColorHint="#FFFFFF"
+        android:textColor="@color/colorWhite"
+        android:textColorHint="@color/colorWhite"
         />
     <EditText android:id="@+id/adminPassword"
         android:layout_width="209dp"
         android:layout_height="wrap_content"
         android:hint="@string/adminPass"
         android:layout_gravity="center_horizontal"
-        android:textColorHint="#FFFFFF"
+        android:textColorHint="@color/colorWhite"
+        android:textColor="@color/colorWhite"
         />
     <Space
         android:layout_width="match_parent"
@@ -91,8 +93,8 @@
         android:onClick="addUser"
         android:textSize="18sp"
         android:layout_gravity="center_horizontal"
-        android:background="#B9090B"
-        android:textColor="#FFFFFF"
+        android:background="@color/colorAccent"
+        android:textColor="@color/colorWhite"
         />
 
     <Space
@@ -104,8 +106,8 @@
         android:layout_width="104dp"
         android:layout_height="wrap_content"
         android:text="@string/cancel"
-        android:background="#B9090B"
-        android:textColor="#FFFFFF"
+        android:background="@color/colorAccent"
+        android:textColor="@color/colorWhite"
         android:layout_gravity="center_horizontal"
         android:textSize="18sp"
         android:onClick="cancel"

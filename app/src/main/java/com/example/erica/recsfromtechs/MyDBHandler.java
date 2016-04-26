@@ -7,7 +7,6 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
 import java.util.LinkedList;
-import java.util.List;
 
 /**
  * This class creates the database used for logging in and editing a profile.
@@ -67,15 +66,16 @@ public class MyDBHandler extends SQLiteOpenHelper {
      * @param user The user info to be added to the table
      * @return boolean value of whether or not the new user has been added
      */
-    public boolean addUser(User user) {
+    public boolean addUser(User user) throws Exception {
         //Gets a user object and puts all the data in its respective column
         ContentValues values = new ContentValues();
         SQLiteDatabase db = getWritableDatabase();
         Cursor c = db.rawQuery("SELECT * FROM " + TABLE_USERS + " WHERE " + COLUMN_USERNAME + " = '" + user.getUsername() + "';", null);
         c.moveToFirst();
+        String encryptPass = getHexString(user.getPassword().getBytes("UTF-8"));
         if (c.isBeforeFirst()) {
             values.put(COLUMN_USERNAME, user.getUsername());
-            values.put(COLUMN_PASSWORD, user.getPassword());
+            values.put(COLUMN_PASSWORD, encryptPass);
             values.put(COLUMN_NAME, user.getName());
             values.put(COLUMN_EMAIL, user.getEmail());
             values.put(COLUMN_MAJOR, user.getMajor());
@@ -94,21 +94,35 @@ public class MyDBHandler extends SQLiteOpenHelper {
     }
 
     /**
-     * Deletes user from database
-     * @param username Username to be deleted from database
+     * Encrypts the password using SHA1 technique
+     * @param b A byte array of the password string
+     * @return A new string as a hex string representing the password
+     * @throws Exception the possible exception that could be thrown
      */
-    
+    public static String getHexString(byte[] b) throws Exception {
+        String result = "";
+        for (int i=0; i < b.length; i++) {
+            result +=
+                    Integer.toString( ( b[i] & 0xff ) + 0x100, 16).substring( 1 );
+        }
+        return result;
+    }
+
+    /**
+     * Deletes a specific user
+     * @param username the user we want to delete
+     */
     public void deleteUser(String username) {
         SQLiteDatabase db = getWritableDatabase();
         db.delete(TABLE_USERS, COLUMN_USERNAME + "= '" + username + "';", null);
         db.close();
     }
-    /**
-     * Checks to see if user was in database
-     * @param username Username to be deleted from database
-     * @return boolean of whether it is contained
-     */
 
+    /**
+     * Checks to see if the database contains the user
+     * @param username the user we are looking for
+     * @return boolean whether or not
+     */
     public boolean containsUser(String username){
         SQLiteDatabase db = getReadableDatabase();
         Cursor c = db.rawQuery("SELECT * FROM " + TABLE_USERS + " WHERE " + COLUMN_USERNAME + " = '" + username + "';", null);
@@ -130,7 +144,7 @@ public class MyDBHandler extends SQLiteOpenHelper {
      *         If they put in the wrong info, or their account is blocked or locked then it will
      *         return false.
      */
-    public boolean authenticateUser(String username, String password) {
+    public boolean authenticateUser(String username, String password) throws Exception {
         SQLiteDatabase db = getReadableDatabase();
         //This call is what creates a smaller table, so right now this creates a smaller table with all the usernames that match what was inputted
         Cursor c = db.rawQuery("SELECT * FROM " + TABLE_USERS + " WHERE " + COLUMN_USERNAME + " = '" + username + "';", null);
@@ -150,7 +164,7 @@ public class MyDBHandler extends SQLiteOpenHelper {
         //d.close();
         c.close();
         db.close();
-        return realPassword.equals(password) && isBlocked != 1 && isLocked != 1;
+        return realPassword.equals(getHexString(password.getBytes("UTF-8"))) && isBlocked != 1 && isLocked != 1;
 
     }
 
@@ -158,11 +172,11 @@ public class MyDBHandler extends SQLiteOpenHelper {
      * Provides a list of all the registered users
      * @return A list of user objects that are registered
      */
-    public List<User> listOfUsers() {
+    public LinkedList<User> listOfUsers() {
         SQLiteDatabase db = getReadableDatabase();
         Cursor c = db.rawQuery("SELECT * FROM " + TABLE_USERS, null);
         c.moveToFirst();
-        List<User> returnList = new LinkedList<>();
+        LinkedList<User> returnList = new LinkedList<>();
         while(!c.isAfterLast()) {
             String name = c.getString(c.getColumnIndex(COLUMN_NAME));
             String email = c.getString(c.getColumnIndex(COLUMN_EMAIL));
@@ -316,10 +330,10 @@ public class MyDBHandler extends SQLiteOpenHelper {
      * @param username The username we want to change the password of
      * @param newPassword the new password the user wants to use
      */
-    public void setPassword(String username, String newPassword) {
+    public void setPassword(String username, String newPassword) throws Exception {
         SQLiteDatabase db = getWritableDatabase();
         ContentValues values = new ContentValues();
-        values.put(COLUMN_PASSWORD, newPassword);
+        values.put(COLUMN_PASSWORD, getHexString(newPassword.getBytes("UTF-8")));
         db.update(TABLE_USERS, values, COLUMN_USERNAME + "= '" + username + "';",null);
         db.close();
     }

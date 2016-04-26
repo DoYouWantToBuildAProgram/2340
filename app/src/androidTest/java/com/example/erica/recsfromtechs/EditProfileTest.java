@@ -53,14 +53,14 @@ public class EditProfileTest {
     public void changeUsernameSuccess() {
         MyDBHandler testDb = editProfileRule.getActivity().getDb();
 
-        User testUser = new User("Erica", "echia3@gatech.edu", "Computer Science", "b", "mercedes9", 0, 0, 0);
+        User testUser = new User("Erica", "echia3@gatech.edu", "Computer Science", "e", "mercedes9", 0, 0, 0);
         testDb.addUser(testUser);
         User dummy = new User("Courtney", "cbran@gatech.edu", "Business", "cb","password",0,0,0);
         testDb.addUser(dummy);
 
-        editProfileRule.getActivity().changeUsername("b", "cb");
+        editProfileRule.getActivity().changeUsername("e", "cb");
 
-        assertEquals("mercedes9", testDb.getPassword("b"));
+        assertEquals("mercedes9", testDb.getPassword("e"));
         assertEquals("password", testDb.getPassword("cb"));
         testDb.deleteUser("b");
         testDb.deleteUser("cb");
@@ -82,7 +82,7 @@ public class EditProfileTest {
     }
 
     @Test
-    public void changeMajorSuccess() {
+    public void changeMajorScienceSuccess() {
         MyDBHandler testDb = editProfileRule.getActivity().getDb();
 
         User testUser = new User("Erica", "echia3@gatech.edu", "Computer Science", "e", "mercedes9", 0, 0, 0);
@@ -91,6 +91,42 @@ public class EditProfileTest {
         editProfileRule.getActivity().changeMajor("e", "Science");
 
         assertEquals("Science", testDb.getMajor("e"));
+        testDb.deleteUser("e");
+    }
+    @Test
+    public void changeMajorEngineeringSuccess() {
+        MyDBHandler testDb = editProfileRule.getActivity().getDb();
+
+        User testUser = new User("Erica", "echia3@gatech.edu", "Computer Science", "e", "mercedes9", 0, 0, 0);
+        testDb.addUser(testUser);
+
+        editProfileRule.getActivity().changeMajor("e", "Engineering");
+
+        assertEquals("Engineering", testDb.getMajor("e"));
+        testDb.deleteUser("e");
+    }
+    @Test
+    public void changeMajorBusinessSuccess() {
+        MyDBHandler testDb = editProfileRule.getActivity().getDb();
+
+        User testUser = new User("Erica", "echia3@gatech.edu", "Computer Science", "e", "mercedes9", 0, 0, 0);
+        testDb.addUser(testUser);
+
+        editProfileRule.getActivity().changeMajor("e", "Business");
+
+        assertEquals("Business", testDb.getMajor("e"));
+        testDb.deleteUser("e");
+    }
+    @Test
+    public void changeMajorOtherSuccess() {
+        MyDBHandler testDb = editProfileRule.getActivity().getDb();
+
+        User testUser = new User("Erica", "echia3@gatech.edu", "Computer Science", "e", "mercedes9", 0, 0, 0);
+        testDb.addUser(testUser);
+
+        editProfileRule.getActivity().changeMajor("e", "Other");
+
+        assertEquals("Other", testDb.getMajor("e"));
         testDb.deleteUser("e");
     }
 

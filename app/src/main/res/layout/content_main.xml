@@ -7,11 +7,10 @@
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context="com.example.erica.recsfromtechs.MainActivity"
     tools:showIn="@layout/activity_main"
-    android:background="#333333"
+    android:background="@color/colorPrimary"
     android:orientation="vertical"
+    android:layout_centerInParent="true"
     >
-
-
 
     <TextView
         android:id="@+id/header"
@@ -20,21 +19,41 @@
         android:layout_height="wrap_content"
         android:padding="10dp"
         android:textSize="40sp"
-        android:textColor="#B9090B"
+        android:textColor="@color/colorAccent"
         android:textStyle="bold"
-        android:background="#231f20"
+        android:background="@color/colorPrimaryDark"
 
         />
 
 
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="207dp"
+        android:layout_height="match_parent"
+        android:layout_centerHorizontal="true"
+        android:background="#333333"
+        android:layout_below="@+id/header"
+        android:layout_above="@+id/button4"
+        android:gravity="center_vertical|center_horizontal">
+
+        <WebView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="62dp"
+            android:id="@+id/webView1"
+            android:background="#333333"
+            android:layout_gravity="center">
+
+        </WebView>
+    </LinearLayout>
 
     <Button
         android:layout_width="fill_parent"
         android:layout_height="60dp"
         android:text="@string/login_button"
         android:onClick="login"
-        android:background="#B9090B"
-        android:textColor="#FFFFFF"
+        android:background="@color/colorAccent"
+        android:textColor="@color/colorWhite"
         android:layout_gravity="center_horizontal"
         android:clickable="true"
         android:textSize="20sp"
@@ -45,7 +64,8 @@
         android:layout_weight="0.15"
         android:layout_above="@+id/button3"
         android:layout_alignParentStart="true"
-        android:layout_marginBottom="50dp" />
+        android:layout_marginBottom="50dp"
+        android:id="@+id/button4" />
 
 
 
@@ -55,12 +75,13 @@
         android:text="@string/register_button"
         android:onClick="register"
         android:textSize="19sp"
-        android:background="#B9090B"
-        android:textColor="#FFFFFF"
+        android:background="@color/colorAccent"
+        android:textColor="@color/colorWhite"
         android:layout_gravity="center_horizontal"
         android:layout_weight="0.07"
         android:layout_marginBottom="158dp"
         android:id="@+id/button3"
         android:layout_alignParentBottom="true"
         android:layout_alignParentStart="true" />
+
 </RelativeLayout>

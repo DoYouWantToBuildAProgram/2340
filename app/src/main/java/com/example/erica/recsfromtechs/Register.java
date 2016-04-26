@@ -41,7 +41,7 @@ public class Register extends AppCompatActivity  implements AdapterView.OnItemSe
      * password, name, major, and email.
      * @param view The current layout with all the Android widgets
      */
-    public void addUser(View view) {
+    public void addUser(View view) throws Exception {
         EditText usernameText = (EditText) findViewById(R.id.username);
         EditText passwordText = (EditText) findViewById(R.id.password);
         EditText emailText = (EditText) findViewById(R.id.email);

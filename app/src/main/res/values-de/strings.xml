@@ -1,0 +1,160 @@
+<?xml version="1.0"?>
+
+<resources>
+
+    <string name="app_name">RecsFromTechs</string>
+
+    <string name="login_button">Einloggen</string>
+
+    <string name="register_button">Anmelden</string>
+
+    <string name="title">Recs From Techs</string>
+
+    <string name="action_settings">Einstellungen</string>
+
+    <string name="title_activity_login">Einloggen</string>
+
+    <string name="username">Benutzername</string>
+
+    <string name="password">Passwort</string>
+
+    <string name="title_activity_register">Registrieren</string>
+
+    <string name="title_activity_recommendations">Empfelungen</string>
+
+    <string name="cancel">Absagen</string>
+
+    <string name="title_activity_dashboard">Menu</string>
+
+    <string name="dashboard">Menu</string>
+
+    <string name="title_activity_edit_profile">Profil bearbeiten</string>
+
+    <string name="logout">Ausloggen</string>
+
+    <string name="createuser">Benuztzername erstellen</string>
+
+    <string name="createpass">Passwort erstellen</string>
+
+    <string name="major">Studiengang eingeben</string>
+
+    <string name="email">Email eingeben</string>
+
+    <string name="title_activity_profile">Profil</string>
+
+    <string name="title_activity_boxoffice">Theaterkasse</string>
+
+    <string name="title_dvd">DVD</string>
+
+    <string name="name">Name</string>
+
+    <string name="searchScreen">Suchen</string>
+
+    <string name="back">Zurueck</string>
+
+    <string name="majorChoice">Studiengang angeben</string>
+
+    <string name="newName">Name angeben</string>
+
+    <string name="editName">Name aendern</string>
+
+    <string name="newUsername">Neuen Benutzername angeben</string>
+
+    <string name="editUsername">Benutzername aendern</string>
+
+    <string name="newPassword">Neues Passwort eingeben</string>
+
+    <string name="editPassword">Passwort aendern</string>
+
+    <string name="editEmail">Email aendern</string>
+
+    <string name="newMajor">Neuen Studiengang angeben</string>
+
+    <string name="editMajor">Studiengang aendern</string>
+
+    <string name="newEmail">Neues email angeben</string>
+
+    <string name="movieTitle">Film Titel</string>
+
+    <string name="movieYear">Film Erscheinungsjahr</string>
+
+    <string name="movieRating">Film Rating</string>
+
+    <string name="yearReleased">Erscheinungsjahr</string>
+
+    <string name="criticRating">Rating der Kritiker</string>
+
+    <string name="rateMovie">Film raten</string>
+
+    <string name="rate">Rate!</string>
+
+    <string name="emailProfileScreen">E-mail: </string>
+
+    <string name="majorProfileScreen">Studiengang: </string>
+
+    <string name="passwordProfileScreen">Passwort: </string>
+
+    <string name="nameProfileScreen">Name: </string>
+
+    <string name="usernameProfileScreen">Benutzername: </string>
+
+    <string name="editProfile">Profile bearbeiten</string>
+
+    <string name="adminPage">Verwalterseite</string>
+
+    <string name="currentUser">Diesen Benutzer: </string>
+
+    <string name="lock">Schliesen</string>
+
+    <string name="unlock">Aufmachen</string>
+
+    <string name="block">Blockieren</string>
+
+    <string name="isBlocked">Ist blockiert: </string>
+
+    <string name="isLocked">Ist geschlossen: </string>
+
+    <string name="yes">JA</string>
+    <string name="no">NEIN</string>
+
+    <string name="movieSearch">Für Film Suchen</string>
+
+    <string name="getRecommendation">Empfelungen</string>
+
+    <string name="adminPass">Verwalter Passwort</string>
+
+    <string name="image">Bild</string>
+
+    <string name="profile">Profile bearbeiten</string>
+
+    <string name="myProfile">Mein Profil</string>
+
+    <string name="search">Suchen</string>
+
+    <string name="title_activity_movie">Film Activity</string>
+
+    <string name="noRating">Dieser Film hat kein Rating</string>
+
+    <string name="noRec">Dieser Film hat kein Empfelungen.</string>
+
+
+
+    <string-array name="majors">
+
+        <item>Studiengang Waehlen</item>
+
+        <item>Informatik</item>
+
+        <item>Ingenieurwessen</item>
+
+        <item>Business</item>
+
+        <item>Wissenscahft</item>
+
+        <item>Anderes</item>
+
+    </string-array>
+
+    <string name="title_activity_admin_page">Verwalterseite</string>
+
+</resources>

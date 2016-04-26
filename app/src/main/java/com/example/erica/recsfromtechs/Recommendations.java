@@ -51,7 +51,7 @@ public class Recommendations extends AppCompatActivity implements AdapterView.On
 
         majorRecs = (LinkedList<Recs>) recsDbHandler.listOfRecs(item);
         for(Recs rec:majorRecs){
-            System.out.println(rec.getTitle() + " and " + rec.getMajor());
+            //System.out.println(rec.getTitle() + " and " + rec.getMajor());
             if(movies.containsKey(rec.getTitle()+ " " + rec.getYear())) {
                 movies.get(rec.getTitle()+" " + rec.getYear()).add(rec.getRating());
             } else {
@@ -60,7 +60,7 @@ public class Recommendations extends AppCompatActivity implements AdapterView.On
             }
         }
         for(String key: movies.keySet()) {
-            System.out.println(key);
+            //System.out.println(key);
             int counter = 0;
             double sum = 0;
             for(double rating:movies.get(key)) {
@@ -70,11 +70,11 @@ public class Recommendations extends AppCompatActivity implements AdapterView.On
             double average = sum / counter;
 
             if (average > thresholdRating) {
-                text += key + " Rating: " + average + "\n";
+                text += key + " " + getResources().getString(R.string.movieRating) + ": " + average + "\n";
             }
         }
         if (text.equals("")) {
-            text = "Sorry no recommendations could be given";
+            text = getResources().getString(R.string.noRec);
         }
         TextView recView;
         recView =(TextView)findViewById(R.id.recommendationList);

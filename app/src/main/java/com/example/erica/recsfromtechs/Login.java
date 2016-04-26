@@ -51,7 +51,7 @@ public class Login extends AppCompatActivity {
      * If not, then it will allow the user to know that one of the two is incorrect
      * @param view The current layout with all the Android widgets
      */
-    public void loginSuccessful(View view) {
+    public void loginSuccessful(View view) throws Exception {
         EditText usernameText = (EditText) findViewById(R.id.username);
         EditText passwordText = (EditText) findViewById(R.id.password);
         if (dbHandler.authenticateUser(usernameText.getText().toString(), passwordText.getText().toString())) {

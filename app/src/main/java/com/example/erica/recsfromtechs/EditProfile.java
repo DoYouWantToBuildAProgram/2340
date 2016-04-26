@@ -96,7 +96,7 @@ public class EditProfile extends AppCompatActivity {
      *
      * @param view the current screen
      */
-    public void editPassword(View view) {
+    public void editPassword(View view) throws Exception {
         //TextView passwordText = (TextView) findViewById(R.id.password);
         EditText changedPassword = (EditText) findViewById(R.id.newPassword);
         String newPassword = changedPassword.getText().toString();
@@ -182,7 +182,7 @@ public class EditProfile extends AppCompatActivity {
      * @param username    the username of the user we want to see
      * @param newPassword the new password
      */
-    public void changePassword(String username, String newPassword) {
+    public void changePassword(String username, String newPassword) throws Exception {
         if (newPassword.length() >= 8) {
             dbHandler.setPassword(username, newPassword);
         }
