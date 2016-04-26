@@ -114,6 +114,9 @@
 
     <string name="isLocked">Ist geschlossen: </string>
 
+    <string name="yes">JA</string>
+    <string name="no">NEIN</string>
+
     <string name="movieSearch">Für Film Suchen</string>
 
     <string name="getRecommendation">Empfelungen</string>
