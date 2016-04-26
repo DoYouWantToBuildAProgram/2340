@@ -1,78 +1,79 @@
+
 <resources>
-    <string name="app_name">RecsFromTechs</string>
-    <string name="login_button">Login</string>
-    <string name="register_button">Register</string>
-    <string name="title">Recs From Techs</string>
-    <string name="action_settings">Settings</string>
-    <string name="title_activity_login">Login</string>
-    <string name="username">Username</string>
-    <string name="password">Password</string>
-    <string name="title_activity_register">Register</string>
-    <string name="title_activity_recommendations">Recomendations</string>
-    <string name="cancel">Cancel</string>
-    <string name="title_activity_dashboard">dashboard</string>
-    <string name="dashboard">Dashboard</string>
-    <string name="title_activity_edit_profile">EditProfile</string>
-    <string name="logout">Logout</string>
-    <string name="createuser">Create a Username</string>
-    <string name="createpass">Create a Password</string>
-    <string name="major">Enter Your Major</string>
-    <string name="email">Enter Your Email</string>
-    <string name="title_activity_profile">Profile</string>
-    <string name="title_activity_boxoffice">Box Office Movies</string>
-    <string name="title_dvd">DVD Releases</string>
-    <string name="name">Name</string>
-    <string name="searchScreen">Search Screen</string>
-    <string name="back">Back to Dashboard</string>
-    <string name="majorChoice">Choose Your Major</string>
-    <string name="newName">Enter your new name</string>
-    <string name="editName">Edit Name</string>
-    <string name="newUsername">Enter your new username</string>
-    <string name="editUsername">Edit Username</string>
-    <string name="newPassword">Enter your new password</string>
-    <string name="editPassword">Edit Password</string>
-    <string name="editEmail">Edit Email</string>
-    <string name="newMajor">Enter your new major</string>
-    <string name="editMajor">Edit Major</string>
-    <string name="newEmail">Enter your new email</string>
-    <string name="movieTitle">Movie Title</string>
-    <string name="movieYear">Movie Year</string>
-    <string name="movieRating">Movie Rating</string>
-    <string name="yearReleased">Year Released</string>
-    <string name="criticRating">Critic Rating</string>
-    <string name="rateMovie">Rate Movie</string>
-    <string name="rate">Rate!</string>
-    <string name="emailProfileScreen">E-mail:  </string>
-    <string name="majorProfileScreen">Major:  </string>
-    <string name="passwordProfileScreen">Password:  </string>
-    <string name="nameProfileScreen">Name:  </string>
-    <string name="usernameProfileScreen">Username:  </string>
-    <string name="editProfile">Edit Profile</string>
-    <string name="adminPage">Admin Page</string>
-    <string name="currentUser">Current User: </string>
-    <string name="lock">Lock</string>
-    <string name="unlock">Unlock</string>
-    <string name="block">Block</string>
-    <string name="isBlocked">Is Blocked: </string>
-    <string name="isLocked">Is Locked: </string>
-    <string name="movieSearch">Search for Movies</string>
-    <string name="getRecommendation">Get Recommendations</string>
-    <string name="adminPass">If Admin Enter Password</string>
-    <string name="image">image</string>
-    <string name="profile">Edit Profile</string>
-    <string name="myProfile">My Profile</string>
-    <string name="search">Search</string>
-    <string name="title_activity_movie">MovieActivity</string>
-    <string name="noRating">This movie has no rating.</string>
-    <string name="noRec">Sorry, no recommendations could be given.</string>
+    <string name="app_name">המלצות טק</string>
+    <string name="login_button">כניסה</string>
+    <string name="register_button">הירשם</string>
+    <string name="title">המלצות טק</string>
+    <string name="action_settings">הגדרות</string>
+    <string name="title_activity_login">כניסה</string>
+    <string name="username">שם משתמש</string>
+    <string name="password">סיסמה</string>
+    <string name="title_activity_register">הירשם</string>
+    <string name="title_activity_recommendations">המלצות</string>
+    <string name="cancel">לְבַטֵל</string>
+    <string name="title_activity_dashboard">לוּחַ מַחווָנִים</string>
+    <string name="dashboard">לוּחַ מַחווָנִים</string>
+    <string name="title_activity_edit_profile">ערוך פרופיל</string>
+    <string name="logout">להתנתק</string>
+    <string name="createuser">ערוך שם משתמש</string>
+    <string name="createpass">ליצור סיסמה</string>
+    <string name="major">שים סרן</string>
+    <string name="email">שים דוא"ל</string>
+    <string name="title_activity_profile">פּרוֹפִיל</string>
+    <string name="title_activity_boxoffice">סרט קופה</string>
+    <string name="title_dvd">שחרור DVD</string>
+    <string name="name">שֵׁם</string>
+    <string name="searchScreen">מסך חיפוש</string>
+    <string name="back">לוּחַ מַחווָנִים</string>
+    <string name="majorChoice">בחר סרן</string>
+    <string name="newName">לוּחַ מַחווָנִים</string>
+    <string name="editName">ערוך פרופיל</string>
+    <string name="newUsername">בחר סרן</string>
+    <string name="editUsername">ערוך פרופיל</string>
+    <string name="newPassword">ערוך פרופיל</string>
+    <string name="editPassword">ערוך פרופיל</string>
+    <string name="editEmail">ערוך פרופיל</string>
+    <string name="newMajor">בחר סרן</string>
+    <string name="editMajor">ערוך פרופיל</string>
+    <string name="newEmail">ערוך פרופיל</string>
+    <string name="movieTitle">דרות  </string>
+    <string name="movieYear">דרות  </string>
+    <string name="movieRating">בחר סרן</string>
+    <string name="yearReleased">ערוך פרופיל</string>
+    <string name="criticRating">ערוך פרופיל</string>
+    <string name="rateMovie">סרט דרג</string>
+    <string name="rate">קֶצֶב!</string>
+    <string name="emailProfileScreen">הגדרות  </string>
+    <string name="majorProfileScreen">בחר סרן  </string>
+    <string name="passwordProfileScreen">הגדרות  </string>
+    <string name="nameProfileScreen">בחר סרן  </string>
+    <string name="usernameProfileScreen">בחר סרן  </string>
+    <string name="editProfile">ערוך פרופיל</string>
+    <string name="adminPage">עמוד מנהל</string>
+    <string name="currentUser">ערוך פרופיל </string>
+    <string name="lock">לַחסוֹם</string>
+    <string name="unlock">לַחסוֹם</string>
+    <string name="block">לַחסוֹם</string>
+    <string name="isBlocked">דרות   </string>
+    <string name="isLocked">דרות   </string>
+    <string name="movieSearch">הגדרות</string>
+    <string name="getRecommendation">לוּחַ מַחווָנִים</string>
+    <string name="adminPass">ערוך פרופיל</string>
+    <string name="image">ערוך פרופיל</string>
+    <string name="profile">סרט דרג</string>
+    <string name="myProfile">סרט דרג</string>
+    <string name="search">חפש</string>
+    <string name="title_activity_movie">הגדרות</string>
+    <string name="noRating">לוּחַ מַחווָנִים</string>
+    <string name="noRec">מצטערים, אין המלצות תינתן.</string>
 
     <string-array name="majors">
-        <item>Select your Major</item>
-        <item>Computer Science</item>
-        <item>Engineering</item>
-        <item>Business</item>
-        <item>Science</item>
-        <item>Other</item>
+        <item>בחר סרן</item>
+        <item>מדעי המחשב</item>
+        <item>הַנדָסָה</item>
+        <item>עֵסֶק</item>
+        <item>מַדָע</item>
+        <item>אַחֵר</item>
     </string-array>
-    <string name="title_activity_admin_page">AdminPage</string>
+    <string name="title_activity_admin_page">אַח</string>
 </resources>
